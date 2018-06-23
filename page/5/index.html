@@ -198,9 +198,43 @@
       
 
       
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
     </ul>
   
 
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
   
 </nav>
 
@@ -539,7 +573,7 @@ LocalBroadcastManager.getInstance(this).registerReceiver(responseReceive, intent
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/09/26/broadcast/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/09/26/Activity/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -558,7 +592,7 @@ LocalBroadcastManager.getInstance(this).registerReceiver(responseReceive, intent
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2016/09/26/broadcast/" itemprop="url">广播接收器</a></h1>
+                <a class="post-title-link" href="/2016/09/26/Activity/" itemprop="url">Activity</a></h1>
         
 
         <div class="post-meta">
@@ -611,94 +645,331 @@ LocalBroadcastManager.getInstance(this).registerReceiver(responseReceive, intent
         
           
             <p><font style="font-family:微软雅黑"></font></p>
-<h2 id="广播机制"><a href="#广播机制" class="headerlink" title="广播机制"></a>广播机制</h2><ul>
-<li>标准广播<blockquote>
+<h2 id="Activity"><a href="#Activity" class="headerlink" title="Activity"></a>Activity</h2><h3 id="res目录"><a href="#res目录" class="headerlink" title="res目录"></a>res目录</h3><ul>
+<li><p>drawable 存放图片</p>
+<blockquote>
 <ul>
-<li>完全异步执行</li>
-<li>所有广播接收器几乎同时收到</li>
+<li>R.drawable.XXX</li>
+<li>@drawable/XXX</li>
 </ul>
 </blockquote>
 </li>
-<li>有序广播<blockquote>
+<li><p>values 存放字符串</p>
+<blockquote>
 <ul>
-<li>同步执行</li>
-<li>优先级高的先收到，可以截断。</li>
+<li>代码中：R.string.XXX    </li>
+<li>xml中：@string/XXX</li>
 </ul>
-</blockquote>
-<h2 id="系统广播"><a href="#系统广播" class="headerlink" title="系统广播"></a>系统广播</h2></li>
-</ul>
-<h2 id="broadcast-receiver"><a href="#broadcast-receiver" class="headerlink" title="broadcast receiver"></a>broadcast receiver</h2><ul>
-<li>不允许开启线程</li>
-<li><p>onReceive 中的context的来源，是谁在调用这个函数 // todo</p>
-<h3 id="静态注册"><a href="#静态注册" class="headerlink" title="静态注册"></a>静态注册</h3><blockquote>
-<p> manifest中注册</p>
-</blockquote>
-<p>  <receiver android:name="util.NetworkChangedReceiver"></receiver></p>
-<pre><code>    &lt;intent-filter&gt;
-        &lt;action android:name=&quot;android.net.conn.CONNECTIVITY_CHANGE&quot;&gt;&lt;/action&gt;
-    &lt;/intent-filter&gt;
-&lt;/receiver&gt;
-</code></pre><h3 id="动态注册"><a href="#动态注册" class="headerlink" title="动态注册"></a>动态注册</h3><blockquote>
-<p>代码中注册</p>
 </blockquote>
 </li>
 </ul>
-<ol>
-<li><p>继承类</p>
-<pre><code>    class NetworkChangeReceiver extends BroadcastReceiver{
-
-    @Override
-    public void onReceive(Context context, Intent intent) {
-        ConnectivityManager manager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
-        NetworkInfo info = manager.getActiveNetworkInfo();
-/*
-        Intent intent1 = new Intent(context, SettingActivity.class);
-        startActivity(intent1);
-*/
-        if (info != null &amp;&amp; info.isAvailable()) {
-            Toast.makeText(context, &quot;network is available&quot;, Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(context, &quot;network is unavailable&quot;, Toast.LENGTH_SHORT).show();
-        }
-    }
+<ul>
+<li>layout 存放布局文件</li>
+<li><p>menu 存放菜单文件</p>
+</li>
+<li><p>项目中任何添加的资源都会在R文件中生成一个相应的资源id。</p>
+</li>
+</ul>
+<h3 id="添加菜单"><a href="#添加菜单" class="headerlink" title="添加菜单"></a>添加菜单</h3><ol>
+<li>res下新建menu文件夹，添加菜单文件（res的menu文件夹中）</li>
+<li><p>重写onCreateOptionsMenu方法</p>
+<pre><code>@Override
+public boolean onCreateOptionsMenu(Menu menu) {
+    this.getMenuInflater().inflate(R.menu.main, menu);
+    return true;
 }
 </code></pre></li>
-<li><p>注册广播，在onCreate中添加</p>
-<pre><code>IntentFilter intentFilter = new IntentFilter(&quot;android.net.conn.CONNECTIVITY_CHANGE&quot;);
-registerReceiver(receiver, intentFilter);
+<li><p>响应点击按钮事件</p>
+<pre><code>@Override
+public boolean onOptionsItemSelected(MenuItem item) {
+    switch (item.getItemId()) {
+        case R.id.set_item:
+            Toast.makeText(this, &quot;设置&quot;, Toast.LENGTH_SHORT).show();
+    }
+    return true;
+}
 </code></pre></li>
-<li><p>注意要在onDestroy函数中取消注册。</p>
+</ol>
+<h3 id="Intent"><a href="#Intent" class="headerlink" title="Intent"></a>Intent</h3><h4 id="隐式intent"><a href="#隐式intent" class="headerlink" title="隐式intent"></a>隐式intent</h4><h5 id="待启动的activity"><a href="#待启动的activity" class="headerlink" title="待启动的activity"></a>待启动的activity</h5><ul>
+<li>在需要响应内容的Activity中添加action以及category字段，只有当这两个字段完全匹配上intent的相应的值时，才可以启动activity。</li>
+<li><p>intent构造函数：action字符串传入，默认情况下会插入</p>
+<blockquote>
+<p>“android.intent.category.DEFAULT”</p>
+</blockquote>
+</li>
+<li><p>intent-filter可以指定data标签，更精确的指定当前activity能够响应的数据</p>
+<pre><code>&lt;data android:scheme=&quot;http&quot;
+    android:mimeType=&quot;XXX&quot;&gt;&lt;/data&gt;
+</code></pre><p>除此之外，还能够匹配host，port，path等，只有当这些值完全匹配，才会被启动。</p>
+<h5 id="隐式启动activity时"><a href="#隐式启动activity时" class="headerlink" title="隐式启动activity时"></a>隐式启动activity时</h5></li>
+<li>intent 可以指定多个category</li>
+<li></li>
+</ul>
+<pre><code>Intent intent  = new Intent(Intent.ACTION_VIEW);
+intent.setData(Uri.parse(&quot;http://www.baidu.com&quot;));
+
+
+Intent intent = new Intent(Intent.ACTION_DIAL);
+intent.setData(Uri.parse(&quot;tel:10086&quot;));
+</code></pre><ul>
+<li>intent setDateAndType（，）两个参数分别是uri以及文件类型.<br><a href="http://blog.csdn.net/chaoyu168/article/details/50778016" target="_blank" rel="noopener">http://blog.csdn.net/chaoyu168/article/details/50778016</a><h5 id="activity之间传递数据"><a href="#activity之间传递数据" class="headerlink" title="activity之间传递数据"></a>activity之间传递数据</h5></li>
+<li><p>传递给下一个界面</p>
+<blockquote>
+<ul>
+<li>在intent当中putExtra就可以了,在下一个界面当中getIntent获得intent就可以读取里面的内容了。</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>可以直接使用key-value的方式插入intent中，也可以通过bundle类来进行插入，bundle类类似一个map，能够简化操作。</li>
+<li>实现了序列化接口的类对象也可以通过intent传递。</li>
+</ul>
+</blockquote>
+</li>
+<li><p>对接时怎么样传递数据比较好呢？</p>
+<blockquote>
+<p>在被启动的页面中新增一个静态方法actionStart(),参数需要有context，然后参数列表是需要传递的数据，这样在前一个页面中直接调用这个方法就可以启动新的页面了。</p>
+</blockquote>
+</li>
+<li><p>startActivityForResult</p>
+<blockquote>
+<ul>
+<li>启动时传入requestCode</li>
+<li>重写onActivityResult方法，根据参数中的requestCode判断是哪个的回调。</li>
+<li>必要时还需要重写被启动页面的返回键回调函数onBackPress()</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h5 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h5><p><img src="http://7xkzud.com1.z0.glb.clouddn.com/16-9-23/53552719.jpg" alt=""></p>
+<h5 id="Activity被回收了"><a href="#Activity被回收了" class="headerlink" title="Activity被回收了"></a>Activity被回收了</h5><ul>
+<li>onSaveInstanceState(Bundle)</li>
+<li>onCreate(Bundle)</li>
+</ul>
+<h5 id="启动模式"><a href="#启动模式" class="headerlink" title="启动模式"></a>启动模式</h5><ul>
+<li>standard模式</li>
+<li><p>singleTop模式</p>
+<blockquote>
+<ul>
+<li>栈顶如果是要启动的activity，则不新建，仅此而已。</li>
+</ul>
+</blockquote>
+</li>
+<li><p>singleTask模式</p>
+<blockquote>
+<ul>
+<li>检查返回栈中是否存在类的实例，如果存在将其上的所有activity出栈。</li>
+</ul>
+</blockquote>
+</li>
+<li>singleInstance模式<blockquote>
+<ul>
+<li>存放在一个新的返回栈里面。</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/09/26/Handler_async_task/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/09/26/Handler_async_task/" itemprop="url">异步消息处理</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-09-26T00:00:00+08:00">
+                2016-09-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><font style="font-family:微软雅黑"></font></p>
+<h2 id="Handler"><a href="#Handler" class="headerlink" title="Handler"></a>Handler</h2><h3 id="Handler的使用"><a href="#Handler的使用" class="headerlink" title="Handler的使用"></a>Handler的使用</h3><ol>
+<li><p>继承Handler类，Override它的handleMessage方法（处理消息）</p>
+<pre><code>Handler handler = new Handler() {
+    @Override
+    public void handleMessage(Message msg) {
+        super.handleMessage(msg);
+        textView.setText(&quot;after handling&quot; + msg.getData().getString(&quot;key&quot;));
+    }
+};
+</code></pre><ul>
+<li>tips:Message可能需要用到的两个成员分别是<ul>
+<li>msg.what</li>
+<li>msg.setData(),msg.getData()</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>在新开的线程中使用handler的sendMessage方法发送消息，以达到修改UI元素的效果。</p>
+<pre><code>new Thread(new Runnable() {
+    @Override
+    public void run() {
+        Message msg = new Message();
+        Bundle bundle = new Bundle();
+        bundle.putString(&quot;key&quot;, textView.getText().toString());
+        msg.setData(bundle);
+        handler.sendMessage(msg);
+    }
+}).start();
+</code></pre></li>
+<li>一些思考</li>
+</ol>
+<pre><code>    MessageQueue：消息队列
+    Looper：循环，一直从消息队列中获得消息，如果没有消息则一直循环。成员变量有MessageQueue。ThreadLocal变量，每个线程唯一且相同。
+    Handler：成员变量有Looper，亦即也拥有MessageQueue，发送消息时向消息队列插入消息，有Looper负责发现消息并且根据Message的target（亦即handler）来负责处理消息。
+* 所以，当我们在子线程中用handler发送消息时，插入的MessageQueue是主线程的MessageQueue，此时由handler的操作便变成了主线程的操作而非在子线程中操作界面。
+</code></pre><h2 id="AsyncTask"><a href="#AsyncTask" class="headerlink" title="AsyncTask"></a>AsyncTask</h2><ol>
+<li><p>继承AsyncTask类</p>
+<pre><code>//参数，运行时返回值类型，结果类型
+class DownloadTask extends AsyncTask&lt;String, Integer, Boolean&gt; {
+int count = 0;
+//任务启动前执行的函数
+@Override
+protected void onPreExecute() {
+    progressDialog.show();
+}
+//后台执行的函数，可以进行耗时操作
+@Override
+protected Boolean doInBackground(String... params) {
+    while (true) {
+        try {
+            TimeUnit.SECONDS.sleep(1);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        count++;
+        if (count &gt;= 10) {
+            break;
+        }
+        //这个方法会调用更新进度显示的函数。
+        publishProgress(count);
+    }
+    return true;
+}
+//更新进度显示
+@Override
+protected void onProgressUpdate(Integer... values) {
+    progressDialog.setMessage(&quot;downloaded &quot; + values[0]*10 + &quot;%&quot;);
+}
+//后台执行完成之后调用。
+@Override
+protected void onPostExecute(Boolean aBoolean) {
+    progressDialog.dismiss();
+    if(aBoolean) {
+        Toast.makeText(MessageHandleActivity.this, &quot;succeed&quot;, Toast.LENGTH_SHORT).show();
+    } else {
+        Toast.makeText(MessageHandleActivity.this, &quot;failed&quot;, Toast.LENGTH_SHORT).show();
+    }
+}
+</code></pre><p> }</p>
 </li>
 </ol>
-<h2 id="自定义广播接收器"><a href="#自定义广播接收器" class="headerlink" title="自定义广播接收器"></a>自定义广播接收器</h2><ul>
-<li>与隐式intent类似，可以在intent-filter中添加自定义的action，发送广播时调用sendBroadCast(Intent intent)。此时发送的是标准广播，同时也可以发送一些数据，在intent当中。</li>
-<li><p>sendOrderedBroadCast() 发送有序广播</p>
-<h3 id="本地广播功能"><a href="#本地广播功能" class="headerlink" title="本地广播功能"></a>本地广播功能</h3><p>LocalBroadCastManager getInstance()方法</p>
-</li>
-<li><p>初始化localBroadCastManager</p>
-<blockquote>
-<p>localBroadCastManager = LocalBroadCastManager.getInstance(this);</p>
-</blockquote>
-</li>
-<li><p>注册</p>
-<blockquote>
-<p>localBroadCastManager.register…..</p>
-</blockquote>
-</li>
-<li><p>发送</p>
-<blockquote>
-<p>localBroadCastManager.send……</p>
-</blockquote>
-</li>
-<li><p>销毁</p>
-<blockquote>
-<p>localBroadCastManager .unregister…..</p>
-</blockquote>
-</li>
-<li><p>本地广播无法使用静态注册。 </p>
-<h2 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h2></li>
-<li>在广播接收器里启动activity时，需要给Intent加入FLAG_ACTIVITY_NEW_TASK标志。</li>
-</ul>
 
           
         
@@ -1090,7 +1361,7 @@ public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/09/26/Handler_async_task/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/09/26/broadcast/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -1109,7 +1380,7 @@ public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2016/09/26/Handler_async_task/" itemprop="url">异步消息处理</a></h1>
+                <a class="post-title-link" href="/2016/09/26/broadcast/" itemprop="url">广播接收器</a></h1>
         
 
         <div class="post-meta">
@@ -1162,330 +1433,93 @@ public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         
           
             <p><font style="font-family:微软雅黑"></font></p>
-<h2 id="Handler"><a href="#Handler" class="headerlink" title="Handler"></a>Handler</h2><h3 id="Handler的使用"><a href="#Handler的使用" class="headerlink" title="Handler的使用"></a>Handler的使用</h3><ol>
-<li><p>继承Handler类，Override它的handleMessage方法（处理消息）</p>
-<pre><code>Handler handler = new Handler() {
+<h2 id="广播机制"><a href="#广播机制" class="headerlink" title="广播机制"></a>广播机制</h2><ul>
+<li>标准广播<blockquote>
+<ul>
+<li>完全异步执行</li>
+<li>所有广播接收器几乎同时收到</li>
+</ul>
+</blockquote>
+</li>
+<li>有序广播<blockquote>
+<ul>
+<li>同步执行</li>
+<li>优先级高的先收到，可以截断。</li>
+</ul>
+</blockquote>
+<h2 id="系统广播"><a href="#系统广播" class="headerlink" title="系统广播"></a>系统广播</h2></li>
+</ul>
+<h2 id="broadcast-receiver"><a href="#broadcast-receiver" class="headerlink" title="broadcast receiver"></a>broadcast receiver</h2><ul>
+<li>不允许开启线程</li>
+<li><p>onReceive 中的context的来源，是谁在调用这个函数 // todo</p>
+<h3 id="静态注册"><a href="#静态注册" class="headerlink" title="静态注册"></a>静态注册</h3><blockquote>
+<p> manifest中注册</p>
+</blockquote>
+<p>  <receiver android:name="util.NetworkChangedReceiver"></receiver></p>
+<pre><code>    &lt;intent-filter&gt;
+        &lt;action android:name=&quot;android.net.conn.CONNECTIVITY_CHANGE&quot;&gt;&lt;/action&gt;
+    &lt;/intent-filter&gt;
+&lt;/receiver&gt;
+</code></pre><h3 id="动态注册"><a href="#动态注册" class="headerlink" title="动态注册"></a>动态注册</h3><blockquote>
+<p>代码中注册</p>
+</blockquote>
+</li>
+</ul>
+<ol>
+<li><p>继承类</p>
+<pre><code>    class NetworkChangeReceiver extends BroadcastReceiver{
+
     @Override
-    public void handleMessage(Message msg) {
-        super.handleMessage(msg);
-        textView.setText(&quot;after handling&quot; + msg.getData().getString(&quot;key&quot;));
-    }
-};
-</code></pre><ul>
-<li>tips:Message可能需要用到的两个成员分别是<ul>
-<li>msg.what</li>
-<li>msg.setData(),msg.getData()</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>在新开的线程中使用handler的sendMessage方法发送消息，以达到修改UI元素的效果。</p>
-<pre><code>new Thread(new Runnable() {
-    @Override
-    public void run() {
-        Message msg = new Message();
-        Bundle bundle = new Bundle();
-        bundle.putString(&quot;key&quot;, textView.getText().toString());
-        msg.setData(bundle);
-        handler.sendMessage(msg);
-    }
-}).start();
-</code></pre></li>
-<li>一些思考</li>
-</ol>
-<pre><code>    MessageQueue：消息队列
-    Looper：循环，一直从消息队列中获得消息，如果没有消息则一直循环。成员变量有MessageQueue。ThreadLocal变量，每个线程唯一且相同。
-    Handler：成员变量有Looper，亦即也拥有MessageQueue，发送消息时向消息队列插入消息，有Looper负责发现消息并且根据Message的target（亦即handler）来负责处理消息。
-* 所以，当我们在子线程中用handler发送消息时，插入的MessageQueue是主线程的MessageQueue，此时由handler的操作便变成了主线程的操作而非在子线程中操作界面。
-</code></pre><h2 id="AsyncTask"><a href="#AsyncTask" class="headerlink" title="AsyncTask"></a>AsyncTask</h2><ol>
-<li><p>继承AsyncTask类</p>
-<pre><code>//参数，运行时返回值类型，结果类型
-class DownloadTask extends AsyncTask&lt;String, Integer, Boolean&gt; {
-int count = 0;
-//任务启动前执行的函数
-@Override
-protected void onPreExecute() {
-    progressDialog.show();
-}
-//后台执行的函数，可以进行耗时操作
-@Override
-protected Boolean doInBackground(String... params) {
-    while (true) {
-        try {
-            TimeUnit.SECONDS.sleep(1);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+    public void onReceive(Context context, Intent intent) {
+        ConnectivityManager manager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+        NetworkInfo info = manager.getActiveNetworkInfo();
+/*
+        Intent intent1 = new Intent(context, SettingActivity.class);
+        startActivity(intent1);
+*/
+        if (info != null &amp;&amp; info.isAvailable()) {
+            Toast.makeText(context, &quot;network is available&quot;, Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, &quot;network is unavailable&quot;, Toast.LENGTH_SHORT).show();
         }
-        count++;
-        if (count &gt;= 10) {
-            break;
-        }
-        //这个方法会调用更新进度显示的函数。
-        publishProgress(count);
     }
-    return true;
-}
-//更新进度显示
-@Override
-protected void onProgressUpdate(Integer... values) {
-    progressDialog.setMessage(&quot;downloaded &quot; + values[0]*10 + &quot;%&quot;);
-}
-//后台执行完成之后调用。
-@Override
-protected void onPostExecute(Boolean aBoolean) {
-    progressDialog.dismiss();
-    if(aBoolean) {
-        Toast.makeText(MessageHandleActivity.this, &quot;succeed&quot;, Toast.LENGTH_SHORT).show();
-    } else {
-        Toast.makeText(MessageHandleActivity.this, &quot;failed&quot;, Toast.LENGTH_SHORT).show();
-    }
-}
-</code></pre><p> }</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/09/26/Activity/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/09/26/Activity/" itemprop="url">Activity</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-09-26T00:00:00+08:00">
-                2016-09-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><font style="font-family:微软雅黑"></font></p>
-<h2 id="Activity"><a href="#Activity" class="headerlink" title="Activity"></a>Activity</h2><h3 id="res目录"><a href="#res目录" class="headerlink" title="res目录"></a>res目录</h3><ul>
-<li><p>drawable 存放图片</p>
-<blockquote>
-<ul>
-<li>R.drawable.XXX</li>
-<li>@drawable/XXX</li>
-</ul>
-</blockquote>
-</li>
-<li><p>values 存放字符串</p>
-<blockquote>
-<ul>
-<li>代码中：R.string.XXX    </li>
-<li>xml中：@string/XXX</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-<ul>
-<li>layout 存放布局文件</li>
-<li><p>menu 存放菜单文件</p>
-</li>
-<li><p>项目中任何添加的资源都会在R文件中生成一个相应的资源id。</p>
-</li>
-</ul>
-<h3 id="添加菜单"><a href="#添加菜单" class="headerlink" title="添加菜单"></a>添加菜单</h3><ol>
-<li>res下新建menu文件夹，添加菜单文件（res的menu文件夹中）</li>
-<li><p>重写onCreateOptionsMenu方法</p>
-<pre><code>@Override
-public boolean onCreateOptionsMenu(Menu menu) {
-    this.getMenuInflater().inflate(R.menu.main, menu);
-    return true;
 }
 </code></pre></li>
-<li><p>响应点击按钮事件</p>
-<pre><code>@Override
-public boolean onOptionsItemSelected(MenuItem item) {
-    switch (item.getItemId()) {
-        case R.id.set_item:
-            Toast.makeText(this, &quot;设置&quot;, Toast.LENGTH_SHORT).show();
-    }
-    return true;
-}
+<li><p>注册广播，在onCreate中添加</p>
+<pre><code>IntentFilter intentFilter = new IntentFilter(&quot;android.net.conn.CONNECTIVITY_CHANGE&quot;);
+registerReceiver(receiver, intentFilter);
 </code></pre></li>
+<li><p>注意要在onDestroy函数中取消注册。</p>
+</li>
 </ol>
-<h3 id="Intent"><a href="#Intent" class="headerlink" title="Intent"></a>Intent</h3><h4 id="隐式intent"><a href="#隐式intent" class="headerlink" title="隐式intent"></a>隐式intent</h4><h5 id="待启动的activity"><a href="#待启动的activity" class="headerlink" title="待启动的activity"></a>待启动的activity</h5><ul>
-<li>在需要响应内容的Activity中添加action以及category字段，只有当这两个字段完全匹配上intent的相应的值时，才可以启动activity。</li>
-<li><p>intent构造函数：action字符串传入，默认情况下会插入</p>
+<h2 id="自定义广播接收器"><a href="#自定义广播接收器" class="headerlink" title="自定义广播接收器"></a>自定义广播接收器</h2><ul>
+<li>与隐式intent类似，可以在intent-filter中添加自定义的action，发送广播时调用sendBroadCast(Intent intent)。此时发送的是标准广播，同时也可以发送一些数据，在intent当中。</li>
+<li><p>sendOrderedBroadCast() 发送有序广播</p>
+<h3 id="本地广播功能"><a href="#本地广播功能" class="headerlink" title="本地广播功能"></a>本地广播功能</h3><p>LocalBroadCastManager getInstance()方法</p>
+</li>
+<li><p>初始化localBroadCastManager</p>
 <blockquote>
-<p>“android.intent.category.DEFAULT”</p>
+<p>localBroadCastManager = LocalBroadCastManager.getInstance(this);</p>
 </blockquote>
 </li>
-<li><p>intent-filter可以指定data标签，更精确的指定当前activity能够响应的数据</p>
-<pre><code>&lt;data android:scheme=&quot;http&quot;
-    android:mimeType=&quot;XXX&quot;&gt;&lt;/data&gt;
-</code></pre><p>除此之外，还能够匹配host，port，path等，只有当这些值完全匹配，才会被启动。</p>
-<h5 id="隐式启动activity时"><a href="#隐式启动activity时" class="headerlink" title="隐式启动activity时"></a>隐式启动activity时</h5></li>
-<li>intent 可以指定多个category</li>
-<li></li>
-</ul>
-<pre><code>Intent intent  = new Intent(Intent.ACTION_VIEW);
-intent.setData(Uri.parse(&quot;http://www.baidu.com&quot;));
-
-
-Intent intent = new Intent(Intent.ACTION_DIAL);
-intent.setData(Uri.parse(&quot;tel:10086&quot;));
-</code></pre><ul>
-<li>intent setDateAndType（，）两个参数分别是uri以及文件类型.<br><a href="http://blog.csdn.net/chaoyu168/article/details/50778016" target="_blank" rel="noopener">http://blog.csdn.net/chaoyu168/article/details/50778016</a><h5 id="activity之间传递数据"><a href="#activity之间传递数据" class="headerlink" title="activity之间传递数据"></a>activity之间传递数据</h5></li>
-<li><p>传递给下一个界面</p>
+<li><p>注册</p>
 <blockquote>
-<ul>
-<li>在intent当中putExtra就可以了,在下一个界面当中getIntent获得intent就可以读取里面的内容了。</li>
-</ul>
-</blockquote>
-<blockquote>
-<ul>
-<li>可以直接使用key-value的方式插入intent中，也可以通过bundle类来进行插入，bundle类类似一个map，能够简化操作。</li>
-<li>实现了序列化接口的类对象也可以通过intent传递。</li>
-</ul>
+<p>localBroadCastManager.register…..</p>
 </blockquote>
 </li>
-<li><p>对接时怎么样传递数据比较好呢？</p>
+<li><p>发送</p>
 <blockquote>
-<p>在被启动的页面中新增一个静态方法actionStart(),参数需要有context，然后参数列表是需要传递的数据，这样在前一个页面中直接调用这个方法就可以启动新的页面了。</p>
+<p>localBroadCastManager.send……</p>
 </blockquote>
 </li>
-<li><p>startActivityForResult</p>
+<li><p>销毁</p>
 <blockquote>
-<ul>
-<li>启动时传入requestCode</li>
-<li>重写onActivityResult方法，根据参数中的requestCode判断是哪个的回调。</li>
-<li>必要时还需要重写被启动页面的返回键回调函数onBackPress()</li>
-</ul>
+<p>localBroadCastManager .unregister…..</p>
 </blockquote>
 </li>
-</ul>
-<h5 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h5><p><img src="http://7xkzud.com1.z0.glb.clouddn.com/16-9-23/53552719.jpg" alt=""></p>
-<h5 id="Activity被回收了"><a href="#Activity被回收了" class="headerlink" title="Activity被回收了"></a>Activity被回收了</h5><ul>
-<li>onSaveInstanceState(Bundle)</li>
-<li>onCreate(Bundle)</li>
-</ul>
-<h5 id="启动模式"><a href="#启动模式" class="headerlink" title="启动模式"></a>启动模式</h5><ul>
-<li>standard模式</li>
-<li><p>singleTop模式</p>
-<blockquote>
-<ul>
-<li>栈顶如果是要启动的activity，则不新建，仅此而已。</li>
-</ul>
-</blockquote>
-</li>
-<li><p>singleTask模式</p>
-<blockquote>
-<ul>
-<li>检查返回栈中是否存在类的实例，如果存在将其上的所有activity出栈。</li>
-</ul>
-</blockquote>
-</li>
-<li>singleInstance模式<blockquote>
-<ul>
-<li>存放在一个新的返回栈里面。</li>
-</ul>
-</blockquote>
-</li>
+<li><p>本地广播无法使用静态注册。 </p>
+<h2 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h2></li>
+<li>在广播接收器里启动activity时，需要给Intent加入FLAG_ACTIVITY_NEW_TASK标志。</li>
 </ul>
 
           
@@ -1783,6 +1817,323 @@ intent.setData(Uri.parse(&quot;tel:10086&quot;));
 
 
   
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
 
 
 
