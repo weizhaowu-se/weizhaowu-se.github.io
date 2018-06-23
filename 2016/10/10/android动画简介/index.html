@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>android动画简介 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="ViewAnimation视图动画基类是Animation，包含的子类有 AlphaAnimation 透明度动画 TranslateAnimation 平移动画 ScaleAnimation 缩放动画 RotateAnimation 旋转动画 AnimationSet 动画集合">
+<meta name="keywords" content="android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="android动画简介">
+<meta property="og:url" content="http://yoursite.com/2016/10/10/android动画简介/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="ViewAnimation视图动画基类是Animation，包含的子类有 AlphaAnimation 透明度动画 TranslateAnimation 平移动画 ScaleAnimation 缩放动画 RotateAnimation 旋转动画 AnimationSet 动画集合">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://7xkzud.com1.z0.glb.clouddn.com/16-10-20/36491693.jpg">
+<meta property="og:updated_time" content="2016-10-20T13:26:47.281Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="android动画简介">
+<meta name="twitter:description" content="ViewAnimation视图动画基类是Animation，包含的子类有 AlphaAnimation 透明度动画 TranslateAnimation 平移动画 ScaleAnimation 缩放动画 RotateAnimation 旋转动画 AnimationSet 动画集合">
+<meta name="twitter:image" content="http://7xkzud.com1.z0.glb.clouddn.com/16-10-20/36491693.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-android动画简介" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/10/10/android动画简介/" class="article-date">
+  <time datetime="2016-10-10T11:35:56.000Z" itemprop="datePublished">2016-10-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      android动画简介
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="ViewAnimation"><a href="#ViewAnimation" class="headerlink" title="ViewAnimation"></a>ViewAnimation</h3><h4 id="视图动画"><a href="#视图动画" class="headerlink" title="视图动画"></a><strong>视图动画</strong></h4><h4 id="基类是Animation，包含的子类有"><a href="#基类是Animation，包含的子类有" class="headerlink" title="基类是Animation，包含的子类有"></a>基类是Animation，包含的子类有</h4><ul>
+<li>AlphaAnimation 透明度动画</li>
+<li>TranslateAnimation 平移动画</li>
+<li>ScaleAnimation 缩放动画</li>
+<li>RotateAnimation 旋转动画</li>
+<li>AnimationSet 动画集合<a id="more"></a>
+<h4 id="定义方法"><a href="#定义方法" class="headerlink" title="定义方法"></a>定义方法</h4></li>
+<li>java代码</li>
+<li><p>xml文件定义  </p>
+<ul>
+<li><p>xml文件</p>
+<blockquote>
+<p> res-&gt;anim-&gt;view_alpha.xml</p>
+</blockquote>
+</li>
+<li><p>java文件  </p>
+<pre><code>Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.view_alpha); 
+</code></pre><!--more-->
+<h3 id="PropertyAnimation属性动画"><a href="#PropertyAnimation属性动画" class="headerlink" title="PropertyAnimation属性动画"></a><strong>PropertyAnimation</strong>属性动画</h3></li>
+</ul>
+</li>
+<li><p><a href="https://developer.android.com/guide/topics/graphics/prop-animation.html" target="_blank" rel="noopener">google官方api</a></p>
+<h4 id="与视图动画的区别"><a href="#与视图动画的区别" class="headerlink" title="与视图动画的区别"></a>与视图动画的区别</h4></li>
+<li>视图动画比较局限,仅能够修改view对象,局限于view对象的一些特定属性:例如scale,alpha等.</li>
+<li>视图动画仅仅是修改了view绘制的地方而非view本身的属性.(在你移动一个按钮到新的位置时,点击新的位置的按钮并不能够触发事件监听)<h4 id="ValueAnimator"><a href="#ValueAnimator" class="headerlink" title="ValueAnimator"></a>ValueAnimator</h4></li>
+<li><p>使用:</p>
+<pre><code>ValueAnimator animation = ValueAnimator.ofFloat(0f, 1f);
+animation.setDuration(1000);
+animation.start();
+</code></pre><ul>
+<li>一般不直接使用这个,因为其只能够修改值而不能够将其值作用于目标上,这个类一般是作为下面的ObjectAnimator的内部实现.</li>
+<li>常用的几个方法为ofFloat ofInt ofArgb ofObject.</li>
+<li>ofObject时需要传递实现了TypeEvaluator接口的类以提供计算方法.<a href="https://developer.android.com/reference/android/animation/TypeEvaluator.html" target="_blank" rel="noopener">TypeEvaluator文档</a><h4 id="ObjectAnimator"><a href="#ObjectAnimator" class="headerlink" title="ObjectAnimator"></a>ObjectAnimator</h4></li>
+</ul>
+</li>
+<li><p>使用:</p>
+<pre><code>ObjectAnimator anim = ObjectAnimator.ofFloat(foo, &quot;alpha&quot;, 0f, 1f);
+anim.setDuration(1000);
+anim.start();
+</code></pre><ul>
+<li>常用的方法与ValueAnimator相同</li>
+<li>第一个参数是target,即需要进行操作的类</li>
+<li>第二个参数是property,target类中存在的变量,需要有setter方法,当setter方法不存在时:<ul>
+<li>添加方法</li>
+<li>使用包装类</li>
+<li>使用valueAnimator类</li>
+</ul>
+</li>
+<li>注意,有时候可能需要在动画的update监听器当中调用view的invalidate()方法来进行页面的重画.</li>
+</ul>
+</li>
+<li>tips<ul>
+<li>通过调用addListener添加动画监听器<ul>
+<li><img src="http://7xkzud.com1.z0.glb.clouddn.com/16-10-20/36491693.jpg" alt=""></li>
+<li>由于AnimatorListener需要实现的方法较多,所以google提供了另外一个实现了AnimatorListener接口的抽象类AnimatorListenerAdapter,你只需要实现这个类里面的某个方法即可(当你仅仅需要监听其中的某个方法的时候),其他方法默认为空实现.<h4 id="xml定义动画"><a href="#xml定义动画" class="headerlink" title="xml定义动画"></a>xml定义动画</h4></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>定义在res下的animator文件夹中</p>
+<pre><code>&lt;set android:ordering=&quot;sequentially&quot;&gt;
+    &lt;set&gt;
+        &lt;objectAnimator
+            android:propertyName=&quot;x&quot;
+            android:duration=&quot;500&quot;
+            android:valueTo=&quot;400&quot;
+            android:valueType=&quot;intType&quot;/&gt;
+        &lt;objectAnimator
+            android:propertyName=&quot;y&quot;
+            android:duration=&quot;500&quot;
+            android:valueTo=&quot;300&quot;
+            android:valueType=&quot;intType&quot;/&gt;
+    &lt;/set&gt;
+    &lt;objectAnimator
+        android:propertyName=&quot;alpha&quot;
+        android:duration=&quot;500&quot;
+        android:valueTo=&quot;1f&quot;/&gt;
+&lt;/set&gt;
+</code></pre></li>
+<li><p>java代码</p>
+<pre><code>AnimatorSet set = (AnimatorSet) AnimatorInflater.loadAnimator(myContext,
+    R.anim.property_animator);
+set.setTarget(myObject);
+set.start();
+</code></pre><h4 id="还未涉及到的…"><a href="#还未涉及到的…" class="headerlink" title="还未涉及到的…"></a>还未涉及到的…</h4></li>
+<li>animatorset 动画集合的使用</li>
+<li>xml定义动画的具体使用:当valueType时的处理方法</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/10/10/android动画简介/" data-id="cjir2cjvz00173ygv3lxamjj6" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">android</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/10/16/Java正则表达式/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Java正则表达式SomeTips
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/10/10/todo常见布局/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">常见布局</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSRF/">CSRF</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maven/">Maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL/">SQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cookie/">cookie</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/">http</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java-web/">java web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mybatis/">mybatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/servlet/">servlet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/session/">session</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring/">spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sql/">sql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tips/">tips</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vps/">vps</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web安全/">web安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/爬虫/">爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/第一行代码/">第一行代码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线程安全/">线程安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/继承/">继承</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络/">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书笔记/">读书笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面向对象/">面向对象</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CSRF/" style="font-size: 10px;">CSRF</a> <a href="/tags/JavaScript/" style="font-size: 12.5px;">JavaScript</a> <a href="/tags/Maven/" style="font-size: 10px;">Maven</a> <a href="/tags/SQL/" style="font-size: 12.5px;">SQL</a> <a href="/tags/android/" style="font-size: 20px;">android</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/cookie/" style="font-size: 10px;">cookie</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hexo/" style="font-size: 12.5px;">hexo</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/java/" style="font-size: 17.5px;">java</a> <a href="/tags/java-web/" style="font-size: 12.5px;">java web</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/mybatis/" style="font-size: 10px;">mybatis</a> <a href="/tags/nginx/" style="font-size: 12.5px;">nginx</a> <a href="/tags/python/" style="font-size: 12.5px;">python</a> <a href="/tags/servlet/" style="font-size: 10px;">servlet</a> <a href="/tags/session/" style="font-size: 10px;">session</a> <a href="/tags/spring/" style="font-size: 12.5px;">spring</a> <a href="/tags/sql/" style="font-size: 10px;">sql</a> <a href="/tags/tips/" style="font-size: 10px;">tips</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/vps/" style="font-size: 12.5px;">vps</a> <a href="/tags/web安全/" style="font-size: 10px;">web安全</a> <a href="/tags/数据库/" style="font-size: 12.5px;">数据库</a> <a href="/tags/爬虫/" style="font-size: 10px;">爬虫</a> <a href="/tags/第一行代码/" style="font-size: 15px;">第一行代码</a> <a href="/tags/线程安全/" style="font-size: 10px;">线程安全</a> <a href="/tags/继承/" style="font-size: 10px;">继承</a> <a href="/tags/网络/" style="font-size: 10px;">网络</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a> <a href="/tags/读书笔记/" style="font-size: 10px;">读书笔记</a> <a href="/tags/面向对象/" style="font-size: 10px;">面向对象</a> <a href="/tags/面试/" style="font-size: 10px;">面试</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/06/23/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/18/面试/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/18/关于handler以及一些回调的思考/">关于handler以及一些回调的思考</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/18/View/">View</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/18/UI/">UI</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

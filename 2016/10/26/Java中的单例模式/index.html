@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Java中的单例模式 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Java中的单例模式 多线程中可能会导致对象的多次初始化.懒汉式的实现 之所以成为懒汉,个人认为应该是类的初始化只在需要的时候进行,所以很”懒”.">
+<meta name="keywords" content="java,设计模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java中的单例模式">
+<meta property="og:url" content="http://yoursite.com/2016/10/26/Java中的单例模式/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Java中的单例模式 多线程中可能会导致对象的多次初始化.懒汉式的实现 之所以成为懒汉,个人认为应该是类的初始化只在需要的时候进行,所以很”懒”.">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2017-08-27T13:10:09.988Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java中的单例模式">
+<meta name="twitter:description" content="Java中的单例模式 多线程中可能会导致对象的多次初始化.懒汉式的实现 之所以成为懒汉,个人认为应该是类的初始化只在需要的时候进行,所以很”懒”.">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Java中的单例模式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/10/26/Java中的单例模式/" class="article-date">
+  <time datetime="2016-10-26T05:35:40.000Z" itemprop="datePublished">2016-10-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Java中的单例模式
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Java中的单例模式"><a href="#Java中的单例模式" class="headerlink" title="Java中的单例模式"></a>Java中的单例模式</h1><ul>
+<li>多线程中可能会导致对象的多次初始化.<h2 id="懒汉式的实现"><a href="#懒汉式的实现" class="headerlink" title="懒汉式的实现"></a>懒汉式的实现</h2></li>
+<li>之所以成为懒汉,个人认为应该是类的初始化只在需要的时候进行,所以很”懒”.<a id="more"></a>
+<h4 id="线程不安全"><a href="#线程不安全" class="headerlink" title="线程不安全"></a>线程不安全</h4></li>
+</ul>
+<pre><code>/*懒汉 非线程安全*/
+public class SingleTon_01 {
+    private static SingleTon_01 singleTon_01 = null;
+    private SingleTon_01() {
+
+    }
+    public static SingleTon_01 getSingleTon_01() {
+        if (singleTon_01 == null) {
+            singleTon_01 = new SingleTon_01();
+        }
+        return singleTon_01;
+    }
+    public void print() {
+        System.out.println(&quot;singleton_01&quot;);
+    }
+}
+</code></pre><h4 id="线程安全"><a href="#线程安全" class="headerlink" title="线程安全"></a>线程安全</h4><pre><code>/*懒汉 线程安全*/
+public class SingleTon_02 {
+    private static SingleTon_02 singleTon_02 = null;
+    private SingleTon_02() {}
+    private static synchronized SingleTon_02 getSingleTon_02() {
+        if (singleTon_02 == null) {
+            singleTon_02 = new SingleTon_02();
+        }
+        return singleTon_02;
+    }
+}
+</code></pre><h2 id="饿汉实现"><a href="#饿汉实现" class="headerlink" title="饿汉实现"></a>饿汉实现</h2><ul>
+<li>在类加载时就进行初始化,可能会产生垃圾对象,但是不会有多线程的问题出现.</li>
+</ul>
+<pre><code>/*饿汉式*/ 
+public class SingleTon_03 {
+    private static SingleTon_03 singleTon_03 = new SingleTon_03();
+    private SingleTon_03() {
+
+    }
+    public static SingleTon_03 getSingleTon_03() {
+        return singleTon_03;
+    }
+}
+</code></pre><h2 id="双重校验锁模式"><a href="#双重校验锁模式" class="headerlink" title="双重校验锁模式"></a>双重校验锁模式</h2><ul>
+<li>要注意变量需要添加volatile关键字.<ul>
+<li>假设有两个进程分别调用了getInstance方法,进程A首先将变量复制到CPU0缓存当中,进行初始化操作,如果没有volatile关键字,那么进程B在调用此方法时复制到CPU1缓存中的可能是未被更新的null,此时问题就出现了.</li>
+</ul>
+</li>
+</ul>
+<pre><code>/*双重校验锁模式*/
+public class SingleTon_04 {
+    private static volatile SingleTon_04 singleTon_04 = null;
+    private SingleTon_04() {
+
+    }
+    public static SingleTon_04 getSingleTon_04() {
+        if (singleTon_04 == null) {
+            synchronized (SingleTon_04.class) {
+                singleTon_04 = new SingleTon_04();
+            }
+        }
+        return singleTon_04;
+    }
+}
+</code></pre><h2 id="静态内部类实现"><a href="#静态内部类实现" class="headerlink" title="静态内部类实现"></a>静态内部类实现</h2><ul>
+<li>通过classloader机制确保初始化时只有一个线程</li>
+</ul>
+<pre><code>/*静态内部类*/
+public class SingleTon_05 {
+    private static class InstanceHolder{
+        private static SingleTon_05 singleTon_05 = new SingleTon_05();
+    }
+    private SingleTon_05() {
+
+    }
+    public SingleTon_05 getSingleTon_05() {
+        return InstanceHolder.singleTon_05;
+    }
+}
+</code></pre><h2 id="enum实现"><a href="#enum实现" class="headerlink" title="enum实现"></a>enum实现</h2><pre><code>public enum SingleTon_06 {
+    INSTANCE;
+    public void print() {
+        System.out.println(&quot;singleTon_06&quot;);
+    }
+}
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/10/26/Java中的单例模式/" data-id="cjir2cjvn000h3ygvkyrcctdq" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/10/26/Java中的synchronized和volatile_todo/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Java中的synchronized和volatile
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/10/19/android动画学习/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">android动画学习</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSRF/">CSRF</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maven/">Maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL/">SQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cookie/">cookie</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/">http</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java-web/">java web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mybatis/">mybatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/servlet/">servlet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/session/">session</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring/">spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sql/">sql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tips/">tips</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vps/">vps</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web安全/">web安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/爬虫/">爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/第一行代码/">第一行代码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线程安全/">线程安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/继承/">继承</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络/">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书笔记/">读书笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面向对象/">面向对象</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CSRF/" style="font-size: 10px;">CSRF</a> <a href="/tags/JavaScript/" style="font-size: 12.5px;">JavaScript</a> <a href="/tags/Maven/" style="font-size: 10px;">Maven</a> <a href="/tags/SQL/" style="font-size: 12.5px;">SQL</a> <a href="/tags/android/" style="font-size: 20px;">android</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/cookie/" style="font-size: 10px;">cookie</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hexo/" style="font-size: 12.5px;">hexo</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/java/" style="font-size: 17.5px;">java</a> <a href="/tags/java-web/" style="font-size: 12.5px;">java web</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/mybatis/" style="font-size: 10px;">mybatis</a> <a href="/tags/nginx/" style="font-size: 12.5px;">nginx</a> <a href="/tags/python/" style="font-size: 12.5px;">python</a> <a href="/tags/servlet/" style="font-size: 10px;">servlet</a> <a href="/tags/session/" style="font-size: 10px;">session</a> <a href="/tags/spring/" style="font-size: 12.5px;">spring</a> <a href="/tags/sql/" style="font-size: 10px;">sql</a> <a href="/tags/tips/" style="font-size: 10px;">tips</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/vps/" style="font-size: 12.5px;">vps</a> <a href="/tags/web安全/" style="font-size: 10px;">web安全</a> <a href="/tags/数据库/" style="font-size: 12.5px;">数据库</a> <a href="/tags/爬虫/" style="font-size: 10px;">爬虫</a> <a href="/tags/第一行代码/" style="font-size: 15px;">第一行代码</a> <a href="/tags/线程安全/" style="font-size: 10px;">线程安全</a> <a href="/tags/继承/" style="font-size: 10px;">继承</a> <a href="/tags/网络/" style="font-size: 10px;">网络</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a> <a href="/tags/读书笔记/" style="font-size: 10px;">读书笔记</a> <a href="/tags/面向对象/" style="font-size: 10px;">面向对象</a> <a href="/tags/面试/" style="font-size: 10px;">面试</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/06/23/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/18/面试/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/18/关于handler以及一些回调的思考/">关于handler以及一些回调的思考</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/18/View/">View</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/18/UI/">UI</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Java高级程序设计之面向对象 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Java高级程序设计之面向对象对象使用对象字面量来创建对象 对于对象的每一个属性来说,,都有两种类型的属性来确实其性质: 数据属性 Configureable 是否可配置,该属性指定对象是否可以配置(主要指的是数据属性) Enumerable  是否可遍历,指定for in时是否返回 Writable Value 属性的数据值,例如person中的属性name的值wilbert   访问器属性 C">
+<meta name="keywords" content="javascript,继承">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java高级程序设计之面向对象">
+<meta property="og:url" content="http://yoursite.com/2017/08/01/Java高级程序设计之面向对象/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Java高级程序设计之面向对象对象使用对象字面量来创建对象 对于对象的每一个属性来说,,都有两种类型的属性来确实其性质: 数据属性 Configureable 是否可配置,该属性指定对象是否可以配置(主要指的是数据属性) Enumerable  是否可遍历,指定for in时是否返回 Writable Value 属性的数据值,例如person中的属性name的值wilbert   访问器属性 C">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://7xkzud.com1.z0.glb.clouddn.com/17-8-1/13154209.jpg">
+<meta property="og:image" content="http://7xkzud.com1.z0.glb.clouddn.com/17-8-2/37511968.jpg">
+<meta property="og:updated_time" content="2017-08-27T13:11:43.019Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java高级程序设计之面向对象">
+<meta name="twitter:description" content="Java高级程序设计之面向对象对象使用对象字面量来创建对象 对于对象的每一个属性来说,,都有两种类型的属性来确实其性质: 数据属性 Configureable 是否可配置,该属性指定对象是否可以配置(主要指的是数据属性) Enumerable  是否可遍历,指定for in时是否返回 Writable Value 属性的数据值,例如person中的属性name的值wilbert   访问器属性 C">
+<meta name="twitter:image" content="http://7xkzud.com1.z0.glb.clouddn.com/17-8-1/13154209.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Java高级程序设计之面向对象" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/01/Java高级程序设计之面向对象/" class="article-date">
+  <time datetime="2017-08-01T13:56:36.000Z" itemprop="datePublished">2017-08-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Java高级程序设计之面向对象
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Java高级程序设计之面向对象"><a href="#Java高级程序设计之面向对象" class="headerlink" title="Java高级程序设计之面向对象"></a>Java高级程序设计之面向对象</h1><h2 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h2><h3 id="使用对象字面量来创建对象"><a href="#使用对象字面量来创建对象" class="headerlink" title="使用对象字面量来创建对象"></a>使用对象字面量来创建对象</h3><ul>
+<li>对于对象的每一个属性来说,,都有两种类型的属性来确实其性质:<ul>
+<li>数据属性<ul>
+<li>Configureable 是否可配置,该属性指定对象是否可以配置(主要指的是数据属性)</li>
+<li>Enumerable  是否可遍历,指定for in时是否返回</li>
+<li>Writable</li>
+<li>Value 属性的数据值,例如person中的属性name的值wilbert</li>
+</ul>
+</li>
+<li>访问器属性<ul>
+<li>Configureable 是否可配置,该属性指定对象是否可以配置(主要指的是数据属性)</li>
+<li>Enumerable  是否可遍历,指定for in时是否返回</li>
+<li>Writable</li>
+<li>Value 属性的数据值,例如person中的属性name的值wilbert  </li>
+<li>Get  </li>
+<li>Set<a id="more"></a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<pre><code>var person = {
+    name: &quot;wilbert&quot;,
+    sayHello: function () {
+        console.log(&quot;hello!world!&quot;)
+    }
+}
+Object.defineProperty(person, &quot;name&quot;, {
+    get: function () {
+        return name + &quot;test&quot;;
+    },
+    set: function (newValue) {
+     name = newValue;
+     }
+})
+person.name = &quot;abcd&quot;;
+console.log(person.name);
+//输出 abcdtest
+</code></pre><ul>
+<li>注意,仅能通过Object.defineProperty()或者Object.defineProperties()方法来对上述属性进行修改.</li>
+</ul>
+<hr>
+<h3 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h3><ul>
+<li>使用一个普通的函数,在函数中新建Object并且设定其属性,之后<br>返回这个对象<h3 id="构造函数模式"><a href="#构造函数模式" class="headerlink" title="构造函数模式"></a>构造函数模式</h3>  function Person(name, password) {<pre><code>this.name = name;
+this.password = password;
+this.sayHello = function () {
+    console.log(&quot;Hello!&quot;);
+}
+</code></pre>  }<br>  person = new Person(‘a’, ‘a’);</li>
+<li>使用new操作符来创建对象<br>可以使用instanceof来判断对象类型</li>
+<li>构造函数也可以看成普通的函数来调用,注意此时的this的作用域(一般情况下是windows)</li>
+<li>缺点:每个方法都相当于重新实例化了一遍,这个问题可以通过<br>原型模式property解决<h3 id="原型模式"><a href="#原型模式" class="headerlink" title="原型模式"></a>原型模式</h3></li>
+<li>每个构造函数都存在着prototype属性,这个属性指向一个原型对象,默认原型对象仅有constructor属性,constructor属性中又存在着指向构造函数的指针,如图</li>
+<li><img src="http://7xkzud.com1.z0.glb.clouddn.com/17-8-1/13154209.jpg" alt=""></li>
+<li>而通过构造函数实例化的对象都存在一个无法访问的指针[[prototype]]指向<strong>同一个</strong>原型对象.</li>
+<li><p>指针的获得方式</p>
+<pre><code>Object.getPrototypeof(person)
+</code></pre></li>
+<li><p>所以我们可以通过构造函数的prototype属性来设置原型对象从而达到公用函数或者变量的目的.</p>
+</li>
+<li><p>注意,访问一个对象的属性时的访问顺序:先访问自身的值,如果不存在,再访问原型对象中的值.</p>
+<h4 id="动态原型模式"><a href="#动态原型模式" class="headerlink" title="动态原型模式"></a>动态原型模式</h4><p>看代码</p>
+<p>  function Person(name, password) {</p>
+<pre><code>this.name = name;
+this.password = password;
+
+if(typeof this.sayHello != &quot;function&quot;) {
+    Person.prototype.sayHello = function () {
+        console.log(this.name + this.password);
+    }
+}
+</code></pre><p>  }</p>
+</li>
+<li><p>结合了构造函数与原型模式的优点,使其在使用上与普通的C/C++系的类更加相同.</p>
+</li>
+</ul>
+<h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><p>顺着上面的原型链继续写点关于继承的内容.</p>
+<h3 id="实现方法"><a href="#实现方法" class="headerlink" title="实现方法:"></a>实现方法:</h3><p>设置子类(SubType)的原型属性(prototype)为父类(SuperType)的实例.</p>
+<h3 id="大概原理"><a href="#大概原理" class="headerlink" title="大概原理"></a>大概原理</h3><ul>
+<li>图片<br><img src="http://7xkzud.com1.z0.glb.clouddn.com/17-8-2/37511968.jpg" alt=""></li>
+<li><p>代码大致如下</p>
+<pre><code>function Man(age) {
+    this.age = age;
+    this.name = &quot;test sub&quot;;
+}
+Man.prototype = new Person(&quot;sub&quot;, &quot;sub&quot;);
+man = new Man(&quot;10&quot;);
+man.sayHello();
+//访问Person类的方法
+console.log(man.name);
+//访问Person类的属性
+</code></pre></li>
+<li>此时情况如下:<ul>
+<li>man中的[<a href="不可访问指针">prototype]</a>指向Person(父类)的实例对象person</li>
+<li>person类中的[<a href="不可访问指针">prototype]</a>指向Person(父类)的原型对象</li>
+<li>Person(父类)的原型对象的Constructor中存在指向Person的指针</li>
+</ul>
+</li>
+<li><p>综上,构成了一条原型链,而根据属性的访问规则:</p>
+<blockquote>
+<p>访问一个对象的属性时的访问顺序:先访问自身的值,如果不存在,再顺着原型链直至查找到对象为止.</p>
+</blockquote>
+</li>
+<li><p>重点在于</p>
+<ul>
+<li>构造函数存在prototype指向原型对象;</li>
+<li>默认原型对象的构造函数存在指向构造函数的指针;</li>
+<li>对象实例(通过构造函数创建)存在指向原型对象的指针.</li>
+</ul>
+</li>
+<li>可以通过 instanceOf判断类型</li>
+<li>给原型添加方法的代码一定要放在替换原型的语句之后.</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/01/Java高级程序设计之面向对象/" data-id="cjir2cjvp000l3ygv1er230xb" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/继承/">继承</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/08/23/JAVA-NIO/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          JAVA NIO
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/07/31/SQL记录-二/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">SQL记录(二)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSRF/">CSRF</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maven/">Maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL/">SQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cookie/">cookie</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/">http</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java-web/">java web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mybatis/">mybatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/servlet/">servlet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/session/">session</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring/">spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sql/">sql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tips/">tips</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vps/">vps</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web安全/">web安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/爬虫/">爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/第一行代码/">第一行代码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线程安全/">线程安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/继承/">继承</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络/">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书笔记/">读书笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面向对象/">面向对象</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CSRF/" style="font-size: 10px;">CSRF</a> <a href="/tags/JavaScript/" style="font-size: 12.5px;">JavaScript</a> <a href="/tags/Maven/" style="font-size: 10px;">Maven</a> <a href="/tags/SQL/" style="font-size: 12.5px;">SQL</a> <a href="/tags/android/" style="font-size: 20px;">android</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/cookie/" style="font-size: 10px;">cookie</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hexo/" style="font-size: 12.5px;">hexo</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/java/" style="font-size: 17.5px;">java</a> <a href="/tags/java-web/" style="font-size: 12.5px;">java web</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/mybatis/" style="font-size: 10px;">mybatis</a> <a href="/tags/nginx/" style="font-size: 12.5px;">nginx</a> <a href="/tags/python/" style="font-size: 12.5px;">python</a> <a href="/tags/servlet/" style="font-size: 10px;">servlet</a> <a href="/tags/session/" style="font-size: 10px;">session</a> <a href="/tags/spring/" style="font-size: 12.5px;">spring</a> <a href="/tags/sql/" style="font-size: 10px;">sql</a> <a href="/tags/tips/" style="font-size: 10px;">tips</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/vps/" style="font-size: 12.5px;">vps</a> <a href="/tags/web安全/" style="font-size: 10px;">web安全</a> <a href="/tags/数据库/" style="font-size: 12.5px;">数据库</a> <a href="/tags/爬虫/" style="font-size: 10px;">爬虫</a> <a href="/tags/第一行代码/" style="font-size: 15px;">第一行代码</a> <a href="/tags/线程安全/" style="font-size: 10px;">线程安全</a> <a href="/tags/继承/" style="font-size: 10px;">继承</a> <a href="/tags/网络/" style="font-size: 10px;">网络</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a> <a href="/tags/读书笔记/" style="font-size: 10px;">读书笔记</a> <a href="/tags/面向对象/" style="font-size: 10px;">面向对象</a> <a href="/tags/面试/" style="font-size: 10px;">面试</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/06/23/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/18/面试/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/18/关于handler以及一些回调的思考/">关于handler以及一些回调的思考</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/18/View/">View</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/18/UI/">UI</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

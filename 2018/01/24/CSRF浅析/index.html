@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>CSRF浅析 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="CSRF浅析什么是CSRFCross-site request forgery,跨站请求伪造. 简单的攻击样例 小明访问并且登录了网站A 小明访问坏人的网站B,网站B上存在一些网站A的请求(GET或者POST) 一个简单的get请求可以利用img的src属性: &amp;lt;img src=&amp;quot;http://example.com/get?xxx=xxx&amp;quot;&amp;gt;  访问时触发了请求,">
+<meta name="keywords" content="web安全,CSRF">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSRF浅析">
+<meta property="og:url" content="http://yoursite.com/2018/01/24/CSRF浅析/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="CSRF浅析什么是CSRFCross-site request forgery,跨站请求伪造. 简单的攻击样例 小明访问并且登录了网站A 小明访问坏人的网站B,网站B上存在一些网站A的请求(GET或者POST) 一个简单的get请求可以利用img的src属性: &amp;lt;img src=&amp;quot;http://example.com/get?xxx=xxx&amp;quot;&amp;gt;  访问时触发了请求,">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-01-24T03:22:32.893Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSRF浅析">
+<meta name="twitter:description" content="CSRF浅析什么是CSRFCross-site request forgery,跨站请求伪造. 简单的攻击样例 小明访问并且登录了网站A 小明访问坏人的网站B,网站B上存在一些网站A的请求(GET或者POST) 一个简单的get请求可以利用img的src属性: &amp;lt;img src=&amp;quot;http://example.com/get?xxx=xxx&amp;quot;&amp;gt;  访问时触发了请求,">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-CSRF浅析" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/24/CSRF浅析/" class="article-date">
+  <time datetime="2018-01-24T03:01:37.000Z" itemprop="datePublished">2018-01-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      CSRF浅析
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="CSRF浅析"><a href="#CSRF浅析" class="headerlink" title="CSRF浅析"></a>CSRF浅析</h1><h2 id="什么是CSRF"><a href="#什么是CSRF" class="headerlink" title="什么是CSRF"></a>什么是CSRF</h2><p>Cross-site request forgery,跨站请求伪造.</p>
+<h2 id="简单的攻击样例"><a href="#简单的攻击样例" class="headerlink" title="简单的攻击样例"></a>简单的攻击样例</h2><ol>
+<li>小明访问并且登录了网站A</li>
+<li><p>小明访问坏人的网站B,网站B上存在一些网站A的请求(GET或者POST)</p>
+<pre><code>一个简单的get请求可以利用img的src属性:
+&lt;img src=&quot;http://example.com/get?xxx=xxx&quot;&gt;
+</code></pre></li>
+<li>访问时触发了请求,此时由于请求中携带着相关的cookie信息,所以网站A是会通过这些非法的请求的,也就是跨站(在黑客网站B)请求伪造.</li>
+</ol>
+<h2 id="预防"><a href="#预防" class="headerlink" title="预防"></a>预防</h2><h3 id="referer验证"><a href="#referer验证" class="headerlink" title="referer验证"></a>referer验证</h3><p>这是一种不安全的校验方法</p>
+<h4 id="校验原理"><a href="#校验原理" class="headerlink" title="校验原理"></a>校验原理</h4><p>对于网络请求,在header里面存在着referer属性,这个属性标识出请求的来源网站,所以我们可以通过验证referer来预防csrf攻击</p>
+<h4 id="存在问题"><a href="#存在问题" class="headerlink" title="存在问题"></a>存在问题</h4><ol>
+<li>对于某些浏览器来说,这个属性可能为空</li>
+<li>referer可以轻易地伪造</li>
+<li>从搜索引擎跳转时,referer是搜索引擎,所以可能需要维护一个白名单</li>
+</ol>
+<h3 id="双提交cookie"><a href="#双提交cookie" class="headerlink" title="双提交cookie"></a>双提交cookie</h3><p>较为安全</p>
+<h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><p>对于每一个网络请求,在提交请求时,在js中将cookie中的某些值(可以是单独生成的token或者用户标志灯)添加到header上提交,在后台去校验是否存在token以及是否与cookie的值相匹配</p>
+<h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><p>当你在访问坏人的网站B时,同时提交的仅仅只有cookie,而你在正常访问时,提交时会在header中添加csrftoken.</p>
+<h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><p>其实也不能算是问题吧,如果你的网络请求是统一到一个方法里面执行的,例如说ajax或者dwr,那么就可以很方便地修改,但是如果不是的话,那么修改的工作量可能就有点大了.</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://zh.wikipedia.org/wiki/%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0" title="跨站请求伪造-维基百科" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0</a><br><a href="https://zh.wikipedia.org/wiki/HTTP%E5%8F%83%E7%85%A7%E4%BD%8D%E5%9D%80" title="HTTP来源地址-维基百科" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/HTTP%E5%8F%83%E7%85%A7%E4%BD%8D%E5%9D%80</a><br><a href="https://www.cnblogs.com/hyddd/archive/2009/04/09/1432744.html" title="浅谈CSRF攻击方式" target="_blank" rel="noopener">https://www.cnblogs.com/hyddd/archive/2009/04/09/1432744.html</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/01/24/CSRF浅析/" data-id="cjir2cjva00033ygvjkcb9zhf" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSRF/">CSRF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web安全/">web安全</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/01/26/servletRequest中读取body的问题/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          servletRequest中读取body的问题
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/01/24/web线程安全/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">web线程安全</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSRF/">CSRF</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maven/">Maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL/">SQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cookie/">cookie</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/">http</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java-web/">java web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mybatis/">mybatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/servlet/">servlet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/session/">session</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring/">spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sql/">sql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tips/">tips</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vps/">vps</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web安全/">web安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/爬虫/">爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/第一行代码/">第一行代码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线程安全/">线程安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/继承/">继承</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络/">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书笔记/">读书笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面向对象/">面向对象</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CSRF/" style="font-size: 10px;">CSRF</a> <a href="/tags/JavaScript/" style="font-size: 12.5px;">JavaScript</a> <a href="/tags/Maven/" style="font-size: 10px;">Maven</a> <a href="/tags/SQL/" style="font-size: 12.5px;">SQL</a> <a href="/tags/android/" style="font-size: 20px;">android</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/cookie/" style="font-size: 10px;">cookie</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hexo/" style="font-size: 12.5px;">hexo</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/java/" style="font-size: 17.5px;">java</a> <a href="/tags/java-web/" style="font-size: 12.5px;">java web</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/mybatis/" style="font-size: 10px;">mybatis</a> <a href="/tags/nginx/" style="font-size: 12.5px;">nginx</a> <a href="/tags/python/" style="font-size: 12.5px;">python</a> <a href="/tags/servlet/" style="font-size: 10px;">servlet</a> <a href="/tags/session/" style="font-size: 10px;">session</a> <a href="/tags/spring/" style="font-size: 12.5px;">spring</a> <a href="/tags/sql/" style="font-size: 10px;">sql</a> <a href="/tags/tips/" style="font-size: 10px;">tips</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/vps/" style="font-size: 12.5px;">vps</a> <a href="/tags/web安全/" style="font-size: 10px;">web安全</a> <a href="/tags/数据库/" style="font-size: 12.5px;">数据库</a> <a href="/tags/爬虫/" style="font-size: 10px;">爬虫</a> <a href="/tags/第一行代码/" style="font-size: 15px;">第一行代码</a> <a href="/tags/线程安全/" style="font-size: 10px;">线程安全</a> <a href="/tags/继承/" style="font-size: 10px;">继承</a> <a href="/tags/网络/" style="font-size: 10px;">网络</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a> <a href="/tags/读书笔记/" style="font-size: 10px;">读书笔记</a> <a href="/tags/面向对象/" style="font-size: 10px;">面向对象</a> <a href="/tags/面试/" style="font-size: 10px;">面试</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/06/23/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/18/面试/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/18/关于handler以及一些回调的思考/">关于handler以及一些回调的思考</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/18/View/">View</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/18/UI/">UI</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

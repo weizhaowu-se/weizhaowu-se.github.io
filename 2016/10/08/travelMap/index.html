@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>TravelMap | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Activity通知更新Fragment：通过Fragment的onAttach()函数以及使用handler：在Fragment类中定义handler成员并且重载handleMessage()函数，在handlerMessage函数中进行根据Message的信息来进行相应的操作来更新Fragment，那么怎么将Activity怎么使用这个handler呢？因为他们并不是在同一个类中，所以我在A">
+<meta name="keywords" content="android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TravelMap">
+<meta property="og:url" content="http://yoursite.com/2016/10/08/travelMap/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Activity通知更新Fragment：通过Fragment的onAttach()函数以及使用handler：在Fragment类中定义handler成员并且重载handleMessage()函数，在handlerMessage函数中进行根据Message的信息来进行相应的操作来更新Fragment，那么怎么将Activity怎么使用这个handler呢？因为他们并不是在同一个类中，所以我在A">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2016-10-08T13:15:51.864Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="TravelMap">
+<meta name="twitter:description" content="Activity通知更新Fragment：通过Fragment的onAttach()函数以及使用handler：在Fragment类中定义handler成员并且重载handleMessage()函数，在handlerMessage函数中进行根据Message的信息来进行相应的操作来更新Fragment，那么怎么将Activity怎么使用这个handler呢？因为他们并不是在同一个类中，所以我在A">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-travelMap" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/10/08/travelMap/" class="article-date">
+  <time datetime="2016-10-08T13:15:00.000Z" itemprop="datePublished">2016-10-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      TravelMap
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><font style="font-family:微软雅黑"></font></p>
+<h2 id="Activity通知更新Fragment："><a href="#Activity通知更新Fragment：" class="headerlink" title="Activity通知更新Fragment："></a>Activity通知更新Fragment：</h2><p>通过Fragment的onAttach()函数以及使用handler：<br>在Fragment类中定义handler成员并且重载handleMessage()函数，在handlerMessage函数中进行根据Message的信息来进行相应的操作来更新Fragment，那么怎么将Activity怎么使用这个handler呢？因为他们并不是在同一个类中，所以我在Activity中也有一个handler，在OnAttach的时候将其赋值为handler，一开始有考虑将这个handler设置为fragment类的静态成员变量，但是考虑到这样会带来其他的问题（静态成员变量就与具体的对象无关而与类相关了）。</p>
+<h2 id="Fragment通知更新Activity数据"><a href="#Fragment通知更新Activity数据" class="headerlink" title="Fragment通知更新Activity数据"></a>Fragment通知更新Activity数据</h2><p>由Activity来实现一个接口，在Fragment的onAttach函数中可以将这个接口传递给Fragment，再通过这个接口来调用我们想要更新的Activity的数据。</p>
+<h2 id="Bitmap-oom"><a href="#Bitmap-oom" class="headerlink" title="Bitmap oom"></a>Bitmap oom</h2><p>其实这个问题我们一开始也没有想到。因为我负责的那一块在显示一些图片的时候一直会有问题，经常是整个黑色的什么都没有，但是队友做的那部分却一切正常。所以也是被这个问题坑了很久。<br>知道问题后解决其实就不麻烦了，通过使用BitmapFactory的一些选项设置可以达到获得缩略图片的效果，自然问题也就迎刃而解了。</p>
+<h2 id="同一个界面，判断是否是不同的使用类型"><a href="#同一个界面，判断是否是不同的使用类型" class="headerlink" title="同一个界面，判断是否是不同的使用类型"></a>同一个界面，判断是否是不同的使用类型</h2><p>因为在同一个界面上，我们可能是想要新建一个项，也可能是想要编辑一个项，那怎么判断比较好呢？最后我们的解决方法是使用一个布尔值得成员变量来帮助判断，而在其他界面跳转过来时根据携带的信息来确定这个成员变量的布尔值。</p>
+<h2 id="拍照很坑的地方"><a href="#拍照很坑的地方" class="headerlink" title="拍照很坑的地方"></a>拍照很坑的地方</h2><p>当时是使用一个startActivityForResult的方法来启动相机并且传入了相应的Uri，因为需要保存文件，同时也需要将拍到的照片在界面上面显示出来，所以，坑的地方就出现了，在返回的data里面获得的图片是空的，本来还想着说能够很方便地把结果给显示出来，没想到还是得根据uri自己去把图片加载出来。</p>
+<h2 id="ListView的优化"><a href="#ListView的优化" class="headerlink" title="ListView的优化"></a>ListView的优化</h2><h2 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h2><p>每个Activity均实现同一个接口，实现接口函数。新建一个继承自Handler的类，重载handlerMessage函数，在函数中调用上述提到的接口函数，。然后我们再在Thread中调用使用handler就可以了。</p>
+<h2 id="使用ViewPager时滑动冲突"><a href="#使用ViewPager时滑动冲突" class="headerlink" title="使用ViewPager时滑动冲突"></a>使用ViewPager时滑动冲突</h2><p>新建一个类继承自ViewPager，直接将其滑动事件禁用掉。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/10/08/travelMap/" data-id="cjir2cjws00263ygvt2if1tvn" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">android</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/10/10/todo常见布局/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          常见布局
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/10/08/android序列化/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">android序列化</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSRF/">CSRF</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maven/">Maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL/">SQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cookie/">cookie</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/">http</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java-web/">java web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mybatis/">mybatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/servlet/">servlet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/session/">session</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring/">spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sql/">sql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tips/">tips</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vps/">vps</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web安全/">web安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/爬虫/">爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/第一行代码/">第一行代码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线程安全/">线程安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/继承/">继承</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络/">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书笔记/">读书笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面向对象/">面向对象</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CSRF/" style="font-size: 10px;">CSRF</a> <a href="/tags/JavaScript/" style="font-size: 12.5px;">JavaScript</a> <a href="/tags/Maven/" style="font-size: 10px;">Maven</a> <a href="/tags/SQL/" style="font-size: 12.5px;">SQL</a> <a href="/tags/android/" style="font-size: 20px;">android</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/cookie/" style="font-size: 10px;">cookie</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hexo/" style="font-size: 12.5px;">hexo</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/java/" style="font-size: 17.5px;">java</a> <a href="/tags/java-web/" style="font-size: 12.5px;">java web</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/mybatis/" style="font-size: 10px;">mybatis</a> <a href="/tags/nginx/" style="font-size: 12.5px;">nginx</a> <a href="/tags/python/" style="font-size: 12.5px;">python</a> <a href="/tags/servlet/" style="font-size: 10px;">servlet</a> <a href="/tags/session/" style="font-size: 10px;">session</a> <a href="/tags/spring/" style="font-size: 12.5px;">spring</a> <a href="/tags/sql/" style="font-size: 10px;">sql</a> <a href="/tags/tips/" style="font-size: 10px;">tips</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/vps/" style="font-size: 12.5px;">vps</a> <a href="/tags/web安全/" style="font-size: 10px;">web安全</a> <a href="/tags/数据库/" style="font-size: 12.5px;">数据库</a> <a href="/tags/爬虫/" style="font-size: 10px;">爬虫</a> <a href="/tags/第一行代码/" style="font-size: 15px;">第一行代码</a> <a href="/tags/线程安全/" style="font-size: 10px;">线程安全</a> <a href="/tags/继承/" style="font-size: 10px;">继承</a> <a href="/tags/网络/" style="font-size: 10px;">网络</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a> <a href="/tags/读书笔记/" style="font-size: 10px;">读书笔记</a> <a href="/tags/面向对象/" style="font-size: 10px;">面向对象</a> <a href="/tags/面试/" style="font-size: 10px;">面试</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/06/23/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/18/面试/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/18/关于handler以及一些回调的思考/">关于handler以及一些回调的思考</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/18/View/">View</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/18/UI/">UI</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

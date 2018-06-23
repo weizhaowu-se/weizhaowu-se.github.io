@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="default">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-python-tips" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/28/python-tips/" class="article-date">
+  <time datetime="2018-01-28T14:11:30.000Z" itemprop="datePublished">2018-01-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/28/python-tips/">python-tips</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="python-tips"><a href="#python-tips" class="headerlink" title="python-tips"></a>python-tips</h1><h2 id="列表生成式"><a href="#列表生成式" class="headerlink" title="列表生成式"></a>列表生成式</h2>
+        
+          <p class="article-more-link">
+            <a href="/2018/01/28/python-tips/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/01/28/python-tips/" data-id="cjir2cjwe001r3ygvg1ltwpxa" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tips/">tips</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-servletRequest中读取body的问题" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/26/servletRequest中读取body的问题/" class="article-date">
+  <time datetime="2018-01-26T08:55:07.000Z" itemprop="datePublished">2018-01-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/26/servletRequest中读取body的问题/">servletRequest中读取body的问题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="ServletRequest中读取body的数据"><a href="#ServletRequest中读取body的数据" class="headerlink" title="ServletRequest中读取body的数据"></a>ServletRequest中读取body的数据</h1><pre><code>InputStream body = request.getInputStream();
+</code></pre><h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><ul>
+<li><p>数据流仅仅能够读取一次,如果你想要多次读取(在多个调用链中)(比如说在多个过滤器中),例如</p>
+<pre><code>chain.doFilter(request, response);
+</code></pre><p>这样后面的调用中request将读取不到body的数据.</p>
+        
+          <p class="article-more-link">
+            <a href="/2018/01/26/servletRequest中读取body的问题/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/01/26/servletRequest中读取body的问题/" data-id="cjir2cjwj001w3ygv1le1h8sa" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java-web/">java web</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/servlet/">servlet</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-CSRF浅析" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/24/CSRF浅析/" class="article-date">
+  <time datetime="2018-01-24T03:01:37.000Z" itemprop="datePublished">2018-01-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/24/CSRF浅析/">CSRF浅析</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="CSRF浅析"><a href="#CSRF浅析" class="headerlink" title="CSRF浅析"></a>CSRF浅析</h1><h2 id="什么是CSRF"><a href="#什么是CSRF" class="headerlink" title="什么是CSRF"></a>什么是CSRF</h2><p>Cross-site request forgery,跨站请求伪造.</p>
+<h2 id="简单的攻击样例"><a href="#简单的攻击样例" class="headerlink" title="简单的攻击样例"></a>简单的攻击样例</h2><ol>
+<li>小明访问并且登录了网站A</li>
+<li><p>小明访问坏人的网站B,网站B上存在一些网站A的请求(GET或者POST)</p>
+<pre><code>一个简单的get请求可以利用img的src属性:
+&lt;img src=&quot;http://example.com/get?xxx=xxx&quot;&gt;
+</code></pre></li>
+<li>访问时触发了请求,此时由于请求中携带着相关的cookie信息,所以网站A是会通过这些非法的请求的,也就是跨站(在黑客网站B)请求伪造.</li>
+</ol>
+<h2 id="预防"><a href="#预防" class="headerlink" title="预防"></a>预防</h2><h3 id="referer验证"><a href="#referer验证" class="headerlink" title="referer验证"></a>referer验证</h3><p>这是一种不安全的校验方法</p>
+<h4 id="校验原理"><a href="#校验原理" class="headerlink" title="校验原理"></a>校验原理</h4><p>对于网络请求,在header里面存在着referer属性,这个属性标识出请求的来源网站,所以我们可以通过验证referer来预防csrf攻击</p>
+<h4 id="存在问题"><a href="#存在问题" class="headerlink" title="存在问题"></a>存在问题</h4><ol>
+<li>对于某些浏览器来说,这个属性可能为空</li>
+<li>referer可以轻易地伪造</li>
+<li>从搜索引擎跳转时,referer是搜索引擎,所以可能需要维护一个白名单</li>
+</ol>
+<h3 id="双提交cookie"><a href="#双提交cookie" class="headerlink" title="双提交cookie"></a>双提交cookie</h3><p>较为安全</p>
+<h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><p>对于每一个网络请求,在提交请求时,在js中将cookie中的某些值(可以是单独生成的token或者用户标志灯)添加到header上提交,在后台去校验是否存在token以及是否与cookie的值相匹配</p>
+<h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><p>当你在访问坏人的网站B时,同时提交的仅仅只有cookie,而你在正常访问时,提交时会在header中添加csrftoken.</p>
+<h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><p>其实也不能算是问题吧,如果你的网络请求是统一到一个方法里面执行的,例如说ajax或者dwr,那么就可以很方便地修改,但是如果不是的话,那么修改的工作量可能就有点大了.</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://zh.wikipedia.org/wiki/%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0" title="跨站请求伪造-维基百科" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0</a><br><a href="https://zh.wikipedia.org/wiki/HTTP%E5%8F%83%E7%85%A7%E4%BD%8D%E5%9D%80" title="HTTP来源地址-维基百科" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/HTTP%E5%8F%83%E7%85%A7%E4%BD%8D%E5%9D%80</a><br><a href="https://www.cnblogs.com/hyddd/archive/2009/04/09/1432744.html" title="浅谈CSRF攻击方式" target="_blank" rel="noopener">https://www.cnblogs.com/hyddd/archive/2009/04/09/1432744.html</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/01/24/CSRF浅析/" data-id="cjir2cjva00033ygvjkcb9zhf" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSRF/">CSRF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web安全/">web安全</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-web线程安全" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/24/web线程安全/" class="article-date">
+  <time datetime="2018-01-24T02:34:17.000Z" itemprop="datePublished">2018-01-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/24/web线程安全/">web线程安全</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="java-web中的线程安全问题"><a href="#java-web中的线程安全问题" class="headerlink" title="java web中的线程安全问题"></a>java web中的线程安全问题</h1><h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述:"></a>问题描述:</h2><h3 id="伪代码"><a href="#伪代码" class="headerlink" title="伪代码:"></a>伪代码:</h3><pre><code>判断redis是否有相应的键值对:
+    有:
+        读取redis
+    没有:
+        读取数据库
+        插入redis(列表的插入)
+返回
+</code></pre><h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>当请求并发时,第一个请求redis未插入而第二个请求也进入了判断,此时第二个请求的判断条件也是”否”,所以就会出现redis数据重复的情况.</p>
+<h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h3><p>虽然说对于每一个单独的请求,spring都是新建一个单独的线程来进行处理,但是这并不能够解决上面的问题,究其原因,则是访问了同一个全局数据(可以认为是redis)</p>
+<h2 id="解决"><a href="#解决" class="headerlink" title="解决:"></a>解决:</h2><p>增加一个全局变量,使用synchronize同步方法,伪代码如下</p>
+<h3 id="伪代码-1"><a href="#伪代码-1" class="headerlink" title="伪代码"></a>伪代码</h3><pre><code>全局变量 lock
+判断redis是否有相应的键值对:
+    有:
+        读取redis
+    没有:
+        synchronize(lock)
+            再次判断redis是否有相应的键值对
+                有:
+                    读取redis
+                没有:
+                    读取数据库
+                    插入redis
+</code></pre><ul>
+<li>再次判断的原因:加锁只是阻塞了第二个请求的读取数据库/插入redis操作,如果没有再次判断的话,那么当第一个请求释放锁之后第二个请求依旧会再次读取数据库/插入redis,问题依旧存在</li>
+</ul>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="http://www.cnblogs.com/doit8791/p/4093808.html" title="Spring单例与线程安全小结" target="_blank" rel="noopener">http://www.cnblogs.com/doit8791/p/4093808.html</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/01/24/web线程安全/" data-id="cjir2cjwx002d3ygvbvoafnen" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring/">spring</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/线程安全/">线程安全</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-跨域请求" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/14/跨域请求/" class="article-date">
+  <time datetime="2017-11-14T12:35:48.000Z" itemprop="datePublished">2017-11-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/14/跨域请求/">跨域请求</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="跨域资源请求CORS"><a href="#跨域资源请求CORS" class="headerlink" title="跨域资源请求CORS"></a>跨域资源请求CORS</h1><h2 id="1-什么是跨域资源请求"><a href="#1-什么是跨域资源请求" class="headerlink" title="1.什么是跨域资源请求"></a>1.什么是跨域资源请求</h2><ul>
+<li>通常情况下,我们访问一个网站的过程如下:<ul>
+<li>访问页面example.com,加载页面html以及js</li>
+<li>对页面进行一些操作,由js通过ajax访问后台,进行页面的更新.</li>
+</ul>
+</li>
+<li>一般情况下,通过ajax调用后台是同源的,同源指的是:<ul>
+<li><strong>协议相同</strong></li>
+<li><strong>端口号相同</strong></li>
+<li><strong>地址相同</strong></li>
+</ul>
+</li>
+<li>但是有时候通过js请求非同源的后台服务,这个时候就是属于跨域资源请求了</li>
+</ul>
+        
+          <p class="article-more-link">
+            <a href="/2017/11/14/跨域请求/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/11/14/跨域请求/" data-id="cjir2cjx8002l3ygvsa07j3qy" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http/">http</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络/">网络</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-深入剖析tomcat笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/10/30/深入剖析tomcat笔记/" class="article-date">
+  <time datetime="2017-10-30T12:33:52.000Z" itemprop="datePublished">2017-10-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/30/深入剖析tomcat笔记/">深入剖析tomcat笔记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>servlet</li>
+<li>reponse</li>
+<li>request</li>
+<li>启动连接器-&gt;等待连接-&gt;调用container容器-&gt;解析header,调用servlet</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/10/30/深入剖析tomcat笔记/" data-id="cjir2cjxb002p3ygvusdtcvvt" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Maven实战读书笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/10/11/Maven实战读书笔记/" class="article-date">
+  <time datetime="2017-10-11T12:59:19.000Z" itemprop="datePublished">2017-10-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/11/Maven实战读书笔记/">Maven实战读书笔记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Maven实战"><a href="#Maven实战" class="headerlink" title="Maven实战"></a>Maven实战</h1><h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><ul>
+<li>mvn clean compile</li>
+<li>mvn clean test</li>
+<li>mvn clean package<ul>
+<li>默认打包为jar,可以在pom.xml里面指定打包类型</li>
+</ul>
+</li>
+<li>mvn clean install<ul>
+<li>将项目打包后安装到本地仓库以供其他项目使用</li>
+</ul>
+</li>
+<li>默认打包生成的jar时不能够直接运行的,为了生成可执行的jar文件,需要借助maven-shade-plugin</li>
+</ul>
+        
+          <p class="article-more-link">
+            <a href="/2017/10/11/Maven实战读书笔记/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/10/11/Maven实战读书笔记/" data-id="cjir2cjvr000o3ygvmpt9xysp" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Maven/">Maven</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Java核心技术卷读书笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/10/11/Java核心技术卷读书笔记/" class="article-date">
+  <time datetime="2017-10-11T12:19:04.000Z" itemprop="datePublished">2017-10-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/11/Java核心技术卷读书笔记/">Java核心技术卷读书笔记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Java核心技术卷-一-读书笔记"><a href="#Java核心技术卷-一-读书笔记" class="headerlink" title="Java核心技术卷(一)读书笔记"></a>Java核心技术卷(一)读书笔记</h1><h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><h3 id="整型"><a href="#整型" class="headerlink" title="整型"></a>整型</h3><ul>
+<li>int  4字节</li>
+<li>long  8字节</li>
+<li>short 2字节</li>
+<li>byte  1字节<blockquote>
+<p><strong>需要注意的是字节长度与平台无关,与c语言不同</strong></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="浮点型"><a href="#浮点型" class="headerlink" title="浮点型"></a>浮点型</h3><ul>
+<li>float 4字节,一般不够用</li>
+<li>double  8字节<blockquote>
+<p>遵循IEEE754标准</p>
+        
+          <p class="article-more-link">
+            <a href="/2017/10/11/Java核心技术卷读书笔记/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/10/11/Java核心技术卷读书笔记/" data-id="cjir2cjvm000g3ygvxmc1qpks" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-JavaScript中的面向对象程序设计" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/28/JavaScript中的面向对象程序设计/" class="article-date">
+  <time datetime="2017-08-28T14:39:49.000Z" itemprop="datePublished">2017-08-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/28/JavaScript中的面向对象程序设计/">JavaScript中的面向对象程序设计</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="JavaScript中的面向对象程序设计"><a href="#JavaScript中的面向对象程序设计" class="headerlink" title="JavaScript中的面向对象程序设计"></a>JavaScript中的面向对象程序设计</h1><h2 id="1-最简单的模式"><a href="#1-最简单的模式" class="headerlink" title="1.最简单的模式"></a>1.最简单的模式</h2><h3 id="1-1-新建实例添加属性和方法"><a href="#1-1-新建实例添加属性和方法" class="headerlink" title="1.1 新建实例添加属性和方法"></a>1.1 新建实例添加属性和方法</h3><pre><code>var person = new Object();
+person.name = &quot;name&quot;;
+person.sayHi = function() {
+    console.log(&quot;hi&quot;);
+}
+
+console.log(person.name);
+person.sayHi();
+</code></pre>
+        
+          <p class="article-more-link">
+            <a href="/2017/08/28/JavaScript中的面向对象程序设计/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/28/JavaScript中的面向对象程序设计/" data-id="cjir2cjvh000a3ygvh8f8qs2j" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面向对象/">面向对象</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-mybatis入门以及整合spring" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/23/mybatis入门以及整合spring/" class="article-date">
+  <time datetime="2017-08-23T12:39:27.000Z" itemprop="datePublished">2017-08-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/23/mybatis入门以及整合spring/">mybatis入门以及整合spring</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="mybatis入门"><a href="#mybatis入门" class="headerlink" title="mybatis入门"></a>mybatis入门</h1><h2 id="什么是mybatis"><a href="#什么是mybatis" class="headerlink" title="什么是mybatis"></a>什么是mybatis</h2><ul>
+<li>MyBatis是一个Java持久化框架，它通过XML描述符或注解把对象与存储过程或SQL语句关联起来(from维基百科)<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2></li>
+<li>mybatis的jar包</li>
+<li>一个数据库(我采用的是mysql)<h2 id="具体如下"><a href="#具体如下" class="headerlink" title="具体如下"></a>具体如下</h2><h3 id="数据库结构如下"><a href="#数据库结构如下" class="headerlink" title="数据库结构如下"></a>数据库结构如下</h3><img src="http://7xkzud.com1.z0.glb.clouddn.com/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20170823210127.png" alt="">
+        
+          <p class="article-more-link">
+            <a href="/2017/08/23/mybatis入门以及整合spring/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/23/mybatis入门以及整合spring/" data-id="cjir2cjwa001m3ygv1rqrvzfy" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mybatis/">mybatis</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring/">spring</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSRF/">CSRF</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maven/">Maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL/">SQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cookie/">cookie</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/">http</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java-web/">java web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mybatis/">mybatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/servlet/">servlet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/session/">session</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring/">spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sql/">sql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tips/">tips</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vps/">vps</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web安全/">web安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/爬虫/">爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/第一行代码/">第一行代码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线程安全/">线程安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/继承/">继承</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络/">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书笔记/">读书笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面向对象/">面向对象</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CSRF/" style="font-size: 10px;">CSRF</a> <a href="/tags/JavaScript/" style="font-size: 12.5px;">JavaScript</a> <a href="/tags/Maven/" style="font-size: 10px;">Maven</a> <a href="/tags/SQL/" style="font-size: 12.5px;">SQL</a> <a href="/tags/android/" style="font-size: 20px;">android</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/cookie/" style="font-size: 10px;">cookie</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hexo/" style="font-size: 12.5px;">hexo</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/java/" style="font-size: 17.5px;">java</a> <a href="/tags/java-web/" style="font-size: 12.5px;">java web</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/mybatis/" style="font-size: 10px;">mybatis</a> <a href="/tags/nginx/" style="font-size: 12.5px;">nginx</a> <a href="/tags/python/" style="font-size: 12.5px;">python</a> <a href="/tags/servlet/" style="font-size: 10px;">servlet</a> <a href="/tags/session/" style="font-size: 10px;">session</a> <a href="/tags/spring/" style="font-size: 12.5px;">spring</a> <a href="/tags/sql/" style="font-size: 10px;">sql</a> <a href="/tags/tips/" style="font-size: 10px;">tips</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/vps/" style="font-size: 12.5px;">vps</a> <a href="/tags/web安全/" style="font-size: 10px;">web安全</a> <a href="/tags/数据库/" style="font-size: 12.5px;">数据库</a> <a href="/tags/爬虫/" style="font-size: 10px;">爬虫</a> <a href="/tags/第一行代码/" style="font-size: 15px;">第一行代码</a> <a href="/tags/线程安全/" style="font-size: 10px;">线程安全</a> <a href="/tags/继承/" style="font-size: 10px;">继承</a> <a href="/tags/网络/" style="font-size: 10px;">网络</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a> <a href="/tags/读书笔记/" style="font-size: 10px;">读书笔记</a> <a href="/tags/面向对象/" style="font-size: 10px;">面向对象</a> <a href="/tags/面试/" style="font-size: 10px;">面试</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/06/23/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/18/面试/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/18/关于handler以及一些回调的思考/">关于handler以及一些回调的思考</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/18/View/">View</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/18/UI/">UI</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
