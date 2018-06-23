@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="">
+<html class="theme-next muse use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -84,9 +84,9 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="跨域请求">
 <meta property="og:url" content="http://yoursite.com/2017/11/14/跨域请求/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="一亩三分地">
 <meta property="og:description" content="跨域资源请求CORS1.什么是跨域资源请求 通常情况下,我们访问一个网站的过程如下: 访问页面example.com,加载页面html以及js 对页面进行一些操作,由js通过ajax访问后台,进行页面的更新.   一般情况下,通过ajax调用后台是同源的,同源指的是: 协议相同 端口号相同 地址相同   但是有时候通过js请求非同源的后台服务,这个时候就是属于跨域资源请求了">
-<meta property="og:locale" content="default">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://7xkzud.com1.z0.glb.clouddn.com/17-11-14/61942626.jpg">
 <meta property="og:image" content="http://7xkzud.com1.z0.glb.clouddn.com/17-11-14/92714587.jpg">
 <meta property="og:image" content="http://7xkzud.com1.z0.glb.clouddn.com/17-11-14/34546538.jpg">
@@ -110,7 +110,7 @@
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
-      author: 'Author'
+      author: '博主'
     },
     algolia: {
       applicationID: '',
@@ -130,7 +130,7 @@
 
 
 
-  <title>跨域请求 | Hexo</title>
+  <title>跨域请求 | 一亩三分地</title>
   
 
 
@@ -142,7 +142,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -160,7 +160,7 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Hexo</span>
+        <span class="site-title">一亩三分地</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -190,7 +190,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            首页
           </a>
         </li>
       
@@ -200,7 +200,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            归档
           </a>
         </li>
       
@@ -213,7 +213,7 @@
             
               <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
             
-            Search
+            搜索
           </a>
         </li>
       
@@ -233,7 +233,7 @@
     </span>
     <div class="local-search-input-wrapper">
       <input autocomplete="off"
-             placeholder="Searching..." spellcheck="false"
+             placeholder="搜索..." spellcheck="false"
              type="text" id="local-search-input">
     </div>
   </div>
@@ -274,13 +274,13 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/14/跨域请求/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
+      <meta itemprop="name" content="wilbert">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="一亩三分地">
     </span>
 
     
@@ -298,9 +298,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-14T20:35:48+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-14T20:35:48+08:00">
                 2017-11-14
               </time>
             
@@ -495,10 +495,10 @@ $.ajax(options);
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
+            文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
+            站点概览
           </li>
         </ul>
       
@@ -507,7 +507,7 @@ $.ajax(options);
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-author-name" itemprop="name">wilbert</p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -519,7 +519,7 @@ $.ajax(options);
                 <a href="/archives/">
               
                   <span class="site-state-item-count">47</span>
-                  <span class="site-state-item-name">posts</span>
+                  <span class="site-state-item-name">日志</span>
                 </a>
               </div>
             
@@ -532,7 +532,7 @@ $.ajax(options);
               <div class="site-state-item site-state-tags">
                 
                   <span class="site-state-item-count">34</span>
-                  <span class="site-state-item-name">tags</span>
+                  <span class="site-state-item-name">标签</span>
                 
               </div>
             
@@ -588,13 +588,13 @@ $.ajax(options);
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">John Doe</span>
+  <span class="author" itemprop="copyrightHolder">wilbert</span>
 
   
 </div>
 
 
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
 
 
 
@@ -602,7 +602,7 @@ $.ajax(options);
 
 
 
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
 
 
 
