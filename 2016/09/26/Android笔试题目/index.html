@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="有线程如下： public class SetTextThread extends Thread {     private IIsetText iIsetText;     private  Handler handler;     private  MyNum myNum;     public SetTextThread(IIsetText iIsetText) {         this">
+<meta name="description" content="title: Android基础笔试题tags:  android 笔试activity的启动过程 onCreate()-&amp;gt;onStart()-&amp;gt;onResume()-&amp;gt;运行-&amp;gt;onPause()-&amp;gt;onStop()-&amp;gt;onDestroy.     注意，当启动新的activity或切换到桌面时，回调onPause和onStop，切换回来的时候，回调onRest">
 <meta name="keywords" content="android">
 <meta property="og:type" content="article">
-<meta property="og:title" content="关于handler以及一些回调的思考">
-<meta property="og:url" content="http://yoursite.com/2018/06/18/关于handler以及一些回调的思考/index.html">
+<meta property="og:title" content="Android笔试题目">
+<meta property="og:url" content="http://yoursite.com/2016/09/26/Android笔试题目/index.html">
 <meta property="og:site_name" content="一亩三分地">
-<meta property="og:description" content="有线程如下： public class SetTextThread extends Thread {     private IIsetText iIsetText;     private  Handler handler;     private  MyNum myNum;     public SetTextThread(IIsetText iIsetText) {         this">
+<meta property="og:description" content="title: Android基础笔试题tags:  android 笔试activity的启动过程 onCreate()-&amp;gt;onStart()-&amp;gt;onResume()-&amp;gt;运行-&amp;gt;onPause()-&amp;gt;onStop()-&amp;gt;onDestroy.     注意，当启动新的activity或切换到桌面时，回调onPause和onStop，切换回来的时候，回调onRest">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2016-09-26T13:10:29.000Z">
+<meta property="og:updated_time" content="2018-07-01T08:33:32.919Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="关于handler以及一些回调的思考">
-<meta name="twitter:description" content="有线程如下： public class SetTextThread extends Thread {     private IIsetText iIsetText;     private  Handler handler;     private  MyNum myNum;     public SetTextThread(IIsetText iIsetText) {         this">
+<meta name="twitter:title" content="Android笔试题目">
+<meta name="twitter:description" content="title: Android基础笔试题tags:  android 笔试activity的启动过程 onCreate()-&amp;gt;onStart()-&amp;gt;onResume()-&amp;gt;运行-&amp;gt;onPause()-&amp;gt;onStop()-&amp;gt;onDestroy.     注意，当启动新的activity或切换到桌面时，回调onPause和onStop，切换回来的时候，回调onRest">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/06/18/关于handler以及一些回调的思考/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/09/26/Android笔试题目/"/>
 
 
 
 
 
-  <title>关于handler以及一些回调的思考 | 一亩三分地</title>
+  <title>Android笔试题目 | 一亩三分地</title>
   
 
 
@@ -267,7 +267,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/18/关于handler以及一些回调的思考/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/09/26/Android笔试题目/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wilbert">
@@ -284,7 +284,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">关于handler以及一些回调的思考</h1>
+          <h1 class="post-title" itemprop="name headline">Android笔试题目</h1>
         
 
         <div class="post-meta">
@@ -296,8 +296,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-18T01:48:05+08:00">
-                2018-06-18
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-26T00:00:00+08:00">
+                2016-09-26
               </time>
             
 
@@ -334,41 +334,35 @@
       
 
       
-        <p><font style="font-family:微软雅黑"><br>有线程如下：</font></p>
-<pre><code>public class SetTextThread extends Thread {
-    private IIsetText iIsetText;
-    private  Handler handler;
-    private  MyNum myNum;
-    public SetTextThread(IIsetText iIsetText) {
-        this.iIsetText = iIsetText;
-    }
-    public SetTextThread(Handler handler) {
-        this.handler = handler;
-    }
-    public SetTextThread(MyNum myNum) {
-        print(&quot;constructor:&quot; + Thread.currentThread());
-        this.myNum = myNum;
-    }
-    @Override
-    public void run() {
-        print(&quot;run:&quot; + Thread.currentThread());
-//        iIsetText.setText();
-//        handler.sendMessage(new Message());
-        myNum.i = 9999;
-    }
-
-    public void print(String s) {
-        System.out.println(s);
-    }
-}
-</code></pre><ul>
-<li>多线程中，变量虽然相同，但是其实他们指向的是不同的内存区域，所以修改是不会影响到互相的值的。//此处有待确认正确与否，待查看thinking in java后再行确定。</li>
-<li><p>handler中，首先要先了解handler的消息机制</p>
-<pre><code>MessageQueue：消息队列
-Looper：循环，一直从消息队列中获得消息，如果没有消息则一直循环。成员变量有MessageQueue。ThreadLocal变量，每个线程唯一且相同。
-Handler：成员变量有Looper，亦即也拥有MessageQueue，发送消息时向消息队列插入消息，有Looper负责发现消息并且根据Message的target（亦即handler）来负责处理消息。
-</code></pre><p>所以，当我们在子线程中用handler发送消息时，虽然说此时的handler是另外线程中主线程handler的复制品，但是内容是完全一样的，亦即其Looper与消息队列依然是主线程的，所以，当发送消息时，插入的MessageQueue依旧是主线程，此时由handler的操作便变成了主线程的操作而非在子线程中操作界面。</p>
+        <p><font style="font-family: 微软雅黑;"><br>title: Android基础笔试题<br>tags:</font></p>
+<ul>
+<li>android</li>
+<li>笔试<h1 id="activity的启动过程"><a href="#activity的启动过程" class="headerlink" title="activity的启动过程"></a>activity的启动过程</h1><blockquote>
+<p>onCreate()-&gt;onStart()-&gt;onResume()-&gt;运行-&gt;onPause()-&gt;onStop()-&gt;onDestroy.</p>
+</blockquote>
 </li>
+</ul>
+<ul>
+<li>注意，当启动新的activity或切换到桌面时，回调onPause和onStop，切换回来的时候，回调onRestart-&gt;onStart-&gt;onResume。</li>
+<li>back回退时，回调onPause，onStop，onDestroy。</li>
+<li>如果被系统回收的话，则与初次启动回调函数一样，但是在onCreate中会有个状态保存的变量供恢复数据</li>
+<li>旧Activity的onPause先调用，然后新Activity才启动。</li>
+<li>意外情况activity被销毁的时候，会调用onSaveInstanceState保存状态，再将Bundle对象传递给onRestoreInstanceState和onCreate方法。</li>
+<li>资源内存不足导致activity被杀死</li>
+<li>优先级：前台&gt;可见但非前台（弹出对话框的activity）&gt;后台（已经被暂停的）</li>
+</ul>
+<h1 id="activity的启动模式有"><a href="#activity的启动模式有" class="headerlink" title="activity的启动模式有"></a>activity的启动模式有</h1><ul>
+<li>标准模式</li>
+<li>singleTop 栈顶复用模式，如果在栈顶，则不重新创建，同时调用onNewIntent方法</li>
+<li>singleTask  栈内复用,在一个新的task中产生这个实例，以后每次调用都会使用这个。</li>
+<li>singleInstance 单实例模式，与singleTask模式基本一样，区别在于在这个模式下的activity实例所处的task中只有这个实例而不会有其他的实例。</li>
+</ul>
+<h1 id="数据存储方式"><a href="#数据存储方式" class="headerlink" title="数据存储方式"></a>数据存储方式</h1><ul>
+<li>sharedpreferrence：xml格式，简单的键值对，有缓存，注意多线程访问时候可能出现的问题</li>
+<li>普通文件存储</li>
+<li>SQLite数据库：轻量级的数据库，使用openHelper，cursor，SQLiteDataBase。</li>
+<li>ContentProvider。cursor，provider。</li>
+<li>网络。httpURLconnection。</li>
 </ul>
 
       
@@ -400,8 +394,8 @@ Handler：成员变量有Looper，亦即也拥有MessageQueue，发送消息时�
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/06/18/View/" rel="next" title="View">
-                <i class="fa fa-chevron-left"></i> View
+              <a href="/2016/09/26/UI/" rel="next" title="UI">
+                <i class="fa fa-chevron-left"></i> UI
               </a>
             
           </div>
@@ -410,8 +404,8 @@ Handler：成员变量有Looper，亦即也拥有MessageQueue，发送消息时�
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/06/18/面试/" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/09/26/Handler_async_task/" rel="prev" title="异步消息处理">
+                异步消息处理 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -464,8 +458,17 @@ Handler：成员变量有Looper，亦即也拥有MessageQueue，发送消息时�
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -480,7 +483,7 @@ Handler：成员变量有Looper，亦即也拥有MessageQueue，发送消息时�
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">47</span>
+                  <span class="site-state-item-count">46</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -493,7 +496,7 @@ Handler：成员变量有Looper，亦即也拥有MessageQueue，发送消息时�
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">35</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
@@ -516,6 +519,22 @@ Handler：成员变量有Looper，亦即也拥有MessageQueue，发送消息时�
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#activity的启动过程"><span class="nav-number">1.</span> <span class="nav-text">activity的启动过程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#activity的启动模式有"><span class="nav-number">2.</span> <span class="nav-text">activity的启动模式有</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据存储方式"><span class="nav-number">3.</span> <span class="nav-text">数据存储方式</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

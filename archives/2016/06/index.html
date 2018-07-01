@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="android," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -79,18 +79,13 @@
 
 
 
-<meta name="description" content="追踪手指在滑动过程中的速度@Override     public boolean onTouchEvent(MotionEvent event) {         VelocityTracker velocityTracker = VelocityTracker.obtain();         velocityTracker.addMovement(event);         velo">
-<meta name="keywords" content="android">
-<meta property="og:type" content="article">
-<meta property="og:title" content="View">
-<meta property="og:url" content="http://yoursite.com/2018/06/18/View/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="一亩三分地">
+<meta property="og:url" content="http://yoursite.com/archives/2016/06/index.html">
 <meta property="og:site_name" content="一亩三分地">
-<meta property="og:description" content="追踪手指在滑动过程中的速度@Override     public boolean onTouchEvent(MotionEvent event) {         VelocityTracker velocityTracker = VelocityTracker.obtain();         velocityTracker.addMovement(event);         velo">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2016-09-26T13:10:29.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="View">
-<meta name="twitter:description" content="追踪手指在滑动过程中的速度@Override     public boolean onTouchEvent(MotionEvent event) {         VelocityTracker velocityTracker = VelocityTracker.obtain();         velocityTracker.addMovement(event);         velo">
+<meta name="twitter:title" content="一亩三分地">
 
 
 
@@ -120,13 +115,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/06/18/View/"/>
+  <link rel="canonical" href="http://yoursite.com/archives/2016/06/"/>
 
 
 
 
 
-  <title>View | 一亩三分地</title>
+  <title>归档 | 一亩三分地</title>
   
 
 
@@ -145,7 +140,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-left page-archive">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -253,176 +248,110 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
+  
+  
+  
+  <div class="post-block archive">
+    <div id="posts" class="posts-collapse">
+      <span class="archive-move-on"></span>
 
-  
+      <span class="archive-page-counter">
+        
+        
+         
+        
+        OK! 目前共计 46 篇日志。 继续努力。
+      </span>
 
-  
-  
-  
+      
+
+        
+        
+        
+
+        
+          
+          <div class="collection-title">
+            <h1 class="archive-year" id="archive-year-2016">2016</h1>
+          </div>
+        
+        
+
+        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/18/View/">
+    <header class="post-header">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wilbert">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一亩三分地">
-    </span>
-
-    
-      <header class="post-header">
-
+      <h2 class="post-title">
         
-        
-          <h1 class="post-title" itemprop="name headline">View</h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
+            <a class="post-title-link" href="/2016/06/23/关于handler以及一些回调的思考/" itemprop="url">
               
-                <span class="post-meta-item-text">发表于</span>
+                <span itemprop="name">关于handler以及一些回调的思考</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-18T01:48:05+08:00">
-                2018-06-18
-              </time>
-            
+            </a>
+        
+      </h2>
 
-            
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-06-23T18:30:21+08:00"
+              content="2016-06-23" >
+          06-23
+        </time>
+      </div>
 
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <h2 id="追踪手指在滑动过程中的速度"><a href="#追踪手指在滑动过程中的速度" class="headerlink" title="追踪手指在滑动过程中的速度"></a>追踪手指在滑动过程中的速度</h2><pre><code>@Override
-    public boolean onTouchEvent(MotionEvent event) {
-        VelocityTracker velocityTracker = VelocityTracker.obtain();
-        velocityTracker.addMovement(event);
-        velocityTracker.computeCurrentVelocity(1000);
-        int x = (int)velocityTracker.getXVelocity();
-        int y = (int)velocityTracker.getYVelocity();
-
-        Log.d(W, &quot;x:&quot; + x + &quot;,y:&quot; + y);
-        return super.onTouchEvent(event);
-    }
-</code></pre><h2 id="检测手势行为"><a href="#检测手势行为" class="headerlink" title="检测手势行为"></a>检测手势行为</h2><pre><code>implements GestureDetector.OnGestureListener
-
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {    
-        boolean consume = gestureDetector.onTouchEvent(event);
-        return consume;
-    }
-</code></pre><h2 id="滑动"><a href="#滑动" class="headerlink" title="滑动"></a>滑动</h2><h3 id="scrollTo-amp-amp-scrollerBy"><a href="#scrollTo-amp-amp-scrollerBy" class="headerlink" title="scrollTo&amp;&amp;scrollerBy"></a>scrollTo&amp;&amp;scrollerBy</h3><h3 id="使用动画"><a href="#使用动画" class="headerlink" title="使用动画"></a>使用动画</h3><h3 id="改变布局参数"><a href="#改变布局参数" class="headerlink" title="改变布局参数"></a>改变布局参数</h3><pre><code>public void onClick(View v) {
-    ViewGroup.MarginLayoutParams marginLayoutParams =
-            (ViewGroup.MarginLayoutParams)button.getLayoutParams();
-    Log.d(W, &quot;layout&quot;);
-    marginLayoutParams.width += 100;
-    marginLayoutParams.leftMargin += 100;
-    button.requestLayout();
-}
-</code></pre>
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/android/" rel="tag"># android</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2018/06/18/UI/" rel="next" title="UI">
-                <i class="fa fa-chevron-left"></i> UI
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/06/18/关于handler以及一些回调的思考/" rel="prev" title="关于handler以及一些回调的思考">
-                关于handler以及一些回调的思考 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
+    </header>
   </article>
 
 
 
-    <div class="post-spread">
       
+
+        
+        
+        
+
+        
+        
+
+        
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/2016/06/23/面试/" itemprop="url">
+              
+                <span itemprop="name">helloworld</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-06-23T18:30:21+08:00"
+              content="2016-06-23" >
+          06-23
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+
+      
+
     </div>
   </div>
+  
+  
+  
+
+  
+
 
 
           </div>
@@ -430,10 +359,6 @@
 
 
           
-
-  
-
-
 
         </div>
         
@@ -454,17 +379,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -479,7 +395,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">47</span>
+                  <span class="site-state-item-count">46</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -492,7 +408,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">35</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
@@ -515,22 +431,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#追踪手指在滑动过程中的速度"><span class="nav-number">1.</span> <span class="nav-text">追踪手指在滑动过程中的速度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#检测手势行为"><span class="nav-number">2.</span> <span class="nav-text">检测手势行为</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#滑动"><span class="nav-number">3.</span> <span class="nav-text">滑动</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#scrollTo-amp-amp-scrollerBy"><span class="nav-number">3.1.</span> <span class="nav-text">scrollTo&amp;&amp;scrollerBy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用动画"><span class="nav-number">3.2.</span> <span class="nav-text">使用动画</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#改变布局参数"><span class="nav-number">3.3.</span> <span class="nav-text">改变布局参数</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -664,10 +564,6 @@
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
 
   
 

@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="android," />
+  <meta name="keywords" content="android面试题目," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="TextView android:gravity  top bottom left right等等，指定对齐方向   match_parent  fill_parent  wrap_content  EditTextmaxLine ImageViewimageView.setImageResource(R.mipmap.abc); visible invisible gone属性 visible">
-<meta name="keywords" content="android">
+<meta name="description" content="android面试题目Service Activity中  void initData() {         mConnection = new ServiceConnection() {             @Override             public void onServiceConnected(ComponentName name, IBinder service) {">
+<meta name="keywords" content="android面试题目">
 <meta property="og:type" content="article">
-<meta property="og:title" content="UI">
-<meta property="og:url" content="http://yoursite.com/2018/06/18/UI/index.html">
+<meta property="og:title" content="helloworld">
+<meta property="og:url" content="http://yoursite.com/2016/06/23/面试/index.html">
 <meta property="og:site_name" content="一亩三分地">
-<meta property="og:description" content="TextView android:gravity  top bottom left right等等，指定对齐方向   match_parent  fill_parent  wrap_content  EditTextmaxLine ImageViewimageView.setImageResource(R.mipmap.abc); visible invisible gone属性 visible">
+<meta property="og:description" content="android面试题目Service Activity中  void initData() {         mConnection = new ServiceConnection() {             @Override             public void onServiceConnected(ComponentName name, IBinder service) {">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2016-09-26T13:10:29.000Z">
+<meta property="og:updated_time" content="2018-07-01T08:30:49.868Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="UI">
-<meta name="twitter:description" content="TextView android:gravity  top bottom left right等等，指定对齐方向   match_parent  fill_parent  wrap_content  EditTextmaxLine ImageViewimageView.setImageResource(R.mipmap.abc); visible invisible gone属性 visible">
+<meta name="twitter:title" content="helloworld">
+<meta name="twitter:description" content="android面试题目Service Activity中  void initData() {         mConnection = new ServiceConnection() {             @Override             public void onServiceConnected(ComponentName name, IBinder service) {">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/06/18/UI/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/06/23/面试/"/>
 
 
 
 
 
-  <title>UI | 一亩三分地</title>
+  <title>helloworld | 一亩三分地</title>
   
 
 
@@ -267,7 +267,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/18/UI/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/06/23/面试/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wilbert">
@@ -284,7 +284,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">UI</h1>
+          <h1 class="post-title" itemprop="name headline">helloworld</h1>
         
 
         <div class="post-meta">
@@ -296,8 +296,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-18T01:48:05+08:00">
-                2018-06-18
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-06-23T18:30:21+08:00">
+                2016-06-23
               </time>
             
 
@@ -335,49 +335,385 @@
 
       
         <p><font style="font-family:微软雅黑"></font></p>
-<h2 id="TextView"><a href="#TextView" class="headerlink" title="TextView"></a>TextView</h2><ul>
-<li><p>android:gravity</p>
-<blockquote>
-<p>top bottom left right等等，指定对齐方向</p>
-</blockquote>
-</li>
-<li><p>match_parent</p>
-</li>
-<li>fill_parent </li>
-<li>wrap_content</li>
+<h2 id="android面试题目"><a href="#android面试题目" class="headerlink" title="android面试题目"></a>android面试题目</h2><h3 id="Service"><a href="#Service" class="headerlink" title="Service"></a>Service</h3><ul>
+<li>Activity中</li>
 </ul>
-<h2 id="EditText"><a href="#EditText" class="headerlink" title="EditText"></a>EditText</h2><p>maxLine</p>
-<h2 id="ImageView"><a href="#ImageView" class="headerlink" title="ImageView"></a>ImageView</h2><pre><code>imageView.setImageResource(R.mipmap.abc);
-</code></pre><h2 id="visible-invisible-gone属性"><a href="#visible-invisible-gone属性" class="headerlink" title="visible invisible gone属性"></a>visible invisible gone属性</h2><ul>
-<li>visible 可见</li>
-<li>invisible 不可见但是还存在</li>
-<li>gone 不可见不存在</li>
-<li><p>View setVisibilty() View.gone …</p>
-<h2 id="AlertDialog"><a href="#AlertDialog" class="headerlink" title="AlertDialog"></a>AlertDialog</h2><p>  AlertDialog.Builder builder = new AlertDialog.Builder(UIActivity.this);</p>
-<pre><code>builder.setTitle(&quot;AlertDialogTitle&quot;);
-builder.setCancelable(false);
-builder.setMessage(&quot;some message&quot;);
-builder.setPositiveButton(&quot;Yes&quot;, new DialogInterface.OnClickListener() {
+<pre><code>void initData() {
+        mConnection = new ServiceConnection() {
+            @Override
+            public void onServiceConnected(ComponentName name, IBinder service) {
+                myBinder = (MyBinder)service;
+                myBinder.showMessage();
+            }
+
+            @Override
+            public void onServiceDisconnected(ComponentName name) {
+                SomeMethod.makeToast(ServiceActivity.this, &quot;service disconnected&quot;);
+            }
+        };
+    }
+
+public void onClick(View v) {
+    Intent intent = null;
+    switch (v.getId()) {
+        case R.id.startSerBtn:
+            intent = new Intent(this, MyService.class);
+            startService(intent);
+            break;
+        case R.id.endSerBtn:
+            intent = new Intent(this, MyService.class);
+            stopService(intent);
+            break;
+        case R.id.bindBtn:
+            intent = new Intent(this, MyService.class);
+            bindService(intent, mConnection, BIND_AUTO_CREATE);
+            isBind = true;
+            break;
+        case R.id.unBinBtn:
+            if (isBind) {
+                unbindService(mConnection);
+                isBind = false;
+            }
+            break;
+    }
+}
+}
+</code></pre><ul>
+<li><p>MyBinder类</p>
+<pre><code>public class MyBinder extends Binder {
+    Context mContext;
+    public MyBinder(Context context) {
+        mContext = context;
+    }
+
+    public void showMessage() {
+        SomeMethod.makeToast(mContext, &quot;in myBinder&quot;);
+    }
+}
+</code></pre></li>
+<li><p>MyService类</p>
+<pre><code>public class MyService extends Service {
+    public static final String w = &quot;wilbert&quot;;
     @Override
-    public void onClick(DialogInterface dialog, int which) {
+    public void onCreate() {
+        super.onCreate();
+        SomeMethod.makeToast(this, &quot;onCreate&quot;);
+        Log.d(w, &quot;onCreate&quot;);
+        myBinder = new MyBinder(this);
+    }
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        Log.d(w, &quot;onStartCommand&quot;);
+        SomeMethod.makeToast(this, &quot;onStartCommand&quot;);
+        return super.onStartCommand(intent, flags, startId);
+    }
+
+    @Override
+    public void onDestroy() {
+        SomeMethod.makeToast(this, &quot;onDestroy&quot;);
+        Log.d(w, &quot;onDestroy&quot;);
+        super.onDestroy();
+    }
+
+    MyBinder myBinder;
+    @Nullable
+    @Override
+    public IBinder onBind(Intent intent) {
+        Log.d(w, &quot;onBind&quot;);
+        return myBinder;
+    }
+}
+</code></pre></li>
+</ul>
+<h3 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h3><ul>
+<li><p>OpenHelper</p>
+<pre><code>package com.wilbert.firstlinecode.DB;
+
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
+
+/**
+ * Created by wilbert on 2016/4/15.
+ */
+public class DbOpenHelper extends SQLiteOpenHelper {
+    public static final String CREATE_BOOK = &quot;create table book (&quot;
+            + &quot;id integer primary key autoincrement, &quot;
+            + &quot;author text, &quot;
+            + &quot;price real, &quot;
+            + &quot;pages integer, &quot;
+            + &quot;name text)&quot;;
+    public static final String CREATE_CATEGORY = &quot;create table Category (&quot;
+            + &quot;id integer primary key autoincrement, &quot;
+            + &quot;category_name text, &quot;
+            + &quot;category_code integer)&quot;;
+    private Context mContext;
+    public DbOpenHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+        super(context, name, factory, version);
+        mContext = context;
+    }
+
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+        db.execSQL(CREATE_BOOK);
+        db.execSQL(CREATE_CATEGORY);
+        Toast.makeText(mContext, &quot;create db successfully&quot;, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
     }
-});
-builder.setNegativeButton(&quot;No&quot;, new DialogInterface.OnClickListener() {
+}
+</code></pre></li>
+<li><p>SqlActivity</p>
+<pre><code>public class SqlActivity extends BaseActivity {
+    Button createDbBtn;
+    Button insertBtn;
+    Button updateBtn;
+    Button deleteBtn;
+    ListView sqlListview;
+
+    DbOpenHelper dbOpenHelper;
+    SQLiteDatabase sqLiteDatabase;
+    List&lt;String&gt; stringList = new ArrayList&lt;String&gt;();
+    ArrayAdapter&lt;String&gt; arrayAdapter;
     @Override
-    public void onClick(DialogInterface dialog, int which) {
-
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_sql);
+        initView();
+        initData();
+        Log.v(&quot;w&quot;, &quot;onCreate&quot;);
     }
-});
-builder.show();
-</code></pre><h2 id="LinearLayout"><a href="#LinearLayout" class="headerlink" title="LinearLayout"></a>LinearLayout</h2></li>
-<li>指定方向，要注意如果是水平方向的话，则内部控件的宽度不能够是match_parent的不然会充满整个布局，同理竖直方向也是类似的。</li>
-<li>android:layout_gravity属性：正如TextView中gravity表示文本内容占据整个宽度的位置，这个属性指的是控件在LinearLayout中的相对位置，而且，当外层layout是竖直布局时在其上的关于竖直的设置是不会生效的。注意，这个属性亦是属于子布局里面的而不是属于LinearLayout（要指定的是每一个不同的子布局）。</li>
-<li>android:layout_weight属性：系统会先把 LinearLayout 下所有控件指定的 layout_weight 值相加， 得到一个总值，然后每个控件所占大小的比例就是用该控件的 layout_weight 值除以刚才算出的总值。</li>
-<li>布局中的如果只有部分控件有weight属性，则有weight属性的控件共享剩下的宽度或者高度（按照比例分配）。</li>
-</ul>
-<h2 id="RelativeLayout-相对布局"><a href="#RelativeLayout-相对布局" class="headerlink" title="RelativeLayout 相对布局"></a>RelativeLayout 相对布局</h2><h2 id="dp和sp"><a href="#dp和sp" class="headerlink" title="dp和sp"></a>dp和sp</h2><p>在编写 Android 程序的时候，尽量将控件或布局的大小指定成 match_parent<br>或 wrap_content，如果必须要指定一个固定值，则使用 dp 来作为单位，指定文字大小的时候<br>使用 sp 作为单位。</p>
 
+    @Override
+    void initView() {
+        createDbBtn = (Button)findViewById(R.id.createDbBtn);
+        createDbBtn.setOnClickListener(this);
+
+        insertBtn = (Button)findViewById(R.id.insertBtn);
+        insertBtn.setOnClickListener(this);
+
+        updateBtn = (Button)findViewById(R.id.updateBtn);
+        updateBtn.setOnClickListener(this);
+
+        deleteBtn = (Button)findViewById(R.id.deleteBtn);
+        deleteBtn.setOnClickListener(this);
+
+        sqlListview = (ListView)findViewById(R.id.dbListview);
+    }
+
+    @Override
+    void initData() {
+        dbOpenHelper = new DbOpenHelper(this, &quot;BookStore&quot;, null, 1);
+        sqLiteDatabase = dbOpenHelper.getWritableDatabase();
+        readDataFromSql();
+        arrayAdapter = new ArrayAdapter&lt;String&gt;(this, android.R.layout.simple_list_item_1
+                                        , stringList);
+        sqlListview.setAdapter(arrayAdapter);
+    }
+
+    private void readDataFromSql() {
+        stringList.clear();
+        Cursor cursor = sqLiteDatabase.query(Book.TABLE_NAME, null, null, null, null, null, null);
+        if (cursor.moveToFirst()) {
+            do {
+                stringList.add(Book.getBookFromCursor(cursor).toString());
+            } while (cursor.moveToNext());
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.createDbBtn:
+                dbOpenHelper.getWritableDatabase();
+                break;
+            case R.id.insertBtn:
+                Book book = new Book(&quot;wilbert&quot;, &quot;mybook&quot;, 99, 100);
+                long id = sqLiteDatabase.insert(Book.TABLE_NAME, null, book.makeContenValues());
+                if (id != -1) {
+                    Toast.makeText(this, &quot;insert successfully&quot;, Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case R.id.updateBtn:
+                Book book2 = new Book(&quot;wilbert&quot;, &quot;mybook&quot;, 50, 100);
+                int effects = sqLiteDatabase.update(Book.TABLE_NAME, book2.makeContenValues(), &quot;name = ?&quot;,
+                        new String[]{&quot;mybook&quot;});
+                if (effects != 0) {
+                    Toast.makeText(this, &quot;update successfully&quot;, Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case R.id.deleteBtn:
+//                sqLiteDatabase.beginTransaction();
+                int i = sqLiteDatabase.delete(Book.TABLE_NAME, &quot;pages &gt; ? OR name = ?&quot;,
+                        new String[]{&quot;10&quot;, &quot;wilbert&quot;});
+                if (i != 0) {
+                    showToasts(i + &quot; delete successfully&quot;);
+                }
+//                sqLiteDatabase.endTransaction();
+                break;
+        }
+        readDataFromSql();
+        arrayAdapter.notifyDataSetChanged();
+    }
+
+    private void showToasts(String s) {
+        Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
+    }
+}
+</code></pre></li>
+</ul>
+<h3 id="ContentProvider"><a href="#ContentProvider" class="headerlink" title="ContentProvider"></a>ContentProvider</h3><ul>
+<li><p>contentProvider类</p>
+<pre><code>package com.wilbert.firstlinecode.model;
+
+import android.content.ContentProvider;
+import android.content.ContentValues;
+import android.content.UriMatcher;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
+import android.support.annotation.Nullable;
+
+import com.wilbert.firstlinecode.DB.DbOpenHelper;
+
+import java.net.Inet4Address;
+
+/**
+ * Created by wilbert on 2016/4/15.
+ */
+public class BookProvider extends ContentProvider {
+
+    public static final int BOOK_DIR = 0;
+    public static final int BOOK_ITEM = 1;
+    public static final String AUTHORITY = &quot;com.example.databasetest.provider&quot;;
+    private static UriMatcher uriMatcher;
+    private DbOpenHelper dbOpenHelper;
+    private SQLiteDatabase sqLiteDatabase;
+
+    static {
+        uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
+        uriMatcher.addURI(AUTHORITY, &quot;book&quot;, BOOK_DIR);
+        uriMatcher.addURI(AUTHORITY, &quot;book/# &quot;, BOOK_ITEM);
+    }
+
+    @Override
+    public boolean onCreate() {
+        dbOpenHelper = new DbOpenHelper(getContext(), &quot;BookStore&quot;, null, 1);
+        sqLiteDatabase = dbOpenHelper.getWritableDatabase();
+        return true;
+    }
+
+    @Nullable
+    @Override
+    public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
+        Cursor cursor = null;
+        switch (uriMatcher.match(uri)) {
+            case BOOK_DIR:
+                cursor = sqLiteDatabase.query(&quot;Book&quot;, projection, selection, selectionArgs,
+                        null, null, sortOrder);
+                break;
+            case BOOK_ITEM:
+                String bookId = uri.getPathSegments().get(1);
+                cursor = sqLiteDatabase.query(&quot;Book&quot;, projection, &quot;id = ?&quot;, new String[]
+                        {bookId}, null, null, sortOrder);
+                break;
+        }
+        return cursor;
+    }
+
+    @Nullable
+    @Override
+    public String getType(Uri uri) {
+            switch (uriMatcher.match(uri)) {
+                case BOOK_DIR:
+                    return &quot;vnd.android.cursor.dir/vnd.com.example.databasetest.provider.book&quot;;
+                case BOOK_ITEM:
+                    return &quot;vnd.android.cursor.item/vnd.com.example.databasetest.provider.book&quot;;
+            }
+        return null;
+    }
+
+    @Nullable
+    @Override
+    public Uri insert(Uri uri, ContentValues values) {
+        Uri returnUri = null;
+        switch (uriMatcher.match(uri)) {
+            case BOOK_DIR:
+            case BOOK_ITEM:
+                long newBookId = sqLiteDatabase.insert(&quot;Book&quot;, null, values);
+                returnUri = Uri.parse(&quot;content://&quot; + AUTHORITY + &quot;/book/&quot; +
+                        newBookId);
+                break;
+        }
+        return returnUri;
+    }
+
+    @Override
+    public int delete(Uri uri, String selection, String[] selectionArgs) {
+        int deletedRows = 0;
+        switch (uriMatcher.match(uri)) {
+            case BOOK_DIR:
+                deletedRows = sqLiteDatabase.delete(&quot;Book&quot;, selection, selectionArgs);
+                break;
+            case BOOK_ITEM:
+                String bookId = uri.getPathSegments().get(1);
+                deletedRows = sqLiteDatabase.delete(&quot;Book&quot;, &quot;id = ?&quot;, new String[] { bookId });
+                break;
+        }
+        return deletedRows;
+    }
+
+    @Override
+    public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
+        int updatedRows = 0;
+        switch (uriMatcher.match(uri)) {
+            case BOOK_DIR:
+                updatedRows = sqLiteDatabase.update(&quot;Book&quot;, values, selection, selectionArgs);
+                break;
+            case BOOK_ITEM:
+                String bookId = uri.getPathSegments().get(1);
+                updatedRows = sqLiteDatabase.update(&quot;Book&quot;, values, &quot;id = ?&quot;, new String[]
+                        {bookId});
+                break;
+        }
+        return updatedRows;
+    }
+}
+</code></pre></li>
+<li><p>provider activity </p>
+</li>
+</ul>
+<pre><code>public void onClick(View v) {
+    // TODO: 2016/4/15 query operation cursor
+    String newId;
+    switch (v.getId()) {
+        case R.id.queryBtn:
+            Uri uri2 = Uri.parse(&quot;content://com.example.databasetest.provider/book/1&quot;);
+            Cursor cursor = getContentResolver().query(uri2, null, null, null, null);
+            if (cursor != null) {
+                Book book = Book.getBookFromCursor(cursor);
+                stringList.add(book.toString());
+                arrayAdapter.notifyDataSetChanged();
+            }
+
+            break;
+        case R.id.insertBtn:
+            Uri uri = Uri.parse(&quot;content://com.example.databasetest.provider/book&quot;);
+            Book book = new Book(&quot;wilbdd&quot;, &quot;nae&quot;, 100, 100);
+            Uri newUri = getContentResolver().insert(uri, book.makeContenValues());
+
+            //newId = newUri.getPathSegments().get(1);
+            makeToast(&quot;  &quot; + &quot;insert&quot;);
+            makeToast(newUri.toString());
+            break;
+    }
+}
+</code></pre>
       
     </div>
     
@@ -394,7 +730,7 @@ builder.show();
       
         <div class="post-tags">
           
-            <a href="/tags/android/" rel="tag"># android</a>
+            <a href="/tags/android面试题目/" rel="tag"># android面试题目</a>
           
         </div>
       
@@ -407,18 +743,14 @@ builder.show();
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/06/18/Android笔试题目/" rel="next" title="Android笔试题目">
-                <i class="fa fa-chevron-left"></i> Android笔试题目
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/06/18/View/" rel="prev" title="View">
-                View <i class="fa fa-chevron-right"></i>
+              <a href="/2016/06/23/关于handler以及一些回调的思考/" rel="prev" title="关于handler以及一些回调的思考">
+                关于handler以及一些回调的思考 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -496,7 +828,7 @@ builder.show();
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">47</span>
+                  <span class="site-state-item-count">46</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -509,7 +841,7 @@ builder.show();
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">35</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
@@ -542,7 +874,7 @@ builder.show();
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#TextView"><span class="nav-number">1.</span> <span class="nav-text">TextView</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#EditText"><span class="nav-number">2.</span> <span class="nav-text">EditText</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ImageView"><span class="nav-number">3.</span> <span class="nav-text">ImageView</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#visible-invisible-gone属性"><span class="nav-number">4.</span> <span class="nav-text">visible invisible gone属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AlertDialog"><span class="nav-number">5.</span> <span class="nav-text">AlertDialog</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LinearLayout"><span class="nav-number">6.</span> <span class="nav-text">LinearLayout</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RelativeLayout-相对布局"><span class="nav-number">7.</span> <span class="nav-text">RelativeLayout 相对布局</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dp和sp"><span class="nav-number">8.</span> <span class="nav-text">dp和sp</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#android面试题目"><span class="nav-number">1.</span> <span class="nav-text">android面试题目</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Service"><span class="nav-number">1.1.</span> <span class="nav-text">Service</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库"><span class="nav-number">1.2.</span> <span class="nav-text">数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ContentProvider"><span class="nav-number">1.3.</span> <span class="nav-text">ContentProvider</span></a></li></ol></li></ol></div>
             
 
           </div>

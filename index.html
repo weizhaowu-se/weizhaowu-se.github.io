@@ -263,125 +263,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/23/helloworld/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wilbert">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一亩三分地">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/23/helloworld/" itemprop="url">helloworld</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-23T18:30:21+08:00">
-                2018-06-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/23/测试https图床imgur/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -470,1244 +351,6 @@
 <li><img src="https://i.imgur.com/KrpH5ds.png" alt="Imgur"></li>
 </ul>
 <h2 id="腾讯云对象存储"><a href="#腾讯云对象存储" class="headerlink" title="腾讯云对象存储"></a>腾讯云对象存储</h2><p><img src="https://wuweizhao-1256078486.cos.ap-guangzhou.myqcloud.com/wuweizhao.com-pic/TIM20180303223306.jpg" alt=""></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/18/面试/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wilbert">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一亩三分地">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/18/面试/" itemprop="url">未命名</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-18T01:48:05+08:00">
-                2018-06-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><font style="font-family:微软雅黑"></font></p>
-<h2 id="android面试题目"><a href="#android面试题目" class="headerlink" title="android面试题目"></a>android面试题目</h2><h3 id="Service"><a href="#Service" class="headerlink" title="Service"></a>Service</h3><ul>
-<li>Activity中</li>
-</ul>
-<pre><code>void initData() {
-        mConnection = new ServiceConnection() {
-            @Override
-            public void onServiceConnected(ComponentName name, IBinder service) {
-                myBinder = (MyBinder)service;
-                myBinder.showMessage();
-            }
-
-            @Override
-            public void onServiceDisconnected(ComponentName name) {
-                SomeMethod.makeToast(ServiceActivity.this, &quot;service disconnected&quot;);
-            }
-        };
-    }
-
-public void onClick(View v) {
-    Intent intent = null;
-    switch (v.getId()) {
-        case R.id.startSerBtn:
-            intent = new Intent(this, MyService.class);
-            startService(intent);
-            break;
-        case R.id.endSerBtn:
-            intent = new Intent(this, MyService.class);
-            stopService(intent);
-            break;
-        case R.id.bindBtn:
-            intent = new Intent(this, MyService.class);
-            bindService(intent, mConnection, BIND_AUTO_CREATE);
-            isBind = true;
-            break;
-        case R.id.unBinBtn:
-            if (isBind) {
-                unbindService(mConnection);
-                isBind = false;
-            }
-            break;
-    }
-}
-}
-</code></pre><ul>
-<li><p>MyBinder类</p>
-<pre><code>public class MyBinder extends Binder {
-    Context mContext;
-    public MyBinder(Context context) {
-        mContext = context;
-    }
-
-    public void showMessage() {
-        SomeMethod.makeToast(mContext, &quot;in myBinder&quot;);
-    }
-}
-</code></pre></li>
-<li><p>MyService类</p>
-<pre><code>public class MyService extends Service {
-    public static final String w = &quot;wilbert&quot;;
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        SomeMethod.makeToast(this, &quot;onCreate&quot;);
-        Log.d(w, &quot;onCreate&quot;);
-        myBinder = new MyBinder(this);
-    }
-
-    @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.d(w, &quot;onStartCommand&quot;);
-        SomeMethod.makeToast(this, &quot;onStartCommand&quot;);
-        return super.onStartCommand(intent, flags, startId);
-    }
-
-    @Override
-    public void onDestroy() {
-        SomeMethod.makeToast(this, &quot;onDestroy&quot;);
-        Log.d(w, &quot;onDestroy&quot;);
-        super.onDestroy();
-    }
-
-    MyBinder myBinder;
-    @Nullable
-    @Override
-    public IBinder onBind(Intent intent) {
-        Log.d(w, &quot;onBind&quot;);
-        return myBinder;
-    }
-}
-</code></pre></li>
-</ul>
-<h3 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h3><ul>
-<li><p>OpenHelper</p>
-<pre><code>package com.wilbert.firstlinecode.DB;
-
-import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-import android.widget.Toast;
-
-/**
- * Created by wilbert on 2016/4/15.
- */
-public class DbOpenHelper extends SQLiteOpenHelper {
-    public static final String CREATE_BOOK = &quot;create table book (&quot;
-            + &quot;id integer primary key autoincrement, &quot;
-            + &quot;author text, &quot;
-            + &quot;price real, &quot;
-            + &quot;pages integer, &quot;
-            + &quot;name text)&quot;;
-    public static final String CREATE_CATEGORY = &quot;create table Category (&quot;
-            + &quot;id integer primary key autoincrement, &quot;
-            + &quot;category_name text, &quot;
-            + &quot;category_code integer)&quot;;
-    private Context mContext;
-    public DbOpenHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, name, factory, version);
-        mContext = context;
-    }
-
-    @Override
-    public void onCreate(SQLiteDatabase db) {
-        db.execSQL(CREATE_BOOK);
-        db.execSQL(CREATE_CATEGORY);
-        Toast.makeText(mContext, &quot;create db successfully&quot;, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
-    }
-}
-</code></pre></li>
-<li><p>SqlActivity</p>
-<pre><code>public class SqlActivity extends BaseActivity {
-    Button createDbBtn;
-    Button insertBtn;
-    Button updateBtn;
-    Button deleteBtn;
-    ListView sqlListview;
-
-    DbOpenHelper dbOpenHelper;
-    SQLiteDatabase sqLiteDatabase;
-    List&lt;String&gt; stringList = new ArrayList&lt;String&gt;();
-    ArrayAdapter&lt;String&gt; arrayAdapter;
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sql);
-        initView();
-        initData();
-        Log.v(&quot;w&quot;, &quot;onCreate&quot;);
-    }
-
-    @Override
-    void initView() {
-        createDbBtn = (Button)findViewById(R.id.createDbBtn);
-        createDbBtn.setOnClickListener(this);
-
-        insertBtn = (Button)findViewById(R.id.insertBtn);
-        insertBtn.setOnClickListener(this);
-
-        updateBtn = (Button)findViewById(R.id.updateBtn);
-        updateBtn.setOnClickListener(this);
-
-        deleteBtn = (Button)findViewById(R.id.deleteBtn);
-        deleteBtn.setOnClickListener(this);
-
-        sqlListview = (ListView)findViewById(R.id.dbListview);
-    }
-
-    @Override
-    void initData() {
-        dbOpenHelper = new DbOpenHelper(this, &quot;BookStore&quot;, null, 1);
-        sqLiteDatabase = dbOpenHelper.getWritableDatabase();
-        readDataFromSql();
-        arrayAdapter = new ArrayAdapter&lt;String&gt;(this, android.R.layout.simple_list_item_1
-                                        , stringList);
-        sqlListview.setAdapter(arrayAdapter);
-    }
-
-    private void readDataFromSql() {
-        stringList.clear();
-        Cursor cursor = sqLiteDatabase.query(Book.TABLE_NAME, null, null, null, null, null, null);
-        if (cursor.moveToFirst()) {
-            do {
-                stringList.add(Book.getBookFromCursor(cursor).toString());
-            } while (cursor.moveToNext());
-        }
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.createDbBtn:
-                dbOpenHelper.getWritableDatabase();
-                break;
-            case R.id.insertBtn:
-                Book book = new Book(&quot;wilbert&quot;, &quot;mybook&quot;, 99, 100);
-                long id = sqLiteDatabase.insert(Book.TABLE_NAME, null, book.makeContenValues());
-                if (id != -1) {
-                    Toast.makeText(this, &quot;insert successfully&quot;, Toast.LENGTH_SHORT).show();
-                }
-                break;
-            case R.id.updateBtn:
-                Book book2 = new Book(&quot;wilbert&quot;, &quot;mybook&quot;, 50, 100);
-                int effects = sqLiteDatabase.update(Book.TABLE_NAME, book2.makeContenValues(), &quot;name = ?&quot;,
-                        new String[]{&quot;mybook&quot;});
-                if (effects != 0) {
-                    Toast.makeText(this, &quot;update successfully&quot;, Toast.LENGTH_SHORT).show();
-                }
-                break;
-            case R.id.deleteBtn:
-//                sqLiteDatabase.beginTransaction();
-                int i = sqLiteDatabase.delete(Book.TABLE_NAME, &quot;pages &gt; ? OR name = ?&quot;,
-                        new String[]{&quot;10&quot;, &quot;wilbert&quot;});
-                if (i != 0) {
-                    showToasts(i + &quot; delete successfully&quot;);
-                }
-//                sqLiteDatabase.endTransaction();
-                break;
-        }
-        readDataFromSql();
-        arrayAdapter.notifyDataSetChanged();
-    }
-
-    private void showToasts(String s) {
-        Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
-    }
-}
-</code></pre></li>
-</ul>
-<h3 id="ContentProvider"><a href="#ContentProvider" class="headerlink" title="ContentProvider"></a>ContentProvider</h3><ul>
-<li><p>contentProvider类</p>
-<pre><code>package com.wilbert.firstlinecode.model;
-
-import android.content.ContentProvider;
-import android.content.ContentValues;
-import android.content.UriMatcher;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.net.Uri;
-import android.support.annotation.Nullable;
-
-import com.wilbert.firstlinecode.DB.DbOpenHelper;
-
-import java.net.Inet4Address;
-
-/**
- * Created by wilbert on 2016/4/15.
- */
-public class BookProvider extends ContentProvider {
-
-    public static final int BOOK_DIR = 0;
-    public static final int BOOK_ITEM = 1;
-    public static final String AUTHORITY = &quot;com.example.databasetest.provider&quot;;
-    private static UriMatcher uriMatcher;
-    private DbOpenHelper dbOpenHelper;
-    private SQLiteDatabase sqLiteDatabase;
-
-    static {
-        uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
-        uriMatcher.addURI(AUTHORITY, &quot;book&quot;, BOOK_DIR);
-        uriMatcher.addURI(AUTHORITY, &quot;book/# &quot;, BOOK_ITEM);
-    }
-
-    @Override
-    public boolean onCreate() {
-        dbOpenHelper = new DbOpenHelper(getContext(), &quot;BookStore&quot;, null, 1);
-        sqLiteDatabase = dbOpenHelper.getWritableDatabase();
-        return true;
-    }
-
-    @Nullable
-    @Override
-    public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
-        Cursor cursor = null;
-        switch (uriMatcher.match(uri)) {
-            case BOOK_DIR:
-                cursor = sqLiteDatabase.query(&quot;Book&quot;, projection, selection, selectionArgs,
-                        null, null, sortOrder);
-                break;
-            case BOOK_ITEM:
-                String bookId = uri.getPathSegments().get(1);
-                cursor = sqLiteDatabase.query(&quot;Book&quot;, projection, &quot;id = ?&quot;, new String[]
-                        {bookId}, null, null, sortOrder);
-                break;
-        }
-        return cursor;
-    }
-
-    @Nullable
-    @Override
-    public String getType(Uri uri) {
-            switch (uriMatcher.match(uri)) {
-                case BOOK_DIR:
-                    return &quot;vnd.android.cursor.dir/vnd.com.example.databasetest.provider.book&quot;;
-                case BOOK_ITEM:
-                    return &quot;vnd.android.cursor.item/vnd.com.example.databasetest.provider.book&quot;;
-            }
-        return null;
-    }
-
-    @Nullable
-    @Override
-    public Uri insert(Uri uri, ContentValues values) {
-        Uri returnUri = null;
-        switch (uriMatcher.match(uri)) {
-            case BOOK_DIR:
-            case BOOK_ITEM:
-                long newBookId = sqLiteDatabase.insert(&quot;Book&quot;, null, values);
-                returnUri = Uri.parse(&quot;content://&quot; + AUTHORITY + &quot;/book/&quot; +
-                        newBookId);
-                break;
-        }
-        return returnUri;
-    }
-
-    @Override
-    public int delete(Uri uri, String selection, String[] selectionArgs) {
-        int deletedRows = 0;
-        switch (uriMatcher.match(uri)) {
-            case BOOK_DIR:
-                deletedRows = sqLiteDatabase.delete(&quot;Book&quot;, selection, selectionArgs);
-                break;
-            case BOOK_ITEM:
-                String bookId = uri.getPathSegments().get(1);
-                deletedRows = sqLiteDatabase.delete(&quot;Book&quot;, &quot;id = ?&quot;, new String[] { bookId });
-                break;
-        }
-        return deletedRows;
-    }
-
-    @Override
-    public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
-        int updatedRows = 0;
-        switch (uriMatcher.match(uri)) {
-            case BOOK_DIR:
-                updatedRows = sqLiteDatabase.update(&quot;Book&quot;, values, selection, selectionArgs);
-                break;
-            case BOOK_ITEM:
-                String bookId = uri.getPathSegments().get(1);
-                updatedRows = sqLiteDatabase.update(&quot;Book&quot;, values, &quot;id = ?&quot;, new String[]
-                        {bookId});
-                break;
-        }
-        return updatedRows;
-    }
-}
-</code></pre></li>
-<li><p>provider activity </p>
-</li>
-</ul>
-<pre><code>public void onClick(View v) {
-    // TODO: 2016/4/15 query operation cursor
-    String newId;
-    switch (v.getId()) {
-        case R.id.queryBtn:
-            Uri uri2 = Uri.parse(&quot;content://com.example.databasetest.provider/book/1&quot;);
-            Cursor cursor = getContentResolver().query(uri2, null, null, null, null);
-            if (cursor != null) {
-                Book book = Book.getBookFromCursor(cursor);
-                stringList.add(book.toString());
-                arrayAdapter.notifyDataSetChanged();
-            }
-
-            break;
-        case R.id.insertBtn:
-            Uri uri = Uri.parse(&quot;content://com.example.databasetest.provider/book&quot;);
-            Book book = new Book(&quot;wilbdd&quot;, &quot;nae&quot;, 100, 100);
-            Uri newUri = getContentResolver().insert(uri, book.makeContenValues());
-
-            //newId = newUri.getPathSegments().get(1);
-            makeToast(&quot;  &quot; + &quot;insert&quot;);
-            makeToast(newUri.toString());
-            break;
-    }
-}
-</code></pre>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/18/关于handler以及一些回调的思考/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wilbert">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一亩三分地">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/18/关于handler以及一些回调的思考/" itemprop="url">关于handler以及一些回调的思考</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-18T01:48:05+08:00">
-                2018-06-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><font style="font-family:微软雅黑"><br>有线程如下：</font></p>
-<pre><code>public class SetTextThread extends Thread {
-    private IIsetText iIsetText;
-    private  Handler handler;
-    private  MyNum myNum;
-    public SetTextThread(IIsetText iIsetText) {
-        this.iIsetText = iIsetText;
-    }
-    public SetTextThread(Handler handler) {
-        this.handler = handler;
-    }
-    public SetTextThread(MyNum myNum) {
-        print(&quot;constructor:&quot; + Thread.currentThread());
-        this.myNum = myNum;
-    }
-    @Override
-    public void run() {
-        print(&quot;run:&quot; + Thread.currentThread());
-//        iIsetText.setText();
-//        handler.sendMessage(new Message());
-        myNum.i = 9999;
-    }
-
-    public void print(String s) {
-        System.out.println(s);
-    }
-}
-</code></pre><ul>
-<li>多线程中，变量虽然相同，但是其实他们指向的是不同的内存区域，所以修改是不会影响到互相的值的。//此处有待确认正确与否，待查看thinking in java后再行确定。</li>
-<li><p>handler中，首先要先了解handler的消息机制</p>
-<pre><code>MessageQueue：消息队列
-Looper：循环，一直从消息队列中获得消息，如果没有消息则一直循环。成员变量有MessageQueue。ThreadLocal变量，每个线程唯一且相同。
-Handler：成员变量有Looper，亦即也拥有MessageQueue，发送消息时向消息队列插入消息，有Looper负责发现消息并且根据Message的target（亦即handler）来负责处理消息。
-</code></pre><p>所以，当我们在子线程中用handler发送消息时，虽然说此时的handler是另外线程中主线程handler的复制品，但是内容是完全一样的，亦即其Looper与消息队列依然是主线程的，所以，当发送消息时，插入的MessageQueue依旧是主线程，此时由handler的操作便变成了主线程的操作而非在子线程中操作界面。</p>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/18/View/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wilbert">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一亩三分地">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/18/View/" itemprop="url">View</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-18T01:48:05+08:00">
-                2018-06-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="追踪手指在滑动过程中的速度"><a href="#追踪手指在滑动过程中的速度" class="headerlink" title="追踪手指在滑动过程中的速度"></a>追踪手指在滑动过程中的速度</h2><pre><code>@Override
-    public boolean onTouchEvent(MotionEvent event) {
-        VelocityTracker velocityTracker = VelocityTracker.obtain();
-        velocityTracker.addMovement(event);
-        velocityTracker.computeCurrentVelocity(1000);
-        int x = (int)velocityTracker.getXVelocity();
-        int y = (int)velocityTracker.getYVelocity();
-
-        Log.d(W, &quot;x:&quot; + x + &quot;,y:&quot; + y);
-        return super.onTouchEvent(event);
-    }
-</code></pre><h2 id="检测手势行为"><a href="#检测手势行为" class="headerlink" title="检测手势行为"></a>检测手势行为</h2><pre><code>implements GestureDetector.OnGestureListener
-
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {    
-        boolean consume = gestureDetector.onTouchEvent(event);
-        return consume;
-    }
-</code></pre><h2 id="滑动"><a href="#滑动" class="headerlink" title="滑动"></a>滑动</h2><h3 id="scrollTo-amp-amp-scrollerBy"><a href="#scrollTo-amp-amp-scrollerBy" class="headerlink" title="scrollTo&amp;&amp;scrollerBy"></a>scrollTo&amp;&amp;scrollerBy</h3><h3 id="使用动画"><a href="#使用动画" class="headerlink" title="使用动画"></a>使用动画</h3><h3 id="改变布局参数"><a href="#改变布局参数" class="headerlink" title="改变布局参数"></a>改变布局参数</h3><pre><code>public void onClick(View v) {
-    ViewGroup.MarginLayoutParams marginLayoutParams =
-            (ViewGroup.MarginLayoutParams)button.getLayoutParams();
-    Log.d(W, &quot;layout&quot;);
-    marginLayoutParams.width += 100;
-    marginLayoutParams.leftMargin += 100;
-    button.requestLayout();
-}
-</code></pre>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/18/UI/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wilbert">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一亩三分地">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/18/UI/" itemprop="url">UI</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-18T01:48:05+08:00">
-                2018-06-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><font style="font-family:微软雅黑"></font></p>
-<h2 id="TextView"><a href="#TextView" class="headerlink" title="TextView"></a>TextView</h2><ul>
-<li><p>android:gravity</p>
-<blockquote>
-<p>top bottom left right等等，指定对齐方向</p>
-</blockquote>
-</li>
-<li><p>match_parent</p>
-</li>
-<li>fill_parent </li>
-<li>wrap_content</li>
-</ul>
-<h2 id="EditText"><a href="#EditText" class="headerlink" title="EditText"></a>EditText</h2><p>maxLine</p>
-<h2 id="ImageView"><a href="#ImageView" class="headerlink" title="ImageView"></a>ImageView</h2><pre><code>imageView.setImageResource(R.mipmap.abc);
-</code></pre><h2 id="visible-invisible-gone属性"><a href="#visible-invisible-gone属性" class="headerlink" title="visible invisible gone属性"></a>visible invisible gone属性</h2><ul>
-<li>visible 可见</li>
-<li>invisible 不可见但是还存在</li>
-<li>gone 不可见不存在</li>
-<li><p>View setVisibilty() View.gone …</p>
-<h2 id="AlertDialog"><a href="#AlertDialog" class="headerlink" title="AlertDialog"></a>AlertDialog</h2><p>  AlertDialog.Builder builder = new AlertDialog.Builder(UIActivity.this);</p>
-<pre><code>builder.setTitle(&quot;AlertDialogTitle&quot;);
-builder.setCancelable(false);
-builder.setMessage(&quot;some message&quot;);
-builder.setPositiveButton(&quot;Yes&quot;, new DialogInterface.OnClickListener() {
-    @Override
-    public void onClick(DialogInterface dialog, int which) {
-
-    }
-});
-builder.setNegativeButton(&quot;No&quot;, new DialogInterface.OnClickListener() {
-    @Override
-    public void onClick(DialogInterface dialog, int which) {
-
-    }
-});
-builder.show();
-</code></pre><h2 id="LinearLayout"><a href="#LinearLayout" class="headerlink" title="LinearLayout"></a>LinearLayout</h2></li>
-<li>指定方向，要注意如果是水平方向的话，则内部控件的宽度不能够是match_parent的不然会充满整个布局，同理竖直方向也是类似的。</li>
-<li>android:layout_gravity属性：正如TextView中gravity表示文本内容占据整个宽度的位置，这个属性指的是控件在LinearLayout中的相对位置，而且，当外层layout是竖直布局时在其上的关于竖直的设置是不会生效的。注意，这个属性亦是属于子布局里面的而不是属于LinearLayout（要指定的是每一个不同的子布局）。</li>
-<li>android:layout_weight属性：系统会先把 LinearLayout 下所有控件指定的 layout_weight 值相加， 得到一个总值，然后每个控件所占大小的比例就是用该控件的 layout_weight 值除以刚才算出的总值。</li>
-<li>布局中的如果只有部分控件有weight属性，则有weight属性的控件共享剩下的宽度或者高度（按照比例分配）。</li>
-</ul>
-<h2 id="RelativeLayout-相对布局"><a href="#RelativeLayout-相对布局" class="headerlink" title="RelativeLayout 相对布局"></a>RelativeLayout 相对布局</h2><h2 id="dp和sp"><a href="#dp和sp" class="headerlink" title="dp和sp"></a>dp和sp</h2><p>在编写 Android 程序的时候，尽量将控件或布局的大小指定成 match_parent<br>或 wrap_content，如果必须要指定一个固定值，则使用 dp 来作为单位，指定文字大小的时候<br>使用 sp 作为单位。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/18/Android笔试题目/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wilbert">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一亩三分地">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/18/Android笔试题目/" itemprop="url">Android笔试题目</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-18T01:48:04+08:00">
-                2018-06-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><font style="font-family: 微软雅黑;"><br>title: Android基础笔试题<br>tags:</font></p>
-<ul>
-<li>android</li>
-<li>笔试<h1 id="activity的启动过程"><a href="#activity的启动过程" class="headerlink" title="activity的启动过程"></a>activity的启动过程</h1><blockquote>
-<p>onCreate()-&gt;onStart()-&gt;onResume()-&gt;运行-&gt;onPause()-&gt;onStop()-&gt;onDestroy.</p>
-</blockquote>
-</li>
-</ul>
-<ul>
-<li>注意，当启动新的activity或切换到桌面时，回调onPause和onStop，切换回来的时候，回调onRestart-&gt;onStart-&gt;onResume。</li>
-<li>back回退时，回调onPause，onStop，onDestroy。</li>
-<li>如果被系统回收的话，则与初次启动回调函数一样，但是在onCreate中会有个状态保存的变量供恢复数据</li>
-<li>旧Activity的onPause先调用，然后新Activity才启动。</li>
-<li>意外情况activity被销毁的时候，会调用onSaveInstanceState保存状态，再将Bundle对象传递给onRestoreInstanceState和onCreate方法。</li>
-<li>资源内存不足导致activity被杀死</li>
-<li>优先级：前台&gt;可见但非前台（弹出对话框的activity）&gt;后台（已经被暂停的）</li>
-</ul>
-<h1 id="activity的启动模式有"><a href="#activity的启动模式有" class="headerlink" title="activity的启动模式有"></a>activity的启动模式有</h1><ul>
-<li>标准模式</li>
-<li>singleTop 栈顶复用模式，如果在栈顶，则不重新创建，同时调用onNewIntent方法</li>
-<li>singleTask  栈内复用,在一个新的task中产生这个实例，以后每次调用都会使用这个。</li>
-<li>singleInstance 单实例模式，与singleTask模式基本一样，区别在于在这个模式下的activity实例所处的task中只有这个实例而不会有其他的实例。</li>
-</ul>
-<h1 id="数据存储方式"><a href="#数据存储方式" class="headerlink" title="数据存储方式"></a>数据存储方式</h1><ul>
-<li>sharedpreferrence：xml格式，简单的键值对，有缓存，注意多线程访问时候可能出现的问题</li>
-<li>普通文件存储</li>
-<li>SQLite数据库：轻量级的数据库，使用openHelper，cursor，SQLiteDataBase。</li>
-<li>ContentProvider。cursor，provider。</li>
-<li>网络。httpURLconnection。</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/18/AIDL/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wilbert">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一亩三分地">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/18/AIDL/" itemprop="url">AIDL</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-18T01:48:04+08:00">
-                2018-06-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><font style="font-family:微软雅黑"></font></p>
-<h2 id="Aidl-android-interface-definition-language"><a href="#Aidl-android-interface-definition-language" class="headerlink" title="Aidl:android interface definition language"></a>Aidl:android interface definition language</h2><p>aidl是安卓中一种跨进程通信的方式。</p>
-<h4 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h4><ul>
-<li>创建一个service来监听客户端的连接请求</li>
-<li>创建aidl文件，声明将要供客户端使用的接口以及方法</li>
-<li>在service中实现接口方法。<h4 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h4></li>
-<li>绑定服务端的service</li>
-<li>将服务端返回的Binder对象转化成AIDL接口的类型</li>
-<li>那么我们就能够在客户端中实现调用AIDL的方法了。（跨进程方法调用）</li>
-</ul>
 
           
         
@@ -2003,6 +646,941 @@ scrapy genspider mydomain mydomain.com  //创建spider
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/28/python-tips/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wilbert">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一亩三分地">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/28/python-tips/" itemprop="url">python-tips</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-28T22:11:30+08:00">
+                2018-01-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="python-tips"><a href="#python-tips" class="headerlink" title="python-tips"></a>python-tips</h1><h2 id="列表生成式"><a href="#列表生成式" class="headerlink" title="列表生成式"></a>列表生成式</h2>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/01/28/python-tips/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/26/servletRequest中读取body的问题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wilbert">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一亩三分地">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/26/servletRequest中读取body的问题/" itemprop="url">servletRequest中读取body的问题</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-26T16:55:07+08:00">
+                2018-01-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="ServletRequest中读取body的数据"><a href="#ServletRequest中读取body的数据" class="headerlink" title="ServletRequest中读取body的数据"></a>ServletRequest中读取body的数据</h1><pre><code>InputStream body = request.getInputStream();
+</code></pre><h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><ul>
+<li><p>数据流仅仅能够读取一次,如果你想要多次读取(在多个调用链中)(比如说在多个过滤器中),例如</p>
+<pre><code>chain.doFilter(request, response);
+</code></pre><p>这样后面的调用中request将读取不到body的数据.</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/01/26/servletRequest中读取body的问题/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/24/CSRF浅析/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wilbert">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一亩三分地">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/24/CSRF浅析/" itemprop="url">CSRF浅析</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-24T11:01:37+08:00">
+                2018-01-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="CSRF浅析"><a href="#CSRF浅析" class="headerlink" title="CSRF浅析"></a>CSRF浅析</h1><h2 id="什么是CSRF"><a href="#什么是CSRF" class="headerlink" title="什么是CSRF"></a>什么是CSRF</h2><p>Cross-site request forgery,跨站请求伪造.</p>
+<h2 id="简单的攻击样例"><a href="#简单的攻击样例" class="headerlink" title="简单的攻击样例"></a>简单的攻击样例</h2><ol>
+<li>小明访问并且登录了网站A</li>
+<li><p>小明访问坏人的网站B,网站B上存在一些网站A的请求(GET或者POST)</p>
+<pre><code>一个简单的get请求可以利用img的src属性:
+&lt;img src=&quot;http://example.com/get?xxx=xxx&quot;&gt;
+</code></pre></li>
+<li>访问时触发了请求,此时由于请求中携带着相关的cookie信息,所以网站A是会通过这些非法的请求的,也就是跨站(在黑客网站B)请求伪造.</li>
+</ol>
+<h2 id="预防"><a href="#预防" class="headerlink" title="预防"></a>预防</h2><h3 id="referer验证"><a href="#referer验证" class="headerlink" title="referer验证"></a>referer验证</h3><p>这是一种不安全的校验方法</p>
+<h4 id="校验原理"><a href="#校验原理" class="headerlink" title="校验原理"></a>校验原理</h4><p>对于网络请求,在header里面存在着referer属性,这个属性标识出请求的来源网站,所以我们可以通过验证referer来预防csrf攻击</p>
+<h4 id="存在问题"><a href="#存在问题" class="headerlink" title="存在问题"></a>存在问题</h4><ol>
+<li>对于某些浏览器来说,这个属性可能为空</li>
+<li>referer可以轻易地伪造</li>
+<li>从搜索引擎跳转时,referer是搜索引擎,所以可能需要维护一个白名单</li>
+</ol>
+<h3 id="双提交cookie"><a href="#双提交cookie" class="headerlink" title="双提交cookie"></a>双提交cookie</h3><p>较为安全</p>
+<h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><p>对于每一个网络请求,在提交请求时,在js中将cookie中的某些值(可以是单独生成的token或者用户标志灯)添加到header上提交,在后台去校验是否存在token以及是否与cookie的值相匹配</p>
+<h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><p>当你在访问坏人的网站B时,同时提交的仅仅只有cookie,而你在正常访问时,提交时会在header中添加csrftoken.</p>
+<h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><p>其实也不能算是问题吧,如果你的网络请求是统一到一个方法里面执行的,例如说ajax或者dwr,那么就可以很方便地修改,但是如果不是的话,那么修改的工作量可能就有点大了.</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://zh.wikipedia.org/wiki/%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0" title="跨站请求伪造-维基百科" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0</a><br><a href="https://zh.wikipedia.org/wiki/HTTP%E5%8F%83%E7%85%A7%E4%BD%8D%E5%9D%80" title="HTTP来源地址-维基百科" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/HTTP%E5%8F%83%E7%85%A7%E4%BD%8D%E5%9D%80</a><br><a href="https://www.cnblogs.com/hyddd/archive/2009/04/09/1432744.html" title="浅谈CSRF攻击方式" target="_blank" rel="noopener">https://www.cnblogs.com/hyddd/archive/2009/04/09/1432744.html</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/24/web线程安全/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wilbert">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一亩三分地">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/24/web线程安全/" itemprop="url">web线程安全</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-24T10:34:17+08:00">
+                2018-01-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="java-web中的线程安全问题"><a href="#java-web中的线程安全问题" class="headerlink" title="java web中的线程安全问题"></a>java web中的线程安全问题</h1><h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述:"></a>问题描述:</h2><h3 id="伪代码"><a href="#伪代码" class="headerlink" title="伪代码:"></a>伪代码:</h3><pre><code>判断redis是否有相应的键值对:
+    有:
+        读取redis
+    没有:
+        读取数据库
+        插入redis(列表的插入)
+返回
+</code></pre><h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>当请求并发时,第一个请求redis未插入而第二个请求也进入了判断,此时第二个请求的判断条件也是”否”,所以就会出现redis数据重复的情况.</p>
+<h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h3><p>虽然说对于每一个单独的请求,spring都是新建一个单独的线程来进行处理,但是这并不能够解决上面的问题,究其原因,则是访问了同一个全局数据(可以认为是redis)</p>
+<h2 id="解决"><a href="#解决" class="headerlink" title="解决:"></a>解决:</h2><p>增加一个全局变量,使用synchronize同步方法,伪代码如下</p>
+<h3 id="伪代码-1"><a href="#伪代码-1" class="headerlink" title="伪代码"></a>伪代码</h3><pre><code>全局变量 lock
+判断redis是否有相应的键值对:
+    有:
+        读取redis
+    没有:
+        synchronize(lock)
+            再次判断redis是否有相应的键值对
+                有:
+                    读取redis
+                没有:
+                    读取数据库
+                    插入redis
+</code></pre><ul>
+<li>再次判断的原因:加锁只是阻塞了第二个请求的读取数据库/插入redis操作,如果没有再次判断的话,那么当第一个请求释放锁之后第二个请求依旧会再次读取数据库/插入redis,问题依旧存在</li>
+</ul>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="http://www.cnblogs.com/doit8791/p/4093808.html" title="Spring单例与线程安全小结" target="_blank" rel="noopener">http://www.cnblogs.com/doit8791/p/4093808.html</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/14/跨域请求/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wilbert">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一亩三分地">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/14/跨域请求/" itemprop="url">跨域请求</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-14T20:35:48+08:00">
+                2017-11-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="跨域资源请求CORS"><a href="#跨域资源请求CORS" class="headerlink" title="跨域资源请求CORS"></a>跨域资源请求CORS</h1><h2 id="1-什么是跨域资源请求"><a href="#1-什么是跨域资源请求" class="headerlink" title="1.什么是跨域资源请求"></a>1.什么是跨域资源请求</h2><ul>
+<li>通常情况下,我们访问一个网站的过程如下:<ul>
+<li>访问页面example.com,加载页面html以及js</li>
+<li>对页面进行一些操作,由js通过ajax访问后台,进行页面的更新.</li>
+</ul>
+</li>
+<li>一般情况下,通过ajax调用后台是同源的,同源指的是:<ul>
+<li><strong>协议相同</strong></li>
+<li><strong>端口号相同</strong></li>
+<li><strong>地址相同</strong></li>
+</ul>
+</li>
+<li>但是有时候通过js请求非同源的后台服务,这个时候就是属于跨域资源请求了</li>
+</ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/11/14/跨域请求/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/30/深入剖析tomcat笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wilbert">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一亩三分地">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/30/深入剖析tomcat笔记/" itemprop="url">深入剖析tomcat笔记</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-30T20:33:52+08:00">
+                2017-10-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li>servlet</li>
+<li>reponse</li>
+<li>request</li>
+<li>启动连接器-&gt;等待连接-&gt;调用container容器-&gt;解析header,调用servlet</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/11/Maven实战读书笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wilbert">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一亩三分地">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/11/Maven实战读书笔记/" itemprop="url">Maven实战读书笔记</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-11T20:59:19+08:00">
+                2017-10-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="Maven实战"><a href="#Maven实战" class="headerlink" title="Maven实战"></a>Maven实战</h1><h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><ul>
+<li>mvn clean compile</li>
+<li>mvn clean test</li>
+<li>mvn clean package<ul>
+<li>默认打包为jar,可以在pom.xml里面指定打包类型</li>
+</ul>
+</li>
+<li>mvn clean install<ul>
+<li>将项目打包后安装到本地仓库以供其他项目使用</li>
+</ul>
+</li>
+<li>默认打包生成的jar时不能够直接运行的,为了生成可执行的jar文件,需要借助maven-shade-plugin</li>
+</ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/10/11/Maven实战读书笔记/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
@@ -2053,7 +1631,7 @@ scrapy genspider mydomain mydomain.com  //创建spider
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">47</span>
+                  <span class="site-state-item-count">46</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2066,7 +1644,7 @@ scrapy genspider mydomain mydomain.com  //创建spider
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">35</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
