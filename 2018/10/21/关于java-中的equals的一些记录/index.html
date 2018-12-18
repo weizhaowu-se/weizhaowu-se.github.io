@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="android,第一行代码," />
+  <meta name="keywords" content="java," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="广播机制 标准广播  完全异步执行 所有广播接收器几乎同时收到    有序广播  同步执行 优先级高的先收到，可以截断。   系统广播  broadcast receiver 不允许开启线程 onReceive 中的context的来源，是谁在调用这个函数 // todo 静态注册  manifest中注册         &amp;lt;intent-filter&amp;gt;         &amp;lt;ac">
-<meta name="keywords" content="android,第一行代码">
+<meta name="description" content="override equals方法的几个原则 自反性。对于任何非null的引用值x，x.equals(x)应返回true。  对称性。对于任何非null的引用值x与y，当且仅当：y.equals(x)返回true时，x.equals(y)才返回true。  传递性。对于任何非null的引用值x、y与z，如果y.equals(x)返回true，y.equals(z)返回true，那么x.equals">
+<meta name="keywords" content="java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="广播接收器">
-<meta property="og:url" content="http://yoursite.com/2016/09/26/broadcast/index.html">
+<meta property="og:title" content="关于java 中的equals的一些记录">
+<meta property="og:url" content="http://yoursite.com/2018/10/21/关于java-中的equals的一些记录/index.html">
 <meta property="og:site_name" content="一亩三分地">
-<meta property="og:description" content="广播机制 标准广播  完全异步执行 所有广播接收器几乎同时收到    有序广播  同步执行 优先级高的先收到，可以截断。   系统广播  broadcast receiver 不允许开启线程 onReceive 中的context的来源，是谁在调用这个函数 // todo 静态注册  manifest中注册         &amp;lt;intent-filter&amp;gt;         &amp;lt;ac">
+<meta property="og:description" content="override equals方法的几个原则 自反性。对于任何非null的引用值x，x.equals(x)应返回true。  对称性。对于任何非null的引用值x与y，当且仅当：y.equals(x)返回true时，x.equals(y)才返回true。  传递性。对于任何非null的引用值x、y与z，如果y.equals(x)返回true，y.equals(z)返回true，那么x.equals">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2016-09-26T08:58:29.000Z">
+<meta property="og:updated_time" content="2018-10-21T14:13:01.319Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="广播接收器">
-<meta name="twitter:description" content="广播机制 标准广播  完全异步执行 所有广播接收器几乎同时收到    有序广播  同步执行 优先级高的先收到，可以截断。   系统广播  broadcast receiver 不允许开启线程 onReceive 中的context的来源，是谁在调用这个函数 // todo 静态注册  manifest中注册         &amp;lt;intent-filter&amp;gt;         &amp;lt;ac">
+<meta name="twitter:title" content="关于java 中的equals的一些记录">
+<meta name="twitter:description" content="override equals方法的几个原则 自反性。对于任何非null的引用值x，x.equals(x)应返回true。  对称性。对于任何非null的引用值x与y，当且仅当：y.equals(x)返回true时，x.equals(y)才返回true。  传递性。对于任何非null的引用值x、y与z，如果y.equals(x)返回true，y.equals(z)返回true，那么x.equals">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/09/26/broadcast/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/10/21/关于java-中的equals的一些记录/"/>
 
 
 
 
 
-  <title>广播接收器 | 一亩三分地</title>
+  <title>关于java 中的equals的一些记录 | 一亩三分地</title>
   
 
 
@@ -277,7 +277,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/09/26/broadcast/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/21/关于java-中的equals的一些记录/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wilbert">
@@ -294,7 +294,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">广播接收器</h1>
+          <h1 class="post-title" itemprop="name headline">关于java 中的equals的一些记录</h1>
         
 
         <div class="post-meta">
@@ -306,8 +306,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-26T00:00:00+08:00">
-                2016-09-26
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-21T21:39:15+08:00">
+                2018-10-21
               </time>
             
 
@@ -344,95 +344,56 @@
       
 
       
-        <p><font style="font-family:微软雅黑"></font></p>
-<h2 id="广播机制"><a href="#广播机制" class="headerlink" title="广播机制"></a>广播机制</h2><ul>
-<li>标准广播<blockquote>
-<ul>
-<li>完全异步执行</li>
-<li>所有广播接收器几乎同时收到</li>
-</ul>
-</blockquote>
+        <h3 id="override-equals方法的几个原则"><a href="#override-equals方法的几个原则" class="headerlink" title="override equals方法的几个原则"></a>override equals方法的几个原则</h3><ol>
+<li><p>自反性。对于任何非null的引用值x，x.equals(x)应返回true。</p>
 </li>
-<li>有序广播<blockquote>
-<ul>
-<li>同步执行</li>
-<li>优先级高的先收到，可以截断。</li>
-</ul>
-</blockquote>
-<h2 id="系统广播"><a href="#系统广播" class="headerlink" title="系统广播"></a>系统广播</h2></li>
-</ul>
-<h2 id="broadcast-receiver"><a href="#broadcast-receiver" class="headerlink" title="broadcast receiver"></a>broadcast receiver</h2><ul>
-<li>不允许开启线程</li>
-<li><p>onReceive 中的context的来源，是谁在调用这个函数 // todo</p>
-<h3 id="静态注册"><a href="#静态注册" class="headerlink" title="静态注册"></a>静态注册</h3><blockquote>
-<p> manifest中注册</p>
-</blockquote>
-<p>  <receiver android:name="util.NetworkChangedReceiver"></receiver></p>
-<pre><code>    &lt;intent-filter&gt;
-        &lt;action android:name=&quot;android.net.conn.CONNECTIVITY_CHANGE&quot;&gt;&lt;/action&gt;
-    &lt;/intent-filter&gt;
-&lt;/receiver&gt;
-</code></pre><h3 id="动态注册"><a href="#动态注册" class="headerlink" title="动态注册"></a>动态注册</h3><blockquote>
-<p>代码中注册</p>
-</blockquote>
+<li><p>对称性。对于任何非null的引用值x与y，当且仅当：y.equals(x)返回true时，x.equals(y)才返回true。</p>
 </li>
+<li><p>传递性。对于任何非null的引用值x、y与z，如果y.equals(x)返回true，y.equals(z)返回true，那么x.equals(z)也应返回true。</p>
+</li>
+<li><p>一致性。对于任何非null的引用值x与y，假设对象上equals比较中的信息没有被修改，则多次调用x.equals(y)始终返回true或者始终返回false。</p>
+<a id="more"></a>
+<h3 id="示例代码-String类的equals方法"><a href="#示例代码-String类的equals方法" class="headerlink" title="示例代码(String类的equals方法):"></a>示例代码(String类的equals方法):</h3></li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">public boolean equals(Object anObject) &#123;</span><br><span class="line">    if (this == anObject) &#123;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">    if (anObject instanceof String) &#123;</span><br><span class="line">        String anotherString = (String)anObject;</span><br><span class="line">        int n = value.length;</span><br><span class="line">        if (n == anotherString.value.length) &#123;</span><br><span class="line">            char v1[] = value;</span><br><span class="line">            char v2[] = anotherString.value;</span><br><span class="line">            int i = 0;</span><br><span class="line">            while (n-- != 0) &#123;</span><br><span class="line">                if (v1[i] != v2[i])</span><br><span class="line">                    return false;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">            return true;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return false;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>list中的indexOf,contains方法根据equals方法来判断对象是否相等</li>
 </ul>
+<h3 id="override-hashCode方法"><a href="#override-hashCode方法" class="headerlink" title="override hashCode方法"></a>override hashCode方法</h3><p>从Object类中的源码可以看到重载equals之后需要重载hashCode的提示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">If two objects are equal according to the &#123;@code equals(Object)&#125;</span><br><span class="line">*     method, then calling the &#123;@code hashCode&#125; method on each of</span><br><span class="line">*     the two objects must produce the same integer result.</span><br></pre></td></tr></table></figure>
+<ul>
+<li>String 类的hashCode代码:</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public int hashCode() &#123;</span><br><span class="line">    int h = hash;</span><br><span class="line">    if (h == 0 &amp;&amp; value.length &gt; 0) &#123;</span><br><span class="line">        char val[] = value;</span><br><span class="line"></span><br><span class="line">        for (int i = 0; i &lt; value.length; i++) &#123;</span><br><span class="line">            h = 31 * h + val[i];</span><br><span class="line">        &#125;</span><br><span class="line">        hash = h;</span><br><span class="line">    &#125;</span><br><span class="line">    return h;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Map接口会使用,可以简单理解为通过hashCode方法算出该变量的地址,那么当两个变量相等,那么这个算出来的hashCode也势必需要相等.</li>
+</ul>
+<h3 id="编写equals的建议"><a href="#编写equals的建议" class="headerlink" title="编写equals的建议"></a>编写equals的建议</h3><p>下面给出编写一个完美的equals方法的建议（出自Java核心技术 第一卷：基础知识）：</p>
 <ol>
-<li><p>继承类</p>
-<pre><code>    class NetworkChangeReceiver extends BroadcastReceiver{
-
-    @Override
-    public void onReceive(Context context, Intent intent) {
-        ConnectivityManager manager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
-        NetworkInfo info = manager.getActiveNetworkInfo();
-/*
-        Intent intent1 = new Intent(context, SettingActivity.class);
-        startActivity(intent1);
-*/
-        if (info != null &amp;&amp; info.isAvailable()) {
-            Toast.makeText(context, &quot;network is available&quot;, Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(context, &quot;network is unavailable&quot;, Toast.LENGTH_SHORT).show();
-        }
-    }
-}
-</code></pre></li>
-<li><p>注册广播，在onCreate中添加</p>
-<pre><code>IntentFilter intentFilter = new IntentFilter(&quot;android.net.conn.CONNECTIVITY_CHANGE&quot;);
-registerReceiver(receiver, intentFilter);
-</code></pre></li>
-<li><p>注意要在onDestroy函数中取消注册。</p>
+<li><p>显式参数命名为otherObject,稍后需要将它转换成另一个叫做other的变量（参数名命名，强制转换请参考建议5）</p>
+</li>
+<li><p>检测this与otherObject是否引用同一个对象 ：if(this == otherObject) return true;（存储地址相同，肯定是同个对象，直接返回true）</p>
+</li>
+<li><p>检测otherObject是否为null ，如果为null,返回false.if(otherObject == null) return false;</p>
+</li>
+<li><p>比较this与otherObject是否属于同一个类 （视需求而选择）</p>
+<ul>
+<li><p>如果equals的语义在每个子类中有所改变，就使用getClass检测 ：if(getClass()!=otherObject.getClass()) return false; (参考前面分析的第6点)</p>
+</li>
+<li><p>如果所有的子类都拥有统一的语义，就使用instanceof检测 ：if(!(otherObject instanceof ClassName)) return false;</p>
+</li>
+</ul>
+</li>
+<li><p>将otherObject转换为相应的类类型变量：ClassName other = (ClassName) otherObject;</p>
+</li>
+<li><p>现在开始对所有需要比较的域进行比较 。使用==比较基本类型域，使用equals比较对象域。如果所有的域都匹配，就返回true，否则就返回flase。</p>
+</li>
+<li><p>如果在子类中重新定义equals，就要在其中包含调用super.equals(other)</p>
+</li>
+<li><p>当此方法被重写时，通常有必要重写 hashCode 方法，以维护 hashCode 方法的常规协定，该协定声明 相等对象必须具有相等的哈希码 。</p>
 </li>
 </ol>
-<h2 id="自定义广播接收器"><a href="#自定义广播接收器" class="headerlink" title="自定义广播接收器"></a>自定义广播接收器</h2><ul>
-<li>与隐式intent类似，可以在intent-filter中添加自定义的action，发送广播时调用sendBroadCast(Intent intent)。此时发送的是标准广播，同时也可以发送一些数据，在intent当中。</li>
-<li><p>sendOrderedBroadCast() 发送有序广播</p>
-<h3 id="本地广播功能"><a href="#本地广播功能" class="headerlink" title="本地广播功能"></a>本地广播功能</h3><p>LocalBroadCastManager getInstance()方法</p>
-</li>
-<li><p>初始化localBroadCastManager</p>
-<blockquote>
-<p>localBroadCastManager = LocalBroadCastManager.getInstance(this);</p>
-</blockquote>
-</li>
-<li><p>注册</p>
-<blockquote>
-<p>localBroadCastManager.register…..</p>
-</blockquote>
-</li>
-<li><p>发送</p>
-<blockquote>
-<p>localBroadCastManager.send……</p>
-</blockquote>
-</li>
-<li><p>销毁</p>
-<blockquote>
-<p>localBroadCastManager .unregister…..</p>
-</blockquote>
-</li>
-<li><p>本地广播无法使用静态注册。 </p>
-<h2 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h2></li>
-<li>在广播接收器里启动activity时，需要给Intent加入FLAG_ACTIVITY_NEW_TASK标志。</li>
-</ul>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://blog.csdn.net/javazejian/article/details/51348320" target="_blank" rel="noopener">equals解读</a></p>
 
       
     </div>
@@ -450,9 +411,7 @@ registerReceiver(receiver, intentFilter);
       
         <div class="post-tags">
           
-            <a href="/tags/android/" rel="tag"># android</a>
-          
-            <a href="/tags/第一行代码/" rel="tag"># 第一行代码</a>
+            <a href="/tags/java/" rel="tag"># java</a>
           
         </div>
       
@@ -465,8 +424,8 @@ registerReceiver(receiver, intentFilter);
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/09/26/AIDL/" rel="next" title="AIDL">
-                <i class="fa fa-chevron-left"></i> AIDL
+              <a href="/2018/10/17/https-nginx配置/" rel="next" title="https-nginx配置">
+                <i class="fa fa-chevron-left"></i> https-nginx配置
               </a>
             
           </div>
@@ -474,10 +433,6 @@ registerReceiver(receiver, intentFilter);
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/10/03/面试一些知识点记录/" rel="prev" title="面试一些知识点">
-                面试一些知识点 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -600,7 +555,7 @@ registerReceiver(receiver, intentFilter);
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#广播机制"><span class="nav-number">1.</span> <span class="nav-text">广播机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统广播"><span class="nav-number">2.</span> <span class="nav-text">系统广播</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#broadcast-receiver"><span class="nav-number">3.</span> <span class="nav-text">broadcast receiver</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#静态注册"><span class="nav-number">3.1.</span> <span class="nav-text">静态注册</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动态注册"><span class="nav-number">3.2.</span> <span class="nav-text">动态注册</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义广播接收器"><span class="nav-number">4.</span> <span class="nav-text">自定义广播接收器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#本地广播功能"><span class="nav-number">4.1.</span> <span class="nav-text">本地广播功能</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tips"><span class="nav-number">5.</span> <span class="nav-text">tips</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#override-equals方法的几个原则"><span class="nav-number">1.</span> <span class="nav-text">override equals方法的几个原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#示例代码-String类的equals方法"><span class="nav-number">2.</span> <span class="nav-text">示例代码(String类的equals方法):</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#override-hashCode方法"><span class="nav-number">3.</span> <span class="nav-text">override hashCode方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编写equals的建议"><span class="nav-number">4.</span> <span class="nav-text">编写equals的建议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
