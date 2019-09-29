@@ -273,6 +273,456 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/07/关于RecyclerView以及ListView中的图像加载问题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wilbert">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一亩三分地">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/10/07/关于RecyclerView以及ListView中的图像加载问题/" itemprop="url">关于RecyclerView以及ListView中的图像加载问题</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-07T18:55:32+08:00">
+                2016-10-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><font style="font-family:微软雅黑"></font></p>
+<h3 id="ListView-中出现错位，重复的图片"><a href="#ListView-中出现错位，重复的图片" class="headerlink" title="ListView 中出现错位，重复的图片"></a>ListView 中出现错位，重复的图片</h3><ul>
+<li><p>原因：为了性能的提升，我们一般会采取重复使用item的方式，应用仅仅需要inflate n（屏幕所能显示的item总数）个view而非数据的size个view，这样可以极大地提高效率，如下</p>
+<pre><code>public View getView(int position, View convertView, ViewGroup parent) {
+    ViewHolder holder = null;
+    if (convertView != null) {
+        holder = (ViewHolder)convertView.getTag();
+    } else {
+        convertView = mInflater.inflate(R.layout.item_list_view, parent, false);
+        holder = new ViewHolder();
+        holder.imageView = (ImageView)convertView.findViewById(R.id.image_view_list_view);
+        holder.textView = (TextView)convertView.findViewById(R.id.text_view_list_view);
+        convertView.setTag(holder);
+    }
+......
+}
+</code></pre>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/10/07/关于RecyclerView以及ListView中的图像加载问题/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/07/android常用工具包/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wilbert">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一亩三分地">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/10/07/android常用工具包/" itemprop="url">android常用工具包</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-07T18:46:49+08:00">
+                2016-10-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><font style="font-family:微软雅黑"></font></p>
+<h3 id="Github地址"><a href="#Github地址" class="headerlink" title="Github地址"></a>Github地址</h3><p><a href="https://github.com/wz-wilbertwu/android-util" target="_blank" rel="noopener">https://github.com/wz-wilbertwu/android-util</a></p>
+<h3 id="包含"><a href="#包含" class="headerlink" title="包含"></a>包含</h3><h4 id="AppUtil"><a href="#AppUtil" class="headerlink" title="AppUtil"></a>AppUtil</h4><h4 id="BitmapLoad"><a href="#BitmapLoad" class="headerlink" title="BitmapLoad"></a>BitmapLoad</h4><h4 id="BitmapLruCache"><a href="#BitmapLruCache" class="headerlink" title="BitmapLruCache"></a>BitmapLruCache</h4><h4 id="DiskLruCache"><a href="#DiskLruCache" class="headerlink" title="DiskLruCache"></a>DiskLruCache</h4><h4 id="DownloadUtil"><a href="#DownloadUtil" class="headerlink" title="DownloadUtil"></a>DownloadUtil</h4><h4 id="FileUti"><a href="#FileUti" class="headerlink" title="FileUti"></a>FileUti</h4><h4 id="ImageLoader"><a href="#ImageLoader" class="headerlink" title="ImageLoader"></a>ImageLoader</h4><h4 id="ImageResizer"><a href="#ImageResizer" class="headerlink" title="ImageResizer"></a>ImageResizer</h4><h4 id="LogUti"><a href="#LogUti" class="headerlink" title="LogUti"></a>LogUti</h4><h4 id="Md5Util"><a href="#Md5Util" class="headerlink" title="Md5Util"></a>Md5Util</h4>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/07/IntentService简介及简单使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wilbert">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一亩三分地">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/10/07/IntentService简介及简单使用/" itemprop="url">IntentService简介及简单使用</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-07T13:58:04+08:00">
+                2016-10-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><font style="font-family:微软雅黑"></font></p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><ol>
+<li><p>创建类继承IntentService  </p>
+<pre><code>public class CustomIntentService extends IntentService {
+    /**
+     * Creates an IntentService.  Invoked by your subclass&apos;s constructor.
+     *
+     */
+    public CustomIntentService() {
+        super(&quot;custom intent service&quot;);
+    }
+
+    @Override
+    protected void onHandleIntent(Intent intent) {
+        LogUti.d(&quot;on handle intent&quot;);
+        LogUti.d(intent.getStringExtra(&quot;key&quot;));
+        SystemClock.sleep(6000);
+        LogUti.d(&quot;after 6000ms&quot;);
+    }
+}
+</code></pre></li>
+<li><p>在manifest中定义service</p>
+<pre><code>&lt;service android:name=&quot;custome_service.CustomIntentService&quot;&gt;&lt;/service&gt;
+</code></pre></li>
+<li><p>在activity中启动IntentService</p>
+<pre><code>findViewById(R.id.btn_start_intent_service).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(IntentServiceActivity.this, CustomIntentService.class);
+                intent.putExtra(&quot;key&quot;, &quot;value&quot;);
+                startService(intent);
+            }
+</code></pre><p><em>启动服务之后调用的是onHandleIntent方法</em><br><em>注意onHandleIntent方法不运行在UI线程所以没有办法进行界面的操作：例如toast显示</em><br><em>结果如下图</em><br><img src="http://7xkzud.com1.z0.glb.clouddn.com/16-10-7/78666379.jpg" alt=""></p>
+</li>
+<li><p>IntentService与Activity进行交互<br><em>通过本地广播的方式进行</em></p>
+<ul>
+<li><p>在IntentService中</p>
+<pre><code> Intent localIntent = new Intent(CustomConstans.BROADCAST_ACTION);
+localIntent.putExtra(CustomConstans.BROADCAST_KEY, &quot;from intent service&quot;);
+ LocalBroadcastManager.getInstance(this).sendBroadcast(localIntent);
+</code></pre></li>
+<li><p>在Activity中</p>
+<ul>
+<li><p>新建类继承broadcastreceiver</p>
+<pre><code>private class ResponseReceive extends BroadcastReceiver{
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        Toast.makeText(context, intent.getStringExtra(CustomConstans.BROADCAST_KEY)
+        , Toast.LENGTH_SHORT).show();
+    }
+}
+</code></pre><ul>
+<li><p>注册广播</p>
+<pre><code>IntentFilter intentFilter = new IntentFilter(CustomConstans.BROADCAST_ACTION);
+ResponseReceive responseReceive = new ResponseReceive();
+LocalBroadcastManager.getInstance(this).registerReceiver(responseReceive, intentFilter);
+</code></pre><h2 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h2></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>onHandleIntent方法运行在后台线程，无法进行界面操作。</li>
+<li>通过本地广播的方式来跟activity进行交互。</li>
+<li>Work requests run sequentially. If an operation is running in an IntentService, and you send it another request, the request waits until the first operation is finished.顺序执行</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/03/面试一些知识点记录/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -347,417 +797,6 @@
             <font style="font-family:微软雅黑">
 
 </font>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/09/26/Service/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wilbert">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一亩三分地">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/09/26/Service/" itemprop="url">Service</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-26T00:00:00+08:00">
-                2016-09-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><font style="font-family:微软雅黑"></font></p>
-<h2 id="Service"><a href="#Service" class="headerlink" title="Service"></a>Service</h2><h3 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h3><h4 id="和Activity进行通信"><a href="#和Activity进行通信" class="headerlink" title="和Activity进行通信"></a>和Activity进行通信</h4><ol>
-<li><p>继承Binder对象</p>
-<pre><code>public class DownloadBinder extends Binder{
-int count = 0;
-Handler handler;
-public void setHandler(Handler handler) {
-    this.handler = handler;
-}
-public void startDownload() {
-
-}
-</code></pre><p> }</p>
-</li>
-<li><p>继承Service，Override onBind函数,新增成员：DownloadBinder。</p>
-<pre><code>public class MyService extends Service {
-    DownloadBinder downloadBinder = new DownloadBinder();
-    @Nullable
-    @Override
-    public IBinder onBind(Intent intent) {
-        return downloadBinder;
-    }
-}
-</code></pre></li>
-<li><p>Activity中，连接时获得DownloadBinder实例，这样就可以通过Binder来与Service进行通信。</p>
-<pre><code>ServiceConnection connection = new ServiceConnection() {
-    @Override
-    public void onServiceConnected(ComponentName name, IBinder service) {
-        binder = (MyService.DownloadBinder) service;
-        binder.setHandler(handler);
-        binder.startDownload();
-    }
-
-    @Override
-    public void onServiceDisconnected(ComponentName name) {
-
-    }};
-</code></pre></li>
-<li><p>绑定service</p>
-<pre><code>Intent intent = new Intent(ServiceLearnActivity.this, MyService.class);
-bindService(intent, connection, BIND_AUTO_CREATE);
-</code></pre></li>
-</ol>
-<h4 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h4><ul>
-<li>startService方法调用时，启动相应的服务，如果服务之前没有创建，那么会先回调onCreate方法，接下来回调onStartCommand方法。</li>
-<li>每个服务只会存在一个实例。</li>
-<li>bindService方法：回调onBind方法：如果服务之前还没有创建，那么会先回调onCreate方法。</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/09/26/Activity/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wilbert">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一亩三分地">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/09/26/Activity/" itemprop="url">Activity</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-26T00:00:00+08:00">
-                2016-09-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><font style="font-family:微软雅黑"></font></p>
-<h2 id="Activity"><a href="#Activity" class="headerlink" title="Activity"></a>Activity</h2><h3 id="res目录"><a href="#res目录" class="headerlink" title="res目录"></a>res目录</h3><ul>
-<li><p>drawable 存放图片</p>
-<blockquote>
-<ul>
-<li>R.drawable.XXX</li>
-<li>@drawable/XXX</li>
-</ul>
-</blockquote>
-</li>
-<li><p>values 存放字符串</p>
-<blockquote>
-<ul>
-<li>代码中：R.string.XXX    </li>
-<li>xml中：@string/XXX</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-<ul>
-<li>layout 存放布局文件</li>
-<li><p>menu 存放菜单文件</p>
-</li>
-<li><p>项目中任何添加的资源都会在R文件中生成一个相应的资源id。</p>
-</li>
-</ul>
-<h3 id="添加菜单"><a href="#添加菜单" class="headerlink" title="添加菜单"></a>添加菜单</h3><ol>
-<li>res下新建menu文件夹，添加菜单文件（res的menu文件夹中）</li>
-<li><p>重写onCreateOptionsMenu方法</p>
-<pre><code>@Override
-public boolean onCreateOptionsMenu(Menu menu) {
-    this.getMenuInflater().inflate(R.menu.main, menu);
-    return true;
-}
-</code></pre></li>
-<li><p>响应点击按钮事件</p>
-<pre><code>@Override
-public boolean onOptionsItemSelected(MenuItem item) {
-    switch (item.getItemId()) {
-        case R.id.set_item:
-            Toast.makeText(this, &quot;设置&quot;, Toast.LENGTH_SHORT).show();
-    }
-    return true;
-}
-</code></pre></li>
-</ol>
-<h3 id="Intent"><a href="#Intent" class="headerlink" title="Intent"></a>Intent</h3><h4 id="隐式intent"><a href="#隐式intent" class="headerlink" title="隐式intent"></a>隐式intent</h4><h5 id="待启动的activity"><a href="#待启动的activity" class="headerlink" title="待启动的activity"></a>待启动的activity</h5><ul>
-<li>在需要响应内容的Activity中添加action以及category字段，只有当这两个字段完全匹配上intent的相应的值时，才可以启动activity。</li>
-<li><p>intent构造函数：action字符串传入，默认情况下会插入</p>
-<blockquote>
-<p>“android.intent.category.DEFAULT”</p>
-</blockquote>
-</li>
-<li><p>intent-filter可以指定data标签，更精确的指定当前activity能够响应的数据</p>
-<pre><code>&lt;data android:scheme=&quot;http&quot;
-    android:mimeType=&quot;XXX&quot;&gt;&lt;/data&gt;
-</code></pre><p>除此之外，还能够匹配host，port，path等，只有当这些值完全匹配，才会被启动。</p>
-<h5 id="隐式启动activity时"><a href="#隐式启动activity时" class="headerlink" title="隐式启动activity时"></a>隐式启动activity时</h5></li>
-<li>intent 可以指定多个category</li>
-<li></li>
-</ul>
-<pre><code>Intent intent  = new Intent(Intent.ACTION_VIEW);
-intent.setData(Uri.parse(&quot;http://www.baidu.com&quot;));
-
-
-Intent intent = new Intent(Intent.ACTION_DIAL);
-intent.setData(Uri.parse(&quot;tel:10086&quot;));
-</code></pre><ul>
-<li>intent setDateAndType（，）两个参数分别是uri以及文件类型.<br><a href="http://blog.csdn.net/chaoyu168/article/details/50778016" target="_blank" rel="noopener">http://blog.csdn.net/chaoyu168/article/details/50778016</a><h5 id="activity之间传递数据"><a href="#activity之间传递数据" class="headerlink" title="activity之间传递数据"></a>activity之间传递数据</h5></li>
-<li><p>传递给下一个界面</p>
-<blockquote>
-<ul>
-<li>在intent当中putExtra就可以了,在下一个界面当中getIntent获得intent就可以读取里面的内容了。</li>
-</ul>
-</blockquote>
-<blockquote>
-<ul>
-<li>可以直接使用key-value的方式插入intent中，也可以通过bundle类来进行插入，bundle类类似一个map，能够简化操作。</li>
-<li>实现了序列化接口的类对象也可以通过intent传递。</li>
-</ul>
-</blockquote>
-</li>
-<li><p>对接时怎么样传递数据比较好呢？</p>
-<blockquote>
-<p>在被启动的页面中新增一个静态方法actionStart(),参数需要有context，然后参数列表是需要传递的数据，这样在前一个页面中直接调用这个方法就可以启动新的页面了。</p>
-</blockquote>
-</li>
-<li><p>startActivityForResult</p>
-<blockquote>
-<ul>
-<li>启动时传入requestCode</li>
-<li>重写onActivityResult方法，根据参数中的requestCode判断是哪个的回调。</li>
-<li>必要时还需要重写被启动页面的返回键回调函数onBackPress()</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-<h5 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h5><p><img src="http://7xkzud.com1.z0.glb.clouddn.com/16-9-23/53552719.jpg" alt=""></p>
-<h5 id="Activity被回收了"><a href="#Activity被回收了" class="headerlink" title="Activity被回收了"></a>Activity被回收了</h5><ul>
-<li>onSaveInstanceState(Bundle)</li>
-<li>onCreate(Bundle)</li>
-</ul>
-<h5 id="启动模式"><a href="#启动模式" class="headerlink" title="启动模式"></a>启动模式</h5><ul>
-<li>standard模式</li>
-<li><p>singleTop模式</p>
-<blockquote>
-<ul>
-<li>栈顶如果是要启动的activity，则不新建，仅此而已。</li>
-</ul>
-</blockquote>
-</li>
-<li><p>singleTask模式</p>
-<blockquote>
-<ul>
-<li>检查返回栈中是否存在类的实例，如果存在将其上的所有activity出栈。</li>
-</ul>
-</blockquote>
-</li>
-<li>singleInstance模式<blockquote>
-<ul>
-<li>存放在一个新的返回栈里面。</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-
           
         
       
@@ -950,7 +989,7 @@ intent.setData(Uri.parse(&quot;tel:10086&quot;));
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/09/26/UI/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/09/26/Service/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wilbert">
@@ -969,7 +1008,7 @@ intent.setData(Uri.parse(&quot;tel:10086&quot;));
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2016/09/26/UI/" itemprop="url">UI</a></h1>
+                <a class="post-title-link" href="/2016/09/26/Service/" itemprop="url">Service</a></h1>
         
 
         <div class="post-meta">
@@ -1022,196 +1061,52 @@ intent.setData(Uri.parse(&quot;tel:10086&quot;));
         
           
             <p><font style="font-family:微软雅黑"></font></p>
-<h2 id="TextView"><a href="#TextView" class="headerlink" title="TextView"></a>TextView</h2><ul>
-<li><p>android:gravity</p>
-<blockquote>
-<p>top bottom left right等等，指定对齐方向</p>
-</blockquote>
+<h2 id="Service"><a href="#Service" class="headerlink" title="Service"></a>Service</h2><h3 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h3><h4 id="和Activity进行通信"><a href="#和Activity进行通信" class="headerlink" title="和Activity进行通信"></a>和Activity进行通信</h4><ol>
+<li><p>继承Binder对象</p>
+<pre><code>public class DownloadBinder extends Binder{
+int count = 0;
+Handler handler;
+public void setHandler(Handler handler) {
+    this.handler = handler;
+}
+public void startDownload() {
+
+}
+</code></pre><p> }</p>
 </li>
-<li><p>match_parent</p>
-</li>
-<li>fill_parent </li>
-<li>wrap_content</li>
-</ul>
-<h2 id="EditText"><a href="#EditText" class="headerlink" title="EditText"></a>EditText</h2><p>maxLine</p>
-<h2 id="ImageView"><a href="#ImageView" class="headerlink" title="ImageView"></a>ImageView</h2><pre><code>imageView.setImageResource(R.mipmap.abc);
-</code></pre><h2 id="visible-invisible-gone属性"><a href="#visible-invisible-gone属性" class="headerlink" title="visible invisible gone属性"></a>visible invisible gone属性</h2><ul>
-<li>visible 可见</li>
-<li>invisible 不可见但是还存在</li>
-<li>gone 不可见不存在</li>
-<li><p>View setVisibilty() View.gone …</p>
-<h2 id="AlertDialog"><a href="#AlertDialog" class="headerlink" title="AlertDialog"></a>AlertDialog</h2><p>  AlertDialog.Builder builder = new AlertDialog.Builder(UIActivity.this);</p>
-<pre><code>builder.setTitle(&quot;AlertDialogTitle&quot;);
-builder.setCancelable(false);
-builder.setMessage(&quot;some message&quot;);
-builder.setPositiveButton(&quot;Yes&quot;, new DialogInterface.OnClickListener() {
+<li><p>继承Service，Override onBind函数,新增成员：DownloadBinder。</p>
+<pre><code>public class MyService extends Service {
+    DownloadBinder downloadBinder = new DownloadBinder();
+    @Nullable
     @Override
-    public void onClick(DialogInterface dialog, int which) {
-
+    public IBinder onBind(Intent intent) {
+        return downloadBinder;
     }
-});
-builder.setNegativeButton(&quot;No&quot;, new DialogInterface.OnClickListener() {
+}
+</code></pre></li>
+<li><p>Activity中，连接时获得DownloadBinder实例，这样就可以通过Binder来与Service进行通信。</p>
+<pre><code>ServiceConnection connection = new ServiceConnection() {
     @Override
-    public void onClick(DialogInterface dialog, int which) {
-
+    public void onServiceConnected(ComponentName name, IBinder service) {
+        binder = (MyService.DownloadBinder) service;
+        binder.setHandler(handler);
+        binder.startDownload();
     }
-});
-builder.show();
-</code></pre><h2 id="LinearLayout"><a href="#LinearLayout" class="headerlink" title="LinearLayout"></a>LinearLayout</h2></li>
-<li>指定方向，要注意如果是水平方向的话，则内部控件的宽度不能够是match_parent的不然会充满整个布局，同理竖直方向也是类似的。</li>
-<li>android:layout_gravity属性：正如TextView中gravity表示文本内容占据整个宽度的位置，这个属性指的是控件在LinearLayout中的相对位置，而且，当外层layout是竖直布局时在其上的关于竖直的设置是不会生效的。注意，这个属性亦是属于子布局里面的而不是属于LinearLayout（要指定的是每一个不同的子布局）。</li>
-<li>android:layout_weight属性：系统会先把 LinearLayout 下所有控件指定的 layout_weight 值相加， 得到一个总值，然后每个控件所占大小的比例就是用该控件的 layout_weight 值除以刚才算出的总值。</li>
-<li>布局中的如果只有部分控件有weight属性，则有weight属性的控件共享剩下的宽度或者高度（按照比例分配）。</li>
-</ul>
-<h2 id="RelativeLayout-相对布局"><a href="#RelativeLayout-相对布局" class="headerlink" title="RelativeLayout 相对布局"></a>RelativeLayout 相对布局</h2><h2 id="dp和sp"><a href="#dp和sp" class="headerlink" title="dp和sp"></a>dp和sp</h2><p>在编写 Android 程序的时候，尽量将控件或布局的大小指定成 match_parent<br>或 wrap_content，如果必须要指定一个固定值，则使用 dp 来作为单位，指定文字大小的时候<br>使用 sp 作为单位。</p>
 
-          
-        
-      
-    </div>
-    
-    
-    
+    @Override
+    public void onServiceDisconnected(ComponentName name) {
 
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/09/26/Android笔试题目/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wilbert">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一亩三分地">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/09/26/Android笔试题目/" itemprop="url">Android笔试题目</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-26T00:00:00+08:00">
-                2016-09-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><font style="font-family: 微软雅黑;"><br>title: Android基础笔试题<br>tags:</font></p>
-<ul>
-<li>android</li>
-<li>笔试<h1 id="activity的启动过程"><a href="#activity的启动过程" class="headerlink" title="activity的启动过程"></a>activity的启动过程</h1><blockquote>
-<p>onCreate()-&gt;onStart()-&gt;onResume()-&gt;运行-&gt;onPause()-&gt;onStop()-&gt;onDestroy.</p>
-</blockquote>
-</li>
-</ul>
-<ul>
-<li>注意，当启动新的activity或切换到桌面时，回调onPause和onStop，切换回来的时候，回调onRestart-&gt;onStart-&gt;onResume。</li>
-<li>back回退时，回调onPause，onStop，onDestroy。</li>
-<li>如果被系统回收的话，则与初次启动回调函数一样，但是在onCreate中会有个状态保存的变量供恢复数据</li>
-<li>旧Activity的onPause先调用，然后新Activity才启动。</li>
-<li>意外情况activity被销毁的时候，会调用onSaveInstanceState保存状态，再将Bundle对象传递给onRestoreInstanceState和onCreate方法。</li>
-<li>资源内存不足导致activity被杀死</li>
-<li>优先级：前台&gt;可见但非前台（弹出对话框的activity）&gt;后台（已经被暂停的）</li>
-</ul>
-<h1 id="activity的启动模式有"><a href="#activity的启动模式有" class="headerlink" title="activity的启动模式有"></a>activity的启动模式有</h1><ul>
-<li>标准模式</li>
-<li>singleTop 栈顶复用模式，如果在栈顶，则不重新创建，同时调用onNewIntent方法</li>
-<li>singleTask  栈内复用,在一个新的task中产生这个实例，以后每次调用都会使用这个。</li>
-<li>singleInstance 单实例模式，与singleTask模式基本一样，区别在于在这个模式下的activity实例所处的task中只有这个实例而不会有其他的实例。</li>
-</ul>
-<h1 id="数据存储方式"><a href="#数据存储方式" class="headerlink" title="数据存储方式"></a>数据存储方式</h1><ul>
-<li>sharedpreferrence：xml格式，简单的键值对，有缓存，注意多线程访问时候可能出现的问题</li>
-<li>普通文件存储</li>
-<li>SQLite数据库：轻量级的数据库，使用openHelper，cursor，SQLiteDataBase。</li>
-<li>ContentProvider。cursor，provider。</li>
-<li>网络。httpURLconnection。</li>
+    }};
+</code></pre></li>
+<li><p>绑定service</p>
+<pre><code>Intent intent = new Intent(ServiceLearnActivity.this, MyService.class);
+bindService(intent, connection, BIND_AUTO_CREATE);
+</code></pre></li>
+</ol>
+<h4 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h4><ul>
+<li>startService方法调用时，启动相应的服务，如果服务之前没有创建，那么会先回调onCreate方法，接下来回调onStartCommand方法。</li>
+<li>每个服务只会存在一个实例。</li>
+<li>bindService方法：回调onBind方法：如果服务之前还没有创建，那么会先回调onCreate方法。</li>
 </ul>
 
           
@@ -1469,182 +1364,6 @@ registerReceiver(receiver, intentFilter);
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/09/26/RecycleView/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wilbert">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一亩三分地">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/09/26/RecycleView/" itemprop="url">RecycleView</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-26T00:00:00+08:00">
-                2016-09-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><font style="font-family:微软雅黑"></font></p>
-<h3 id="创建RecycleView-Adapter的继承类"><a href="#创建RecycleView-Adapter的继承类" class="headerlink" title="创建RecycleView.Adapter的继承类"></a>创建RecycleView.Adapter的继承类</h3><ul>
-<li>其中存在内部静态类：继承 RecyclerView.ViewHolder.</li>
-<li><p>内部静态类：</p>
-<pre><code>public static class ViewHolder extends RecyclerView.ViewHolder{
-    public Button button;
-    public ViewHolder(View t) {
-        super(t);
-        button = (Button) t.findViewById(R.id.item_text_view);
-    }}
-</code></pre><h4 id="重载函数-onCreateViewHolder"><a href="#重载函数-onCreateViewHolder" class="headerlink" title="重载函数 onCreateViewHolder"></a>重载函数 onCreateViewHolder</h4><p>  @Override<br>  public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {</p>
-<pre><code>final View view = LayoutInflater.from(parent.getContext())
-        .inflate(R.layout.my_text_view, parent, false);
-ViewHolder viewHolder = new ViewHolder(view);
-return viewHolder;
-</code></pre><p>  }</p>
-<h4 id="重载onBindViewHolder，设置每一个item的内容"><a href="#重载onBindViewHolder，设置每一个item的内容" class="headerlink" title="重载onBindViewHolder，设置每一个item的内容"></a>重载onBindViewHolder，设置每一个item的内容</h4><p>  @Override<br>  public void onBindViewHolder(ViewHolder holder, int position) {</p>
-<pre><code>//每个item的具体设置
-holder.button.setText(dataSet.get(position));
-</code></pre><p>  }</p>
-</li>
-</ul>
-<h3 id="实现按钮监听的方法"><a href="#实现按钮监听的方法" class="headerlink" title="实现按钮监听的方法"></a>实现按钮监听的方法</h3><ol>
-<li><p>声明接口</p>
-<pre><code>public interface IOnItemClick {
-    void onItemClick(View view);
-}
-</code></pre></li>
-<li><p>在Activity中实现接口</p>
-<pre><code>MenuAdapter.IOnItemClick iOnItemClick = new MenuAdapter.IOnItemClick() {
-    @Override
-    public void onItemClick(View view) {
-        //此处的view为每个item的View而非里面的按钮之类的
-        int itemPosition = recyclerView.getChildLayoutPosition(view);
-    }
-}
-</code></pre></li>
-<li>在初始化Adapter中，将接口的实现类传进去。</li>
-<li><p>在Adapter中。</p>
-<pre><code>@Override
-public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-    final View view = LayoutInflater.from(parent.getContext())
-            .inflate(R.layout.my_text_view, parent, false);
-    ViewHolder viewHolder = new ViewHolder(view);
-    if(iOnItemClick != null) {
-        viewHolder.button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                iOnItemClick.onItemClick(view);
-                //此处调用的view为上面所述的view而非按钮v
-            }
-        });
-    }
-    return viewHolder;
-}
-</code></pre></li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/09/26/Handler_async_task/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1846,7 +1565,7 @@ protected void onPostExecute(Boolean aBoolean) {
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/09/26/AIDL/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/09/26/RecycleView/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wilbert">
@@ -1865,7 +1584,7 @@ protected void onPostExecute(Boolean aBoolean) {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2016/09/26/AIDL/" itemprop="url">AIDL</a></h1>
+                <a class="post-title-link" href="/2016/09/26/RecycleView/" itemprop="url">RecycleView</a></h1>
         
 
         <div class="post-meta">
@@ -1918,14 +1637,210 @@ protected void onPostExecute(Boolean aBoolean) {
         
           
             <p><font style="font-family:微软雅黑"></font></p>
-<h2 id="Aidl-android-interface-definition-language"><a href="#Aidl-android-interface-definition-language" class="headerlink" title="Aidl:android interface definition language"></a>Aidl:android interface definition language</h2><p>aidl是安卓中一种跨进程通信的方式。</p>
-<h4 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h4><ul>
-<li>创建一个service来监听客户端的连接请求</li>
-<li>创建aidl文件，声明将要供客户端使用的接口以及方法</li>
-<li>在service中实现接口方法。<h4 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h4></li>
-<li>绑定服务端的service</li>
-<li>将服务端返回的Binder对象转化成AIDL接口的类型</li>
-<li>那么我们就能够在客户端中实现调用AIDL的方法了。（跨进程方法调用）</li>
+<h3 id="创建RecycleView-Adapter的继承类"><a href="#创建RecycleView-Adapter的继承类" class="headerlink" title="创建RecycleView.Adapter的继承类"></a>创建RecycleView.Adapter的继承类</h3><ul>
+<li>其中存在内部静态类：继承 RecyclerView.ViewHolder.</li>
+<li><p>内部静态类：</p>
+<pre><code>public static class ViewHolder extends RecyclerView.ViewHolder{
+    public Button button;
+    public ViewHolder(View t) {
+        super(t);
+        button = (Button) t.findViewById(R.id.item_text_view);
+    }}
+</code></pre><h4 id="重载函数-onCreateViewHolder"><a href="#重载函数-onCreateViewHolder" class="headerlink" title="重载函数 onCreateViewHolder"></a>重载函数 onCreateViewHolder</h4><p>  @Override<br>  public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {</p>
+<pre><code>final View view = LayoutInflater.from(parent.getContext())
+        .inflate(R.layout.my_text_view, parent, false);
+ViewHolder viewHolder = new ViewHolder(view);
+return viewHolder;
+</code></pre><p>  }</p>
+<h4 id="重载onBindViewHolder，设置每一个item的内容"><a href="#重载onBindViewHolder，设置每一个item的内容" class="headerlink" title="重载onBindViewHolder，设置每一个item的内容"></a>重载onBindViewHolder，设置每一个item的内容</h4><p>  @Override<br>  public void onBindViewHolder(ViewHolder holder, int position) {</p>
+<pre><code>//每个item的具体设置
+holder.button.setText(dataSet.get(position));
+</code></pre><p>  }</p>
+</li>
+</ul>
+<h3 id="实现按钮监听的方法"><a href="#实现按钮监听的方法" class="headerlink" title="实现按钮监听的方法"></a>实现按钮监听的方法</h3><ol>
+<li><p>声明接口</p>
+<pre><code>public interface IOnItemClick {
+    void onItemClick(View view);
+}
+</code></pre></li>
+<li><p>在Activity中实现接口</p>
+<pre><code>MenuAdapter.IOnItemClick iOnItemClick = new MenuAdapter.IOnItemClick() {
+    @Override
+    public void onItemClick(View view) {
+        //此处的view为每个item的View而非里面的按钮之类的
+        int itemPosition = recyclerView.getChildLayoutPosition(view);
+    }
+}
+</code></pre></li>
+<li>在初始化Adapter中，将接口的实现类传进去。</li>
+<li><p>在Adapter中。</p>
+<pre><code>@Override
+public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    final View view = LayoutInflater.from(parent.getContext())
+            .inflate(R.layout.my_text_view, parent, false);
+    ViewHolder viewHolder = new ViewHolder(view);
+    if(iOnItemClick != null) {
+        viewHolder.button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iOnItemClick.onItemClick(view);
+                //此处调用的view为上面所述的view而非按钮v
+            }
+        });
+    }
+    return viewHolder;
+}
+</code></pre></li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/09/26/Android笔试题目/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wilbert">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一亩三分地">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/09/26/Android笔试题目/" itemprop="url">Android笔试题目</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-26T00:00:00+08:00">
+                2016-09-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><font style="font-family: 微软雅黑;"><br>title: Android基础笔试题<br>tags:</font></p>
+<ul>
+<li>android</li>
+<li>笔试<h1 id="activity的启动过程"><a href="#activity的启动过程" class="headerlink" title="activity的启动过程"></a>activity的启动过程</h1><blockquote>
+<p>onCreate()-&gt;onStart()-&gt;onResume()-&gt;运行-&gt;onPause()-&gt;onStop()-&gt;onDestroy.</p>
+</blockquote>
+</li>
+</ul>
+<ul>
+<li>注意，当启动新的activity或切换到桌面时，回调onPause和onStop，切换回来的时候，回调onRestart-&gt;onStart-&gt;onResume。</li>
+<li>back回退时，回调onPause，onStop，onDestroy。</li>
+<li>如果被系统回收的话，则与初次启动回调函数一样，但是在onCreate中会有个状态保存的变量供恢复数据</li>
+<li>旧Activity的onPause先调用，然后新Activity才启动。</li>
+<li>意外情况activity被销毁的时候，会调用onSaveInstanceState保存状态，再将Bundle对象传递给onRestoreInstanceState和onCreate方法。</li>
+<li>资源内存不足导致activity被杀死</li>
+<li>优先级：前台&gt;可见但非前台（弹出对话框的activity）&gt;后台（已经被暂停的）</li>
+</ul>
+<h1 id="activity的启动模式有"><a href="#activity的启动模式有" class="headerlink" title="activity的启动模式有"></a>activity的启动模式有</h1><ul>
+<li>标准模式</li>
+<li>singleTop 栈顶复用模式，如果在栈顶，则不重新创建，同时调用onNewIntent方法</li>
+<li>singleTask  栈内复用,在一个新的task中产生这个实例，以后每次调用都会使用这个。</li>
+<li>singleInstance 单实例模式，与singleTask模式基本一样，区别在于在这个模式下的activity实例所处的task中只有这个实例而不会有其他的实例。</li>
+</ul>
+<h1 id="数据存储方式"><a href="#数据存储方式" class="headerlink" title="数据存储方式"></a>数据存储方式</h1><ul>
+<li>sharedpreferrence：xml格式，简单的键值对，有缓存，注意多线程访问时候可能出现的问题</li>
+<li>普通文件存储</li>
+<li>SQLite数据库：轻量级的数据库，使用openHelper，cursor，SQLiteDataBase。</li>
+<li>ContentProvider。cursor，provider。</li>
+<li>网络。httpURLconnection。</li>
 </ul>
 
           
@@ -2012,7 +1927,7 @@ protected void onPostExecute(Boolean aBoolean) {
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">52</span>
+                  <span class="site-state-item-count">55</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
