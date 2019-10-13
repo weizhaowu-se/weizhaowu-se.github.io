@@ -273,6 +273,488 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/09/26/AIDL/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wilbert">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一亩三分地">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/09/26/AIDL/" itemprop="url">AIDL</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-26T00:00:00+08:00">
+                2016-09-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><font style="font-family:微软雅黑"></font></p>
+<h2 id="Aidl-android-interface-definition-language"><a href="#Aidl-android-interface-definition-language" class="headerlink" title="Aidl:android interface definition language"></a>Aidl:android interface definition language</h2><p>aidl是安卓中一种跨进程通信的方式。</p>
+<h4 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h4><ul>
+<li>创建一个service来监听客户端的连接请求</li>
+<li>创建aidl文件，声明将要供客户端使用的接口以及方法</li>
+<li>在service中实现接口方法。<h4 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h4></li>
+<li>绑定服务端的service</li>
+<li>将服务端返回的Binder对象转化成AIDL接口的类型</li>
+<li>那么我们就能够在客户端中实现调用AIDL的方法了。（跨进程方法调用）</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/09/26/View/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wilbert">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一亩三分地">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/09/26/View/" itemprop="url">View</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-26T00:00:00+08:00">
+                2016-09-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="追踪手指在滑动过程中的速度"><a href="#追踪手指在滑动过程中的速度" class="headerlink" title="追踪手指在滑动过程中的速度"></a>追踪手指在滑动过程中的速度</h2><pre><code>@Override
+    public boolean onTouchEvent(MotionEvent event) {
+        VelocityTracker velocityTracker = VelocityTracker.obtain();
+        velocityTracker.addMovement(event);
+        velocityTracker.computeCurrentVelocity(1000);
+        int x = (int)velocityTracker.getXVelocity();
+        int y = (int)velocityTracker.getYVelocity();
+
+        Log.d(W, &quot;x:&quot; + x + &quot;,y:&quot; + y);
+        return super.onTouchEvent(event);
+    }
+</code></pre><h2 id="检测手势行为"><a href="#检测手势行为" class="headerlink" title="检测手势行为"></a>检测手势行为</h2><pre><code>implements GestureDetector.OnGestureListener
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {    
+        boolean consume = gestureDetector.onTouchEvent(event);
+        return consume;
+    }
+</code></pre><h2 id="滑动"><a href="#滑动" class="headerlink" title="滑动"></a>滑动</h2><h3 id="scrollTo-amp-amp-scrollerBy"><a href="#scrollTo-amp-amp-scrollerBy" class="headerlink" title="scrollTo&amp;&amp;scrollerBy"></a>scrollTo&amp;&amp;scrollerBy</h3><h3 id="使用动画"><a href="#使用动画" class="headerlink" title="使用动画"></a>使用动画</h3><h3 id="改变布局参数"><a href="#改变布局参数" class="headerlink" title="改变布局参数"></a>改变布局参数</h3><pre><code>public void onClick(View v) {
+    ViewGroup.MarginLayoutParams marginLayoutParams =
+            (ViewGroup.MarginLayoutParams)button.getLayoutParams();
+    Log.d(W, &quot;layout&quot;);
+    marginLayoutParams.width += 100;
+    marginLayoutParams.leftMargin += 100;
+    button.requestLayout();
+}
+</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/09/26/broadcast/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wilbert">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一亩三分地">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/09/26/broadcast/" itemprop="url">广播接收器</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-26T00:00:00+08:00">
+                2016-09-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><font style="font-family:微软雅黑"></font></p>
+<h2 id="广播机制"><a href="#广播机制" class="headerlink" title="广播机制"></a>广播机制</h2><ul>
+<li>标准广播<blockquote>
+<ul>
+<li>完全异步执行</li>
+<li>所有广播接收器几乎同时收到</li>
+</ul>
+</blockquote>
+</li>
+<li>有序广播<blockquote>
+<ul>
+<li>同步执行</li>
+<li>优先级高的先收到，可以截断。</li>
+</ul>
+</blockquote>
+<h2 id="系统广播"><a href="#系统广播" class="headerlink" title="系统广播"></a>系统广播</h2></li>
+</ul>
+<h2 id="broadcast-receiver"><a href="#broadcast-receiver" class="headerlink" title="broadcast receiver"></a>broadcast receiver</h2><ul>
+<li>不允许开启线程</li>
+<li><p>onReceive 中的context的来源，是谁在调用这个函数 // todo</p>
+<h3 id="静态注册"><a href="#静态注册" class="headerlink" title="静态注册"></a>静态注册</h3><blockquote>
+<p> manifest中注册</p>
+</blockquote>
+<p>  <receiver android:name="util.NetworkChangedReceiver"></receiver></p>
+<pre><code>    &lt;intent-filter&gt;
+        &lt;action android:name=&quot;android.net.conn.CONNECTIVITY_CHANGE&quot;&gt;&lt;/action&gt;
+    &lt;/intent-filter&gt;
+&lt;/receiver&gt;
+</code></pre><h3 id="动态注册"><a href="#动态注册" class="headerlink" title="动态注册"></a>动态注册</h3><blockquote>
+<p>代码中注册</p>
+</blockquote>
+</li>
+</ul>
+<ol>
+<li><p>继承类</p>
+<pre><code>    class NetworkChangeReceiver extends BroadcastReceiver{
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        ConnectivityManager manager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+        NetworkInfo info = manager.getActiveNetworkInfo();
+/*
+        Intent intent1 = new Intent(context, SettingActivity.class);
+        startActivity(intent1);
+*/
+        if (info != null &amp;&amp; info.isAvailable()) {
+            Toast.makeText(context, &quot;network is available&quot;, Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, &quot;network is unavailable&quot;, Toast.LENGTH_SHORT).show();
+        }
+    }
+}
+</code></pre></li>
+<li><p>注册广播，在onCreate中添加</p>
+<pre><code>IntentFilter intentFilter = new IntentFilter(&quot;android.net.conn.CONNECTIVITY_CHANGE&quot;);
+registerReceiver(receiver, intentFilter);
+</code></pre></li>
+<li><p>注意要在onDestroy函数中取消注册。</p>
+</li>
+</ol>
+<h2 id="自定义广播接收器"><a href="#自定义广播接收器" class="headerlink" title="自定义广播接收器"></a>自定义广播接收器</h2><ul>
+<li>与隐式intent类似，可以在intent-filter中添加自定义的action，发送广播时调用sendBroadCast(Intent intent)。此时发送的是标准广播，同时也可以发送一些数据，在intent当中。</li>
+<li><p>sendOrderedBroadCast() 发送有序广播</p>
+<h3 id="本地广播功能"><a href="#本地广播功能" class="headerlink" title="本地广播功能"></a>本地广播功能</h3><p>LocalBroadCastManager getInstance()方法</p>
+</li>
+<li><p>初始化localBroadCastManager</p>
+<blockquote>
+<p>localBroadCastManager = LocalBroadCastManager.getInstance(this);</p>
+</blockquote>
+</li>
+<li><p>注册</p>
+<blockquote>
+<p>localBroadCastManager.register…..</p>
+</blockquote>
+</li>
+<li><p>发送</p>
+<blockquote>
+<p>localBroadCastManager.send……</p>
+</blockquote>
+</li>
+<li><p>销毁</p>
+<blockquote>
+<p>localBroadCastManager .unregister…..</p>
+</blockquote>
+</li>
+<li><p>本地广播无法使用静态注册。 </p>
+<h2 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h2></li>
+<li>在广播接收器里启动activity时，需要给Intent加入FLAG_ACTIVITY_NEW_TASK标志。</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/09/26/Handler_async_task/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -718,7 +1200,7 @@ intent.setData(Uri.parse(&quot;tel:10086&quot;));
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/09/26/Service/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/06/23/关于handler以及一些回调的思考/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wilbert">
@@ -737,7 +1219,7 @@ intent.setData(Uri.parse(&quot;tel:10086&quot;));
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2016/09/26/Service/" itemprop="url">Service</a></h1>
+                <a class="post-title-link" href="/2016/06/23/关于handler以及一些回调的思考/" itemprop="url">关于handler以及一些回调的思考</a></h1>
         
 
         <div class="post-meta">
@@ -749,8 +1231,8 @@ intent.setData(Uri.parse(&quot;tel:10086&quot;));
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-26T00:00:00+08:00">
-                2016-09-26
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-06-23T18:30:21+08:00">
+                2016-06-23
               </time>
             
 
@@ -789,202 +1271,42 @@ intent.setData(Uri.parse(&quot;tel:10086&quot;));
       
         
           
-            <p><font style="font-family:微软雅黑"></font></p>
-<h2 id="Service"><a href="#Service" class="headerlink" title="Service"></a>Service</h2><h3 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h3><h4 id="和Activity进行通信"><a href="#和Activity进行通信" class="headerlink" title="和Activity进行通信"></a>和Activity进行通信</h4><ol>
-<li><p>继承Binder对象</p>
-<pre><code>public class DownloadBinder extends Binder{
-int count = 0;
-Handler handler;
-public void setHandler(Handler handler) {
-    this.handler = handler;
-}
-public void startDownload() {
-
-}
-</code></pre><p> }</p>
-</li>
-<li><p>继承Service，Override onBind函数,新增成员：DownloadBinder。</p>
-<pre><code>public class MyService extends Service {
-    DownloadBinder downloadBinder = new DownloadBinder();
-    @Nullable
-    @Override
-    public IBinder onBind(Intent intent) {
-        return downloadBinder;
+            <hr>
+<p><font style="font-family:微软雅黑"><br>有线程如下：</font></p>
+<pre><code>public class SetTextThread extends Thread {
+    private IIsetText iIsetText;
+    private  Handler handler;
+    private  MyNum myNum;
+    public SetTextThread(IIsetText iIsetText) {
+        this.iIsetText = iIsetText;
     }
-}
-</code></pre></li>
-<li><p>Activity中，连接时获得DownloadBinder实例，这样就可以通过Binder来与Service进行通信。</p>
-<pre><code>ServiceConnection connection = new ServiceConnection() {
+    public SetTextThread(Handler handler) {
+        this.handler = handler;
+    }
+    public SetTextThread(MyNum myNum) {
+        print(&quot;constructor:&quot; + Thread.currentThread());
+        this.myNum = myNum;
+    }
     @Override
-    public void onServiceConnected(ComponentName name, IBinder service) {
-        binder = (MyService.DownloadBinder) service;
-        binder.setHandler(handler);
-        binder.startDownload();
+    public void run() {
+        print(&quot;run:&quot; + Thread.currentThread());
+//        iIsetText.setText();
+//        handler.sendMessage(new Message());
+        myNum.i = 9999;
     }
 
-    @Override
-    public void onServiceDisconnected(ComponentName name) {
-
-    }};
-</code></pre></li>
-<li><p>绑定service</p>
-<pre><code>Intent intent = new Intent(ServiceLearnActivity.this, MyService.class);
-bindService(intent, connection, BIND_AUTO_CREATE);
-</code></pre></li>
-</ol>
-<h4 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h4><ul>
-<li>startService方法调用时，启动相应的服务，如果服务之前没有创建，那么会先回调onCreate方法，接下来回调onStartCommand方法。</li>
-<li>每个服务只会存在一个实例。</li>
-<li>bindService方法：回调onBind方法：如果服务之前还没有创建，那么会先回调onCreate方法。</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/09/26/Android笔试题目/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wilbert">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一亩三分地">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/09/26/Android笔试题目/" itemprop="url">Android笔试题目</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-26T00:00:00+08:00">
-                2016-09-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><font style="font-family: 微软雅黑;"><br>title: Android基础笔试题<br>tags:</font></p>
-<ul>
-<li>android</li>
-<li>笔试<h1 id="activity的启动过程"><a href="#activity的启动过程" class="headerlink" title="activity的启动过程"></a>activity的启动过程</h1><blockquote>
-<p>onCreate()-&gt;onStart()-&gt;onResume()-&gt;运行-&gt;onPause()-&gt;onStop()-&gt;onDestroy.</p>
-</blockquote>
+    public void print(String s) {
+        System.out.println(s);
+    }
+}
+</code></pre><ul>
+<li>多线程中，变量虽然相同，但是其实他们指向的是不同的内存区域，所以修改是不会影响到互相的值的。//此处有待确认正确与否，待查看thinking in java后再行确定。</li>
+<li><p>handler中，首先要先了解handler的消息机制</p>
+<pre><code>MessageQueue：消息队列
+Looper：循环，一直从消息队列中获得消息，如果没有消息则一直循环。成员变量有MessageQueue。ThreadLocal变量，每个线程唯一且相同。
+Handler：成员变量有Looper，亦即也拥有MessageQueue，发送消息时向消息队列插入消息，有Looper负责发现消息并且根据Message的target（亦即handler）来负责处理消息。
+</code></pre><p>所以，当我们在子线程中用handler发送消息时，虽然说此时的handler是另外线程中主线程handler的复制品，但是内容是完全一样的，亦即其Looper与消息队列依然是主线程的，所以，当发送消息时，插入的MessageQueue依旧是主线程，此时由handler的操作便变成了主线程的操作而非在子线程中操作界面。</p>
 </li>
-</ul>
-<ul>
-<li>注意，当启动新的activity或切换到桌面时，回调onPause和onStop，切换回来的时候，回调onRestart-&gt;onStart-&gt;onResume。</li>
-<li>back回退时，回调onPause，onStop，onDestroy。</li>
-<li>如果被系统回收的话，则与初次启动回调函数一样，但是在onCreate中会有个状态保存的变量供恢复数据</li>
-<li>旧Activity的onPause先调用，然后新Activity才启动。</li>
-<li>意外情况activity被销毁的时候，会调用onSaveInstanceState保存状态，再将Bundle对象传递给onRestoreInstanceState和onCreate方法。</li>
-<li>资源内存不足导致activity被杀死</li>
-<li>优先级：前台&gt;可见但非前台（弹出对话框的activity）&gt;后台（已经被暂停的）</li>
-</ul>
-<h1 id="activity的启动模式有"><a href="#activity的启动模式有" class="headerlink" title="activity的启动模式有"></a>activity的启动模式有</h1><ul>
-<li>标准模式</li>
-<li>singleTop 栈顶复用模式，如果在栈顶，则不重新创建，同时调用onNewIntent方法</li>
-<li>singleTask  栈内复用,在一个新的task中产生这个实例，以后每次调用都会使用这个。</li>
-<li>singleInstance 单实例模式，与singleTask模式基本一样，区别在于在这个模式下的activity实例所处的task中只有这个实例而不会有其他的实例。</li>
-</ul>
-<h1 id="数据存储方式"><a href="#数据存储方式" class="headerlink" title="数据存储方式"></a>数据存储方式</h1><ul>
-<li>sharedpreferrence：xml格式，简单的键值对，有缓存，注意多线程访问时候可能出现的问题</li>
-<li>普通文件存储</li>
-<li>SQLite数据库：轻量级的数据库，使用openHelper，cursor，SQLiteDataBase。</li>
-<li>ContentProvider。cursor，provider。</li>
-<li>网络。httpURLconnection。</li>
 </ul>
 
           
@@ -1519,162 +1841,6 @@ public class BookProvider extends ContentProvider {
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/06/23/关于handler以及一些回调的思考/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wilbert">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一亩三分地">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/06/23/关于handler以及一些回调的思考/" itemprop="url">关于handler以及一些回调的思考</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-06-23T18:30:21+08:00">
-                2016-06-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <hr>
-<p><font style="font-family:微软雅黑"><br>有线程如下：</font></p>
-<pre><code>public class SetTextThread extends Thread {
-    private IIsetText iIsetText;
-    private  Handler handler;
-    private  MyNum myNum;
-    public SetTextThread(IIsetText iIsetText) {
-        this.iIsetText = iIsetText;
-    }
-    public SetTextThread(Handler handler) {
-        this.handler = handler;
-    }
-    public SetTextThread(MyNum myNum) {
-        print(&quot;constructor:&quot; + Thread.currentThread());
-        this.myNum = myNum;
-    }
-    @Override
-    public void run() {
-        print(&quot;run:&quot; + Thread.currentThread());
-//        iIsetText.setText();
-//        handler.sendMessage(new Message());
-        myNum.i = 9999;
-    }
-
-    public void print(String s) {
-        System.out.println(s);
-    }
-}
-</code></pre><ul>
-<li>多线程中，变量虽然相同，但是其实他们指向的是不同的内存区域，所以修改是不会影响到互相的值的。//此处有待确认正确与否，待查看thinking in java后再行确定。</li>
-<li><p>handler中，首先要先了解handler的消息机制</p>
-<pre><code>MessageQueue：消息队列
-Looper：循环，一直从消息队列中获得消息，如果没有消息则一直循环。成员变量有MessageQueue。ThreadLocal变量，每个线程唯一且相同。
-Handler：成员变量有Looper，亦即也拥有MessageQueue，发送消息时向消息队列插入消息，有Looper负责发现消息并且根据Message的target（亦即handler）来负责处理消息。
-</code></pre><p>所以，当我们在子线程中用handler发送消息时，虽然说此时的handler是另外线程中主线程handler的复制品，但是内容是完全一样的，亦即其Looper与消息队列依然是主线程的，所以，当发送消息时，插入的MessageQueue依旧是主线程，此时由handler的操作便变成了主线程的操作而非在子线程中操作界面。</p>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1725,7 +1891,7 @@ Handler：成员变量有Looper，亦即也拥有MessageQueue，发送消息时�
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">56</span>
+                  <span class="site-state-item-count">57</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
