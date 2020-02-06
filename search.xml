@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[nginx之header转发问题]]></title>
+    <url>%2F2020%2F02%2F06%2Fnginx%E4%B9%8Bheader%E8%BD%AC%E5%8F%91%E9%97%AE%E9%A2%98%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
     <title><![CDATA[使用github page以及hexo搭建博客（自定义域名）]]></title>
     <url>%2F2019%2F10%2F13%2F%E4%BD%BF%E7%94%A8github-page%E4%BB%A5%E5%8F%8Ahexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D%EF%BC%89%2F</url>
     <content type="text"><![CDATA[本地安装hexo安装hexo 查看文档 hexo安装 初始化项目常用命令 123456hexo init &lt;folder&gt;cd &lt;folder&gt;npm installhexo new post &apos;博客标题&apos; ---新建博文hexo generate -dhexo server ---本地启动服务器,启动后访问http://localhost:4000/ 常用文件 12_config.yml ---配置文件source/_posts ---博客源文件(md文件) github新建仓库-github page 新建仓库,仓库名称为 {yourusername}.github.io hexo与github page配置关联 配置hexo配置文件 _config.yml 1234deploy: type: git repo: https://github.com/&#123;username&#125;/&#123;username&#125;.github.io.git ##填写仓库地址 branch: master 执行命令 1hexo g -d 访问网址 1https://&#123;yourusername&#125;.github.io 配置自定义域名 source目录下新增文件,文件名为 CNAME (无后缀),文本内容为自定义域名(无http和www等前缀) 配置dns中的c类解析,将自定义域名映射为 {yourusername}.github.io 121. 先添加一个CNAME，主机记录写@，后面记录值写上你的http://xxxx.github.io2. 再添加一个CNAME，主机记录写www，后面记录值也是http://xxxx.github.io 参考hexo安装 GitHub Pages 使用入门]]></content>
@@ -78,9 +83,9 @@
     <content type="text"><![CDATA[session与cookiecookie 在服务端中设置,在前端中需要看情况 当设置了httponly时,仅能在服务端设置,js端既不能读取也不能够设置. 无设置httponly时,前端也可以设置和读取cookie的值 session 需要注意的是,session指的是”对话” req.getSession().setAttribute(&quot;session&quot;, &quot;value&quot;); 按照如上的代码, req.getSession().getAttribute(&quot;session&quot;) 就可以获得value值 可以想象成服务器维持了一个map,map的key是sessionID,而值则是一个个的键值对,而sessionID的传递方式则是通过cookie来实现的(在初始化session时会生成并且设置cookie,而之后cookie的提交则会带上sessionID) 除此之外,在禁用cookie的情况下,还能通过url重写的方式来实现sessionID的传递 在分布式部署的情况下,session的同步是一个问题,比较简单的解决方式是使用spring session+redis实现.]]></content>
       <tags>
         <tag>java</tag>
+        <tag>java web</tag>
         <tag>session</tag>
         <tag>cookie</tag>
-        <tag>java web</tag>
       </tags>
   </entry>
   <entry>
@@ -244,8 +249,8 @@
     <url>%2F2017%2F04%2F13%2Fvps-git-hexo-nginx%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%2F</url>
     <content type="text"><![CDATA[vps+git+hexo+nginx搭建博客网站由于科学上网的需要，买了一个vps，想着单单用来ss似乎不太值，所以就想说搭建一个简单的博客系统，wordpress比较繁杂，所以就采用了这样的一个方式来搭建博客：git+hexo（主题：next）+nginx，实现思路大概是这样子的： 在本地windows上搭建hexo，编写博客之后hexo generate，生成html文件 在vps上搭建git服务器，nginx服务 将本地html文件更新到服务器上 使用git hook功能将服务器git目录更新到网页文件上 windows上搭建hexo官方文档安装完成。 vps安装git服务安装gitsudo apt-get install git 创建git用户sudo adduser git 初始化git仓库，存放目录 /var/repo/sudo mkdir /var/repo cd /var/repo sudo git init --bare blog.git 创建git hooks创建自定义钩子,指定特定的重要动作发生时触发自定义脚本,创建的是服务端钩子 post-receive，具体内容可以查看这里 cd /var/repo/blog.git/hooks vim post-receive 在post-receive加入如下内容 #!/bin/sh git --work-tree=/var/www/hexo --git-dir=/var/repo/blog.git checkout -f 注意，其中/var/www/hexo目录是您的nginx的网站目录，请根据需要进行修改 修改文件的可执行权限 chmod +x post-receive 改变 blog.git 目录的拥有者为 git 用户：sudo chown -R git:git blog.git vps安装nginx服务见这里 windows本地配置修改hexo目录下的_config.yml文件中的deploy deploy: type: git repo: git@weizhaowu.me:/var/repo/blog.git branch: master 具体的使用hexo new &quot;new-post&quot; hexo clean &amp;&amp; hexo generate --deploy 这样博客就会自动更新到网站上面了。 参考使用 Git Hook 自动部署 Hexo 到个人 VPS]]></content>
       <tags>
-        <tag>nginx</tag>
         <tag>hexo</tag>
+        <tag>nginx</tag>
         <tag>vps</tag>
         <tag>git</tag>
         <tag>blog</tag>
@@ -367,30 +372,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Android笔试题目]]></title>
-    <url>%2F2016%2F09%2F26%2FAndroid%E7%AC%94%E8%AF%95%E9%A2%98%E7%9B%AE%2F</url>
-    <content type="text"><![CDATA[title: Android基础笔试题tags: android 笔试activity的启动过程 onCreate()-&gt;onStart()-&gt;onResume()-&gt;运行-&gt;onPause()-&gt;onStop()-&gt;onDestroy. 注意，当启动新的activity或切换到桌面时，回调onPause和onStop，切换回来的时候，回调onRestart-&gt;onStart-&gt;onResume。 back回退时，回调onPause，onStop，onDestroy。 如果被系统回收的话，则与初次启动回调函数一样，但是在onCreate中会有个状态保存的变量供恢复数据 旧Activity的onPause先调用，然后新Activity才启动。 意外情况activity被销毁的时候，会调用onSaveInstanceState保存状态，再将Bundle对象传递给onRestoreInstanceState和onCreate方法。 资源内存不足导致activity被杀死 优先级：前台&gt;可见但非前台（弹出对话框的activity）&gt;后台（已经被暂停的） activity的启动模式有 标准模式 singleTop 栈顶复用模式，如果在栈顶，则不重新创建，同时调用onNewIntent方法 singleTask 栈内复用,在一个新的task中产生这个实例，以后每次调用都会使用这个。 singleInstance 单实例模式，与singleTask模式基本一样，区别在于在这个模式下的activity实例所处的task中只有这个实例而不会有其他的实例。 数据存储方式 sharedpreferrence：xml格式，简单的键值对，有缓存，注意多线程访问时候可能出现的问题 普通文件存储 SQLite数据库：轻量级的数据库，使用openHelper，cursor，SQLiteDataBase。 ContentProvider。cursor，provider。 网络。httpURLconnection。]]></content>
-      <tags>
-        <tag>android</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[UI]]></title>
-    <url>%2F2016%2F09%2F26%2FUI%2F</url>
-    <content type="text"><![CDATA[TextView android:gravity top bottom left right等等，指定对齐方向 match_parent fill_parent wrap_content EditTextmaxLine ImageViewimageView.setImageResource(R.mipmap.abc); visible invisible gone属性 visible 可见 invisible 不可见但是还存在 gone 不可见不存在 View setVisibilty() View.gone … AlertDialog AlertDialog.Builder builder = new AlertDialog.Builder(UIActivity.this); builder.setTitle(&quot;AlertDialogTitle&quot;); builder.setCancelable(false); builder.setMessage(&quot;some message&quot;); builder.setPositiveButton(&quot;Yes&quot;, new DialogInterface.OnClickListener() { @Override public void onClick(DialogInterface dialog, int which) { } }); builder.setNegativeButton(&quot;No&quot;, new DialogInterface.OnClickListener() { @Override public void onClick(DialogInterface dialog, int which) { } }); builder.show(); LinearLayout 指定方向，要注意如果是水平方向的话，则内部控件的宽度不能够是match_parent的不然会充满整个布局，同理竖直方向也是类似的。 android:layout_gravity属性：正如TextView中gravity表示文本内容占据整个宽度的位置，这个属性指的是控件在LinearLayout中的相对位置，而且，当外层layout是竖直布局时在其上的关于竖直的设置是不会生效的。注意，这个属性亦是属于子布局里面的而不是属于LinearLayout（要指定的是每一个不同的子布局）。 android:layout_weight属性：系统会先把 LinearLayout 下所有控件指定的 layout_weight 值相加， 得到一个总值，然后每个控件所占大小的比例就是用该控件的 layout_weight 值除以刚才算出的总值。 布局中的如果只有部分控件有weight属性，则有weight属性的控件共享剩下的宽度或者高度（按照比例分配）。 RelativeLayout 相对布局dp和sp在编写 Android 程序的时候，尽量将控件或布局的大小指定成 match_parent或 wrap_content，如果必须要指定一个固定值，则使用 dp 来作为单位，指定文字大小的时候使用 sp 作为单位。]]></content>
-      <tags>
-        <tag>android</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[RecycleView]]></title>
-    <url>%2F2016%2F09%2F26%2FRecycleView%2F</url>
-    <content type="text"><![CDATA[创建RecycleView.Adapter的继承类 其中存在内部静态类：继承 RecyclerView.ViewHolder. 内部静态类： public static class ViewHolder extends RecyclerView.ViewHolder{ public Button button; public ViewHolder(View t) { super(t); button = (Button) t.findViewById(R.id.item_text_view); }} 重载函数 onCreateViewHolder @Override public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) { final View view = LayoutInflater.from(parent.getContext()) .inflate(R.layout.my_text_view, parent, false); ViewHolder viewHolder = new ViewHolder(view); return viewHolder; } 重载onBindViewHolder，设置每一个item的内容 @Override public void onBindViewHolder(ViewHolder holder, int position) { //每个item的具体设置 holder.button.setText(dataSet.get(position)); } 实现按钮监听的方法 声明接口 public interface IOnItemClick { void onItemClick(View view); } 在Activity中实现接口 MenuAdapter.IOnItemClick iOnItemClick = new MenuAdapter.IOnItemClick() { @Override public void onItemClick(View view) { //此处的view为每个item的View而非里面的按钮之类的 int itemPosition = recyclerView.getChildLayoutPosition(view); } } 在初始化Adapter中，将接口的实现类传进去。 在Adapter中。 @Override public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) { final View view = LayoutInflater.from(parent.getContext()) .inflate(R.layout.my_text_view, parent, false); ViewHolder viewHolder = new ViewHolder(view); if(iOnItemClick != null) { viewHolder.button.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View v) { iOnItemClick.onItemClick(view); //此处调用的view为上面所述的view而非按钮v } }); } return viewHolder; }]]></content>
-      <tags>
-        <tag>android</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[Service]]></title>
     <url>%2F2016%2F09%2F26%2FService%2F</url>
     <content type="text"><![CDATA[Service基本用法和Activity进行通信 继承Binder对象 public class DownloadBinder extends Binder{ int count = 0; Handler handler; public void setHandler(Handler handler) { this.handler = handler; } public void startDownload() { } } 继承Service，Override onBind函数,新增成员：DownloadBinder。 public class MyService extends Service { DownloadBinder downloadBinder = new DownloadBinder(); @Nullable @Override public IBinder onBind(Intent intent) { return downloadBinder; } } Activity中，连接时获得DownloadBinder实例，这样就可以通过Binder来与Service进行通信。 ServiceConnection connection = new ServiceConnection() { @Override public void onServiceConnected(ComponentName name, IBinder service) { binder = (MyService.DownloadBinder) service; binder.setHandler(handler); binder.startDownload(); } @Override public void onServiceDisconnected(ComponentName name) { }}; 绑定service Intent intent = new Intent(ServiceLearnActivity.this, MyService.class); bindService(intent, connection, BIND_AUTO_CREATE); 生命周期 startService方法调用时，启动相应的服务，如果服务之前没有创建，那么会先回调onCreate方法，接下来回调onStartCommand方法。 每个服务只会存在一个实例。 bindService方法：回调onBind方法：如果服务之前还没有创建，那么会先回调onCreate方法。]]></content>
@@ -400,9 +381,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[AIDL]]></title>
-    <url>%2F2016%2F09%2F26%2FAIDL%2F</url>
-    <content type="text"><![CDATA[Aidl:android interface definition languageaidl是安卓中一种跨进程通信的方式。 服务端 创建一个service来监听客户端的连接请求 创建aidl文件，声明将要供客户端使用的接口以及方法 在service中实现接口方法。客户端 绑定服务端的service 将服务端返回的Binder对象转化成AIDL接口的类型 那么我们就能够在客户端中实现调用AIDL的方法了。（跨进程方法调用）]]></content>
+    <title><![CDATA[Android笔试题目]]></title>
+    <url>%2F2016%2F09%2F26%2FAndroid%E7%AC%94%E8%AF%95%E9%A2%98%E7%9B%AE%2F</url>
+    <content type="text"><![CDATA[title: Android基础笔试题tags: android 笔试activity的启动过程 onCreate()-&gt;onStart()-&gt;onResume()-&gt;运行-&gt;onPause()-&gt;onStop()-&gt;onDestroy. 注意，当启动新的activity或切换到桌面时，回调onPause和onStop，切换回来的时候，回调onRestart-&gt;onStart-&gt;onResume。 back回退时，回调onPause，onStop，onDestroy。 如果被系统回收的话，则与初次启动回调函数一样，但是在onCreate中会有个状态保存的变量供恢复数据 旧Activity的onPause先调用，然后新Activity才启动。 意外情况activity被销毁的时候，会调用onSaveInstanceState保存状态，再将Bundle对象传递给onRestoreInstanceState和onCreate方法。 资源内存不足导致activity被杀死 优先级：前台&gt;可见但非前台（弹出对话框的activity）&gt;后台（已经被暂停的） activity的启动模式有 标准模式 singleTop 栈顶复用模式，如果在栈顶，则不重新创建，同时调用onNewIntent方法 singleTask 栈内复用,在一个新的task中产生这个实例，以后每次调用都会使用这个。 singleInstance 单实例模式，与singleTask模式基本一样，区别在于在这个模式下的activity实例所处的task中只有这个实例而不会有其他的实例。 数据存储方式 sharedpreferrence：xml格式，简单的键值对，有缓存，注意多线程访问时候可能出现的问题 普通文件存储 SQLite数据库：轻量级的数据库，使用openHelper，cursor，SQLiteDataBase。 ContentProvider。cursor，provider。 网络。httpURLconnection。]]></content>
       <tags>
         <tag>android</tag>
       </tags>
@@ -411,6 +392,23 @@
     <title><![CDATA[View]]></title>
     <url>%2F2016%2F09%2F26%2FView%2F</url>
     <content type="text"><![CDATA[追踪手指在滑动过程中的速度@Override public boolean onTouchEvent(MotionEvent event) { VelocityTracker velocityTracker = VelocityTracker.obtain(); velocityTracker.addMovement(event); velocityTracker.computeCurrentVelocity(1000); int x = (int)velocityTracker.getXVelocity(); int y = (int)velocityTracker.getYVelocity(); Log.d(W, &quot;x:&quot; + x + &quot;,y:&quot; + y); return super.onTouchEvent(event); } 检测手势行为implements GestureDetector.OnGestureListener @Override public boolean onTouchEvent(MotionEvent event) { boolean consume = gestureDetector.onTouchEvent(event); return consume; } 滑动scrollTo&amp;&amp;scrollerBy使用动画改变布局参数public void onClick(View v) { ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams)button.getLayoutParams(); Log.d(W, &quot;layout&quot;); marginLayoutParams.width += 100; marginLayoutParams.leftMargin += 100; button.requestLayout(); }]]></content>
+      <tags>
+        <tag>android</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Activity]]></title>
+    <url>%2F2016%2F09%2F26%2FActivity%2F</url>
+    <content type="text"><![CDATA[Activityres目录 drawable 存放图片 R.drawable.XXX @drawable/XXX values 存放字符串 代码中：R.string.XXX xml中：@string/XXX layout 存放布局文件 menu 存放菜单文件 项目中任何添加的资源都会在R文件中生成一个相应的资源id。 添加菜单 res下新建menu文件夹，添加菜单文件（res的menu文件夹中） 重写onCreateOptionsMenu方法 @Override public boolean onCreateOptionsMenu(Menu menu) { this.getMenuInflater().inflate(R.menu.main, menu); return true; } 响应点击按钮事件 @Override public boolean onOptionsItemSelected(MenuItem item) { switch (item.getItemId()) { case R.id.set_item: Toast.makeText(this, &quot;设置&quot;, Toast.LENGTH_SHORT).show(); } return true; } Intent隐式intent待启动的activity 在需要响应内容的Activity中添加action以及category字段，只有当这两个字段完全匹配上intent的相应的值时，才可以启动activity。 intent构造函数：action字符串传入，默认情况下会插入 “android.intent.category.DEFAULT” intent-filter可以指定data标签，更精确的指定当前activity能够响应的数据 &lt;data android:scheme=&quot;http&quot; android:mimeType=&quot;XXX&quot;&gt;&lt;/data&gt; 除此之外，还能够匹配host，port，path等，只有当这些值完全匹配，才会被启动。 隐式启动activity时 intent 可以指定多个category Intent intent = new Intent(Intent.ACTION_VIEW); intent.setData(Uri.parse(&quot;http://www.baidu.com&quot;)); Intent intent = new Intent(Intent.ACTION_DIAL); intent.setData(Uri.parse(&quot;tel:10086&quot;)); intent setDateAndType（，）两个参数分别是uri以及文件类型.http://blog.csdn.net/chaoyu168/article/details/50778016activity之间传递数据 传递给下一个界面 在intent当中putExtra就可以了,在下一个界面当中getIntent获得intent就可以读取里面的内容了。 可以直接使用key-value的方式插入intent中，也可以通过bundle类来进行插入，bundle类类似一个map，能够简化操作。 实现了序列化接口的类对象也可以通过intent传递。 对接时怎么样传递数据比较好呢？ 在被启动的页面中新增一个静态方法actionStart(),参数需要有context，然后参数列表是需要传递的数据，这样在前一个页面中直接调用这个方法就可以启动新的页面了。 startActivityForResult 启动时传入requestCode 重写onActivityResult方法，根据参数中的requestCode判断是哪个的回调。 必要时还需要重写被启动页面的返回键回调函数onBackPress() 生命周期 Activity被回收了 onSaveInstanceState(Bundle) onCreate(Bundle) 启动模式 standard模式 singleTop模式 栈顶如果是要启动的activity，则不新建，仅此而已。 singleTask模式 检查返回栈中是否存在类的实例，如果存在将其上的所有activity出栈。 singleInstance模式 存放在一个新的返回栈里面。]]></content>
+      <tags>
+        <tag>android</tag>
+        <tag>第一行代码</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[UI]]></title>
+    <url>%2F2016%2F09%2F26%2FUI%2F</url>
+    <content type="text"><![CDATA[TextView android:gravity top bottom left right等等，指定对齐方向 match_parent fill_parent wrap_content EditTextmaxLine ImageViewimageView.setImageResource(R.mipmap.abc); visible invisible gone属性 visible 可见 invisible 不可见但是还存在 gone 不可见不存在 View setVisibilty() View.gone … AlertDialog AlertDialog.Builder builder = new AlertDialog.Builder(UIActivity.this); builder.setTitle(&quot;AlertDialogTitle&quot;); builder.setCancelable(false); builder.setMessage(&quot;some message&quot;); builder.setPositiveButton(&quot;Yes&quot;, new DialogInterface.OnClickListener() { @Override public void onClick(DialogInterface dialog, int which) { } }); builder.setNegativeButton(&quot;No&quot;, new DialogInterface.OnClickListener() { @Override public void onClick(DialogInterface dialog, int which) { } }); builder.show(); LinearLayout 指定方向，要注意如果是水平方向的话，则内部控件的宽度不能够是match_parent的不然会充满整个布局，同理竖直方向也是类似的。 android:layout_gravity属性：正如TextView中gravity表示文本内容占据整个宽度的位置，这个属性指的是控件在LinearLayout中的相对位置，而且，当外层layout是竖直布局时在其上的关于竖直的设置是不会生效的。注意，这个属性亦是属于子布局里面的而不是属于LinearLayout（要指定的是每一个不同的子布局）。 android:layout_weight属性：系统会先把 LinearLayout 下所有控件指定的 layout_weight 值相加， 得到一个总值，然后每个控件所占大小的比例就是用该控件的 layout_weight 值除以刚才算出的总值。 布局中的如果只有部分控件有weight属性，则有weight属性的控件共享剩下的宽度或者高度（按照比例分配）。 RelativeLayout 相对布局dp和sp在编写 Android 程序的时候，尽量将控件或布局的大小指定成 match_parent或 wrap_content，如果必须要指定一个固定值，则使用 dp 来作为单位，指定文字大小的时候使用 sp 作为单位。]]></content>
       <tags>
         <tag>android</tag>
       </tags>
@@ -425,6 +423,14 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[RecycleView]]></title>
+    <url>%2F2016%2F09%2F26%2FRecycleView%2F</url>
+    <content type="text"><![CDATA[创建RecycleView.Adapter的继承类 其中存在内部静态类：继承 RecyclerView.ViewHolder. 内部静态类： public static class ViewHolder extends RecyclerView.ViewHolder{ public Button button; public ViewHolder(View t) { super(t); button = (Button) t.findViewById(R.id.item_text_view); }} 重载函数 onCreateViewHolder @Override public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) { final View view = LayoutInflater.from(parent.getContext()) .inflate(R.layout.my_text_view, parent, false); ViewHolder viewHolder = new ViewHolder(view); return viewHolder; } 重载onBindViewHolder，设置每一个item的内容 @Override public void onBindViewHolder(ViewHolder holder, int position) { //每个item的具体设置 holder.button.setText(dataSet.get(position)); } 实现按钮监听的方法 声明接口 public interface IOnItemClick { void onItemClick(View view); } 在Activity中实现接口 MenuAdapter.IOnItemClick iOnItemClick = new MenuAdapter.IOnItemClick() { @Override public void onItemClick(View view) { //此处的view为每个item的View而非里面的按钮之类的 int itemPosition = recyclerView.getChildLayoutPosition(view); } } 在初始化Adapter中，将接口的实现类传进去。 在Adapter中。 @Override public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) { final View view = LayoutInflater.from(parent.getContext()) .inflate(R.layout.my_text_view, parent, false); ViewHolder viewHolder = new ViewHolder(view); if(iOnItemClick != null) { viewHolder.button.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View v) { iOnItemClick.onItemClick(view); //此处调用的view为上面所述的view而非按钮v } }); } return viewHolder; }]]></content>
+      <tags>
+        <tag>android</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[异步消息处理]]></title>
     <url>%2F2016%2F09%2F26%2FHandler_async_task%2F</url>
     <content type="text"><![CDATA[HandlerHandler的使用 继承Handler类，Override它的handleMessage方法（处理消息） Handler handler = new Handler() { @Override public void handleMessage(Message msg) { super.handleMessage(msg); textView.setText(&quot;after handling&quot; + msg.getData().getString(&quot;key&quot;)); } }; tips:Message可能需要用到的两个成员分别是 msg.what msg.setData(),msg.getData() 在新开的线程中使用handler的sendMessage方法发送消息，以达到修改UI元素的效果。 new Thread(new Runnable() { @Override public void run() { Message msg = new Message(); Bundle bundle = new Bundle(); bundle.putString(&quot;key&quot;, textView.getText().toString()); msg.setData(bundle); handler.sendMessage(msg); } }).start(); 一些思考 MessageQueue：消息队列 Looper：循环，一直从消息队列中获得消息，如果没有消息则一直循环。成员变量有MessageQueue。ThreadLocal变量，每个线程唯一且相同。 Handler：成员变量有Looper，亦即也拥有MessageQueue，发送消息时向消息队列插入消息，有Looper负责发现消息并且根据Message的target（亦即handler）来负责处理消息。 * 所以，当我们在子线程中用handler发送消息时，插入的MessageQueue是主线程的MessageQueue，此时由handler的操作便变成了主线程的操作而非在子线程中操作界面。 AsyncTask 继承AsyncTask类 //参数，运行时返回值类型，结果类型 class DownloadTask extends AsyncTask&lt;String, Integer, Boolean&gt; { int count = 0; //任务启动前执行的函数 @Override protected void onPreExecute() { progressDialog.show(); } //后台执行的函数，可以进行耗时操作 @Override protected Boolean doInBackground(String... params) { while (true) { try { TimeUnit.SECONDS.sleep(1); } catch (InterruptedException e) { e.printStackTrace(); } count++; if (count &gt;= 10) { break; } //这个方法会调用更新进度显示的函数。 publishProgress(count); } return true; } //更新进度显示 @Override protected void onProgressUpdate(Integer... values) { progressDialog.setMessage(&quot;downloaded &quot; + values[0]*10 + &quot;%&quot;); } //后台执行完成之后调用。 @Override protected void onPostExecute(Boolean aBoolean) { progressDialog.dismiss(); if(aBoolean) { Toast.makeText(MessageHandleActivity.this, &quot;succeed&quot;, Toast.LENGTH_SHORT).show(); } else { Toast.makeText(MessageHandleActivity.this, &quot;failed&quot;, Toast.LENGTH_SHORT).show(); } } }]]></content>
@@ -434,12 +440,11 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Activity]]></title>
-    <url>%2F2016%2F09%2F26%2FActivity%2F</url>
-    <content type="text"><![CDATA[Activityres目录 drawable 存放图片 R.drawable.XXX @drawable/XXX values 存放字符串 代码中：R.string.XXX xml中：@string/XXX layout 存放布局文件 menu 存放菜单文件 项目中任何添加的资源都会在R文件中生成一个相应的资源id。 添加菜单 res下新建menu文件夹，添加菜单文件（res的menu文件夹中） 重写onCreateOptionsMenu方法 @Override public boolean onCreateOptionsMenu(Menu menu) { this.getMenuInflater().inflate(R.menu.main, menu); return true; } 响应点击按钮事件 @Override public boolean onOptionsItemSelected(MenuItem item) { switch (item.getItemId()) { case R.id.set_item: Toast.makeText(this, &quot;设置&quot;, Toast.LENGTH_SHORT).show(); } return true; } Intent隐式intent待启动的activity 在需要响应内容的Activity中添加action以及category字段，只有当这两个字段完全匹配上intent的相应的值时，才可以启动activity。 intent构造函数：action字符串传入，默认情况下会插入 “android.intent.category.DEFAULT” intent-filter可以指定data标签，更精确的指定当前activity能够响应的数据 &lt;data android:scheme=&quot;http&quot; android:mimeType=&quot;XXX&quot;&gt;&lt;/data&gt; 除此之外，还能够匹配host，port，path等，只有当这些值完全匹配，才会被启动。 隐式启动activity时 intent 可以指定多个category Intent intent = new Intent(Intent.ACTION_VIEW); intent.setData(Uri.parse(&quot;http://www.baidu.com&quot;)); Intent intent = new Intent(Intent.ACTION_DIAL); intent.setData(Uri.parse(&quot;tel:10086&quot;)); intent setDateAndType（，）两个参数分别是uri以及文件类型.http://blog.csdn.net/chaoyu168/article/details/50778016activity之间传递数据 传递给下一个界面 在intent当中putExtra就可以了,在下一个界面当中getIntent获得intent就可以读取里面的内容了。 可以直接使用key-value的方式插入intent中，也可以通过bundle类来进行插入，bundle类类似一个map，能够简化操作。 实现了序列化接口的类对象也可以通过intent传递。 对接时怎么样传递数据比较好呢？ 在被启动的页面中新增一个静态方法actionStart(),参数需要有context，然后参数列表是需要传递的数据，这样在前一个页面中直接调用这个方法就可以启动新的页面了。 startActivityForResult 启动时传入requestCode 重写onActivityResult方法，根据参数中的requestCode判断是哪个的回调。 必要时还需要重写被启动页面的返回键回调函数onBackPress() 生命周期 Activity被回收了 onSaveInstanceState(Bundle) onCreate(Bundle) 启动模式 standard模式 singleTop模式 栈顶如果是要启动的activity，则不新建，仅此而已。 singleTask模式 检查返回栈中是否存在类的实例，如果存在将其上的所有activity出栈。 singleInstance模式 存放在一个新的返回栈里面。]]></content>
+    <title><![CDATA[AIDL]]></title>
+    <url>%2F2016%2F09%2F26%2FAIDL%2F</url>
+    <content type="text"><![CDATA[Aidl:android interface definition languageaidl是安卓中一种跨进程通信的方式。 服务端 创建一个service来监听客户端的连接请求 创建aidl文件，声明将要供客户端使用的接口以及方法 在service中实现接口方法。客户端 绑定服务端的service 将服务端返回的Binder对象转化成AIDL接口的类型 那么我们就能够在客户端中实现调用AIDL的方法了。（跨进程方法调用）]]></content>
       <tags>
         <tag>android</tag>
-        <tag>第一行代码</tag>
       </tags>
   </entry>
   <entry>
