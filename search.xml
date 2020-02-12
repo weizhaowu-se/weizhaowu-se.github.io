@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[nginx之header转发问题]]></title>
-    <url>%2F2020%2F02%2F06%2Fnginx%E4%B9%8Bheader%E8%BD%AC%E5%8F%91%E9%97%AE%E9%A2%98%2F</url>
+    <title><![CDATA[elasticsearch集群部署]]></title>
+    <url>%2F2020%2F02%2F06%2Felasticsearch%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[MQ消息最终一致性解决方案]]></title>
+    <url>%2F2020%2F02%2F06%2FMQ%E6%B6%88%E6%81%AF%E6%9C%80%E7%BB%88%E4%B8%80%E8%87%B4%E6%80%A7%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[mysql之groupby获得分组指定记录]]></title>
+    <url>%2F2020%2F02%2F06%2Fmysql%E4%B9%8Bgroupby%E8%8E%B7%E5%BE%97%E5%88%86%E7%BB%84%E6%8C%87%E5%AE%9A%E8%AE%B0%E5%BD%95%2F</url>
     <content type="text"></content>
   </entry>
   <entry>
@@ -372,20 +382,12 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Service]]></title>
-    <url>%2F2016%2F09%2F26%2FService%2F</url>
-    <content type="text"><![CDATA[Service基本用法和Activity进行通信 继承Binder对象 public class DownloadBinder extends Binder{ int count = 0; Handler handler; public void setHandler(Handler handler) { this.handler = handler; } public void startDownload() { } } 继承Service，Override onBind函数,新增成员：DownloadBinder。 public class MyService extends Service { DownloadBinder downloadBinder = new DownloadBinder(); @Nullable @Override public IBinder onBind(Intent intent) { return downloadBinder; } } Activity中，连接时获得DownloadBinder实例，这样就可以通过Binder来与Service进行通信。 ServiceConnection connection = new ServiceConnection() { @Override public void onServiceConnected(ComponentName name, IBinder service) { binder = (MyService.DownloadBinder) service; binder.setHandler(handler); binder.startDownload(); } @Override public void onServiceDisconnected(ComponentName name) { }}; 绑定service Intent intent = new Intent(ServiceLearnActivity.this, MyService.class); bindService(intent, connection, BIND_AUTO_CREATE); 生命周期 startService方法调用时，启动相应的服务，如果服务之前没有创建，那么会先回调onCreate方法，接下来回调onStartCommand方法。 每个服务只会存在一个实例。 bindService方法：回调onBind方法：如果服务之前还没有创建，那么会先回调onCreate方法。]]></content>
+    <title><![CDATA[广播接收器]]></title>
+    <url>%2F2016%2F09%2F26%2Fbroadcast%2F</url>
+    <content type="text"><![CDATA[广播机制 标准广播 完全异步执行 所有广播接收器几乎同时收到 有序广播 同步执行 优先级高的先收到，可以截断。 系统广播 broadcast receiver 不允许开启线程 onReceive 中的context的来源，是谁在调用这个函数 // todo 静态注册 manifest中注册 &lt;intent-filter&gt; &lt;action android:name=&quot;android.net.conn.CONNECTIVITY_CHANGE&quot;&gt;&lt;/action&gt; &lt;/intent-filter&gt; &lt;/receiver&gt; 动态注册 代码中注册 继承类 class NetworkChangeReceiver extends BroadcastReceiver{ @Override public void onReceive(Context context, Intent intent) { ConnectivityManager manager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE); NetworkInfo info = manager.getActiveNetworkInfo(); /* Intent intent1 = new Intent(context, SettingActivity.class); startActivity(intent1); */ if (info != null &amp;&amp; info.isAvailable()) { Toast.makeText(context, &quot;network is available&quot;, Toast.LENGTH_SHORT).show(); } else { Toast.makeText(context, &quot;network is unavailable&quot;, Toast.LENGTH_SHORT).show(); } } } 注册广播，在onCreate中添加 IntentFilter intentFilter = new IntentFilter(&quot;android.net.conn.CONNECTIVITY_CHANGE&quot;); registerReceiver(receiver, intentFilter); 注意要在onDestroy函数中取消注册。 自定义广播接收器 与隐式intent类似，可以在intent-filter中添加自定义的action，发送广播时调用sendBroadCast(Intent intent)。此时发送的是标准广播，同时也可以发送一些数据，在intent当中。 sendOrderedBroadCast() 发送有序广播 本地广播功能LocalBroadCastManager getInstance()方法 初始化localBroadCastManager localBroadCastManager = LocalBroadCastManager.getInstance(this); 注册 localBroadCastManager.register….. 发送 localBroadCastManager.send…… 销毁 localBroadCastManager .unregister….. 本地广播无法使用静态注册。 tips 在广播接收器里启动activity时，需要给Intent加入FLAG_ACTIVITY_NEW_TASK标志。]]></content>
       <tags>
         <tag>android</tag>
         <tag>第一行代码</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Android笔试题目]]></title>
-    <url>%2F2016%2F09%2F26%2FAndroid%E7%AC%94%E8%AF%95%E9%A2%98%E7%9B%AE%2F</url>
-    <content type="text"><![CDATA[title: Android基础笔试题tags: android 笔试activity的启动过程 onCreate()-&gt;onStart()-&gt;onResume()-&gt;运行-&gt;onPause()-&gt;onStop()-&gt;onDestroy. 注意，当启动新的activity或切换到桌面时，回调onPause和onStop，切换回来的时候，回调onRestart-&gt;onStart-&gt;onResume。 back回退时，回调onPause，onStop，onDestroy。 如果被系统回收的话，则与初次启动回调函数一样，但是在onCreate中会有个状态保存的变量供恢复数据 旧Activity的onPause先调用，然后新Activity才启动。 意外情况activity被销毁的时候，会调用onSaveInstanceState保存状态，再将Bundle对象传递给onRestoreInstanceState和onCreate方法。 资源内存不足导致activity被杀死 优先级：前台&gt;可见但非前台（弹出对话框的activity）&gt;后台（已经被暂停的） activity的启动模式有 标准模式 singleTop 栈顶复用模式，如果在栈顶，则不重新创建，同时调用onNewIntent方法 singleTask 栈内复用,在一个新的task中产生这个实例，以后每次调用都会使用这个。 singleInstance 单实例模式，与singleTask模式基本一样，区别在于在这个模式下的activity实例所处的task中只有这个实例而不会有其他的实例。 数据存储方式 sharedpreferrence：xml格式，简单的键值对，有缓存，注意多线程访问时候可能出现的问题 普通文件存储 SQLite数据库：轻量级的数据库，使用openHelper，cursor，SQLiteDataBase。 ContentProvider。cursor，provider。 网络。httpURLconnection。]]></content>
-      <tags>
-        <tag>android</tag>
       </tags>
   </entry>
   <entry>
@@ -397,35 +399,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Activity]]></title>
-    <url>%2F2016%2F09%2F26%2FActivity%2F</url>
-    <content type="text"><![CDATA[Activityres目录 drawable 存放图片 R.drawable.XXX @drawable/XXX values 存放字符串 代码中：R.string.XXX xml中：@string/XXX layout 存放布局文件 menu 存放菜单文件 项目中任何添加的资源都会在R文件中生成一个相应的资源id。 添加菜单 res下新建menu文件夹，添加菜单文件（res的menu文件夹中） 重写onCreateOptionsMenu方法 @Override public boolean onCreateOptionsMenu(Menu menu) { this.getMenuInflater().inflate(R.menu.main, menu); return true; } 响应点击按钮事件 @Override public boolean onOptionsItemSelected(MenuItem item) { switch (item.getItemId()) { case R.id.set_item: Toast.makeText(this, &quot;设置&quot;, Toast.LENGTH_SHORT).show(); } return true; } Intent隐式intent待启动的activity 在需要响应内容的Activity中添加action以及category字段，只有当这两个字段完全匹配上intent的相应的值时，才可以启动activity。 intent构造函数：action字符串传入，默认情况下会插入 “android.intent.category.DEFAULT” intent-filter可以指定data标签，更精确的指定当前activity能够响应的数据 &lt;data android:scheme=&quot;http&quot; android:mimeType=&quot;XXX&quot;&gt;&lt;/data&gt; 除此之外，还能够匹配host，port，path等，只有当这些值完全匹配，才会被启动。 隐式启动activity时 intent 可以指定多个category Intent intent = new Intent(Intent.ACTION_VIEW); intent.setData(Uri.parse(&quot;http://www.baidu.com&quot;)); Intent intent = new Intent(Intent.ACTION_DIAL); intent.setData(Uri.parse(&quot;tel:10086&quot;)); intent setDateAndType（，）两个参数分别是uri以及文件类型.http://blog.csdn.net/chaoyu168/article/details/50778016activity之间传递数据 传递给下一个界面 在intent当中putExtra就可以了,在下一个界面当中getIntent获得intent就可以读取里面的内容了。 可以直接使用key-value的方式插入intent中，也可以通过bundle类来进行插入，bundle类类似一个map，能够简化操作。 实现了序列化接口的类对象也可以通过intent传递。 对接时怎么样传递数据比较好呢？ 在被启动的页面中新增一个静态方法actionStart(),参数需要有context，然后参数列表是需要传递的数据，这样在前一个页面中直接调用这个方法就可以启动新的页面了。 startActivityForResult 启动时传入requestCode 重写onActivityResult方法，根据参数中的requestCode判断是哪个的回调。 必要时还需要重写被启动页面的返回键回调函数onBackPress() 生命周期 Activity被回收了 onSaveInstanceState(Bundle) onCreate(Bundle) 启动模式 standard模式 singleTop模式 栈顶如果是要启动的activity，则不新建，仅此而已。 singleTask模式 检查返回栈中是否存在类的实例，如果存在将其上的所有activity出栈。 singleInstance模式 存放在一个新的返回栈里面。]]></content>
-      <tags>
-        <tag>android</tag>
-        <tag>第一行代码</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[UI]]></title>
     <url>%2F2016%2F09%2F26%2FUI%2F</url>
     <content type="text"><![CDATA[TextView android:gravity top bottom left right等等，指定对齐方向 match_parent fill_parent wrap_content EditTextmaxLine ImageViewimageView.setImageResource(R.mipmap.abc); visible invisible gone属性 visible 可见 invisible 不可见但是还存在 gone 不可见不存在 View setVisibilty() View.gone … AlertDialog AlertDialog.Builder builder = new AlertDialog.Builder(UIActivity.this); builder.setTitle(&quot;AlertDialogTitle&quot;); builder.setCancelable(false); builder.setMessage(&quot;some message&quot;); builder.setPositiveButton(&quot;Yes&quot;, new DialogInterface.OnClickListener() { @Override public void onClick(DialogInterface dialog, int which) { } }); builder.setNegativeButton(&quot;No&quot;, new DialogInterface.OnClickListener() { @Override public void onClick(DialogInterface dialog, int which) { } }); builder.show(); LinearLayout 指定方向，要注意如果是水平方向的话，则内部控件的宽度不能够是match_parent的不然会充满整个布局，同理竖直方向也是类似的。 android:layout_gravity属性：正如TextView中gravity表示文本内容占据整个宽度的位置，这个属性指的是控件在LinearLayout中的相对位置，而且，当外层layout是竖直布局时在其上的关于竖直的设置是不会生效的。注意，这个属性亦是属于子布局里面的而不是属于LinearLayout（要指定的是每一个不同的子布局）。 android:layout_weight属性：系统会先把 LinearLayout 下所有控件指定的 layout_weight 值相加， 得到一个总值，然后每个控件所占大小的比例就是用该控件的 layout_weight 值除以刚才算出的总值。 布局中的如果只有部分控件有weight属性，则有weight属性的控件共享剩下的宽度或者高度（按照比例分配）。 RelativeLayout 相对布局dp和sp在编写 Android 程序的时候，尽量将控件或布局的大小指定成 match_parent或 wrap_content，如果必须要指定一个固定值，则使用 dp 来作为单位，指定文字大小的时候使用 sp 作为单位。]]></content>
-      <tags>
-        <tag>android</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[广播接收器]]></title>
-    <url>%2F2016%2F09%2F26%2Fbroadcast%2F</url>
-    <content type="text"><![CDATA[广播机制 标准广播 完全异步执行 所有广播接收器几乎同时收到 有序广播 同步执行 优先级高的先收到，可以截断。 系统广播 broadcast receiver 不允许开启线程 onReceive 中的context的来源，是谁在调用这个函数 // todo 静态注册 manifest中注册 &lt;intent-filter&gt; &lt;action android:name=&quot;android.net.conn.CONNECTIVITY_CHANGE&quot;&gt;&lt;/action&gt; &lt;/intent-filter&gt; &lt;/receiver&gt; 动态注册 代码中注册 继承类 class NetworkChangeReceiver extends BroadcastReceiver{ @Override public void onReceive(Context context, Intent intent) { ConnectivityManager manager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE); NetworkInfo info = manager.getActiveNetworkInfo(); /* Intent intent1 = new Intent(context, SettingActivity.class); startActivity(intent1); */ if (info != null &amp;&amp; info.isAvailable()) { Toast.makeText(context, &quot;network is available&quot;, Toast.LENGTH_SHORT).show(); } else { Toast.makeText(context, &quot;network is unavailable&quot;, Toast.LENGTH_SHORT).show(); } } } 注册广播，在onCreate中添加 IntentFilter intentFilter = new IntentFilter(&quot;android.net.conn.CONNECTIVITY_CHANGE&quot;); registerReceiver(receiver, intentFilter); 注意要在onDestroy函数中取消注册。 自定义广播接收器 与隐式intent类似，可以在intent-filter中添加自定义的action，发送广播时调用sendBroadCast(Intent intent)。此时发送的是标准广播，同时也可以发送一些数据，在intent当中。 sendOrderedBroadCast() 发送有序广播 本地广播功能LocalBroadCastManager getInstance()方法 初始化localBroadCastManager localBroadCastManager = LocalBroadCastManager.getInstance(this); 注册 localBroadCastManager.register….. 发送 localBroadCastManager.send…… 销毁 localBroadCastManager .unregister….. 本地广播无法使用静态注册。 tips 在广播接收器里启动activity时，需要给Intent加入FLAG_ACTIVITY_NEW_TASK标志。]]></content>
-      <tags>
-        <tag>android</tag>
-        <tag>第一行代码</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[RecycleView]]></title>
-    <url>%2F2016%2F09%2F26%2FRecycleView%2F</url>
-    <content type="text"><![CDATA[创建RecycleView.Adapter的继承类 其中存在内部静态类：继承 RecyclerView.ViewHolder. 内部静态类： public static class ViewHolder extends RecyclerView.ViewHolder{ public Button button; public ViewHolder(View t) { super(t); button = (Button) t.findViewById(R.id.item_text_view); }} 重载函数 onCreateViewHolder @Override public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) { final View view = LayoutInflater.from(parent.getContext()) .inflate(R.layout.my_text_view, parent, false); ViewHolder viewHolder = new ViewHolder(view); return viewHolder; } 重载onBindViewHolder，设置每一个item的内容 @Override public void onBindViewHolder(ViewHolder holder, int position) { //每个item的具体设置 holder.button.setText(dataSet.get(position)); } 实现按钮监听的方法 声明接口 public interface IOnItemClick { void onItemClick(View view); } 在Activity中实现接口 MenuAdapter.IOnItemClick iOnItemClick = new MenuAdapter.IOnItemClick() { @Override public void onItemClick(View view) { //此处的view为每个item的View而非里面的按钮之类的 int itemPosition = recyclerView.getChildLayoutPosition(view); } } 在初始化Adapter中，将接口的实现类传进去。 在Adapter中。 @Override public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) { final View view = LayoutInflater.from(parent.getContext()) .inflate(R.layout.my_text_view, parent, false); ViewHolder viewHolder = new ViewHolder(view); if(iOnItemClick != null) { viewHolder.button.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View v) { iOnItemClick.onItemClick(view); //此处调用的view为上面所述的view而非按钮v } }); } return viewHolder; }]]></content>
       <tags>
         <tag>android</tag>
       </tags>
@@ -443,6 +419,40 @@
     <title><![CDATA[AIDL]]></title>
     <url>%2F2016%2F09%2F26%2FAIDL%2F</url>
     <content type="text"><![CDATA[Aidl:android interface definition languageaidl是安卓中一种跨进程通信的方式。 服务端 创建一个service来监听客户端的连接请求 创建aidl文件，声明将要供客户端使用的接口以及方法 在service中实现接口方法。客户端 绑定服务端的service 将服务端返回的Binder对象转化成AIDL接口的类型 那么我们就能够在客户端中实现调用AIDL的方法了。（跨进程方法调用）]]></content>
+      <tags>
+        <tag>android</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Activity]]></title>
+    <url>%2F2016%2F09%2F26%2FActivity%2F</url>
+    <content type="text"><![CDATA[Activityres目录 drawable 存放图片 R.drawable.XXX @drawable/XXX values 存放字符串 代码中：R.string.XXX xml中：@string/XXX layout 存放布局文件 menu 存放菜单文件 项目中任何添加的资源都会在R文件中生成一个相应的资源id。 添加菜单 res下新建menu文件夹，添加菜单文件（res的menu文件夹中） 重写onCreateOptionsMenu方法 @Override public boolean onCreateOptionsMenu(Menu menu) { this.getMenuInflater().inflate(R.menu.main, menu); return true; } 响应点击按钮事件 @Override public boolean onOptionsItemSelected(MenuItem item) { switch (item.getItemId()) { case R.id.set_item: Toast.makeText(this, &quot;设置&quot;, Toast.LENGTH_SHORT).show(); } return true; } Intent隐式intent待启动的activity 在需要响应内容的Activity中添加action以及category字段，只有当这两个字段完全匹配上intent的相应的值时，才可以启动activity。 intent构造函数：action字符串传入，默认情况下会插入 “android.intent.category.DEFAULT” intent-filter可以指定data标签，更精确的指定当前activity能够响应的数据 &lt;data android:scheme=&quot;http&quot; android:mimeType=&quot;XXX&quot;&gt;&lt;/data&gt; 除此之外，还能够匹配host，port，path等，只有当这些值完全匹配，才会被启动。 隐式启动activity时 intent 可以指定多个category Intent intent = new Intent(Intent.ACTION_VIEW); intent.setData(Uri.parse(&quot;http://www.baidu.com&quot;)); Intent intent = new Intent(Intent.ACTION_DIAL); intent.setData(Uri.parse(&quot;tel:10086&quot;)); intent setDateAndType（，）两个参数分别是uri以及文件类型.http://blog.csdn.net/chaoyu168/article/details/50778016activity之间传递数据 传递给下一个界面 在intent当中putExtra就可以了,在下一个界面当中getIntent获得intent就可以读取里面的内容了。 可以直接使用key-value的方式插入intent中，也可以通过bundle类来进行插入，bundle类类似一个map，能够简化操作。 实现了序列化接口的类对象也可以通过intent传递。 对接时怎么样传递数据比较好呢？ 在被启动的页面中新增一个静态方法actionStart(),参数需要有context，然后参数列表是需要传递的数据，这样在前一个页面中直接调用这个方法就可以启动新的页面了。 startActivityForResult 启动时传入requestCode 重写onActivityResult方法，根据参数中的requestCode判断是哪个的回调。 必要时还需要重写被启动页面的返回键回调函数onBackPress() 生命周期 Activity被回收了 onSaveInstanceState(Bundle) onCreate(Bundle) 启动模式 standard模式 singleTop模式 栈顶如果是要启动的activity，则不新建，仅此而已。 singleTask模式 检查返回栈中是否存在类的实例，如果存在将其上的所有activity出栈。 singleInstance模式 存放在一个新的返回栈里面。]]></content>
+      <tags>
+        <tag>android</tag>
+        <tag>第一行代码</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[RecycleView]]></title>
+    <url>%2F2016%2F09%2F26%2FRecycleView%2F</url>
+    <content type="text"><![CDATA[创建RecycleView.Adapter的继承类 其中存在内部静态类：继承 RecyclerView.ViewHolder. 内部静态类： public static class ViewHolder extends RecyclerView.ViewHolder{ public Button button; public ViewHolder(View t) { super(t); button = (Button) t.findViewById(R.id.item_text_view); }} 重载函数 onCreateViewHolder @Override public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) { final View view = LayoutInflater.from(parent.getContext()) .inflate(R.layout.my_text_view, parent, false); ViewHolder viewHolder = new ViewHolder(view); return viewHolder; } 重载onBindViewHolder，设置每一个item的内容 @Override public void onBindViewHolder(ViewHolder holder, int position) { //每个item的具体设置 holder.button.setText(dataSet.get(position)); } 实现按钮监听的方法 声明接口 public interface IOnItemClick { void onItemClick(View view); } 在Activity中实现接口 MenuAdapter.IOnItemClick iOnItemClick = new MenuAdapter.IOnItemClick() { @Override public void onItemClick(View view) { //此处的view为每个item的View而非里面的按钮之类的 int itemPosition = recyclerView.getChildLayoutPosition(view); } } 在初始化Adapter中，将接口的实现类传进去。 在Adapter中。 @Override public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) { final View view = LayoutInflater.from(parent.getContext()) .inflate(R.layout.my_text_view, parent, false); ViewHolder viewHolder = new ViewHolder(view); if(iOnItemClick != null) { viewHolder.button.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View v) { iOnItemClick.onItemClick(view); //此处调用的view为上面所述的view而非按钮v } }); } return viewHolder; }]]></content>
+      <tags>
+        <tag>android</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Service]]></title>
+    <url>%2F2016%2F09%2F26%2FService%2F</url>
+    <content type="text"><![CDATA[Service基本用法和Activity进行通信 继承Binder对象 public class DownloadBinder extends Binder{ int count = 0; Handler handler; public void setHandler(Handler handler) { this.handler = handler; } public void startDownload() { } } 继承Service，Override onBind函数,新增成员：DownloadBinder。 public class MyService extends Service { DownloadBinder downloadBinder = new DownloadBinder(); @Nullable @Override public IBinder onBind(Intent intent) { return downloadBinder; } } Activity中，连接时获得DownloadBinder实例，这样就可以通过Binder来与Service进行通信。 ServiceConnection connection = new ServiceConnection() { @Override public void onServiceConnected(ComponentName name, IBinder service) { binder = (MyService.DownloadBinder) service; binder.setHandler(handler); binder.startDownload(); } @Override public void onServiceDisconnected(ComponentName name) { }}; 绑定service Intent intent = new Intent(ServiceLearnActivity.this, MyService.class); bindService(intent, connection, BIND_AUTO_CREATE); 生命周期 startService方法调用时，启动相应的服务，如果服务之前没有创建，那么会先回调onCreate方法，接下来回调onStartCommand方法。 每个服务只会存在一个实例。 bindService方法：回调onBind方法：如果服务之前还没有创建，那么会先回调onCreate方法。]]></content>
+      <tags>
+        <tag>android</tag>
+        <tag>第一行代码</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Android笔试题目]]></title>
+    <url>%2F2016%2F09%2F26%2FAndroid%E7%AC%94%E8%AF%95%E9%A2%98%E7%9B%AE%2F</url>
+    <content type="text"><![CDATA[title: Android基础笔试题tags: android 笔试activity的启动过程 onCreate()-&gt;onStart()-&gt;onResume()-&gt;运行-&gt;onPause()-&gt;onStop()-&gt;onDestroy. 注意，当启动新的activity或切换到桌面时，回调onPause和onStop，切换回来的时候，回调onRestart-&gt;onStart-&gt;onResume。 back回退时，回调onPause，onStop，onDestroy。 如果被系统回收的话，则与初次启动回调函数一样，但是在onCreate中会有个状态保存的变量供恢复数据 旧Activity的onPause先调用，然后新Activity才启动。 意外情况activity被销毁的时候，会调用onSaveInstanceState保存状态，再将Bundle对象传递给onRestoreInstanceState和onCreate方法。 资源内存不足导致activity被杀死 优先级：前台&gt;可见但非前台（弹出对话框的activity）&gt;后台（已经被暂停的） activity的启动模式有 标准模式 singleTop 栈顶复用模式，如果在栈顶，则不重新创建，同时调用onNewIntent方法 singleTask 栈内复用,在一个新的task中产生这个实例，以后每次调用都会使用这个。 singleInstance 单实例模式，与singleTask模式基本一样，区别在于在这个模式下的activity实例所处的task中只有这个实例而不会有其他的实例。 数据存储方式 sharedpreferrence：xml格式，简单的键值对，有缓存，注意多线程访问时候可能出现的问题 普通文件存储 SQLite数据库：轻量级的数据库，使用openHelper，cursor，SQLiteDataBase。 ContentProvider。cursor，provider。 网络。httpURLconnection。]]></content>
       <tags>
         <tag>android</tag>
       </tags>
