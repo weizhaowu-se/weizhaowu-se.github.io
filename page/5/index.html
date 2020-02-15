@@ -273,6 +273,136 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/16/Java正则表达式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wilbert">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一亩三分地">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/10/16/Java正则表达式/" itemprop="url">Java正则表达式SomeTips</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-16T20:29:12+08:00">
+                2016-10-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <ul>
+<li>默认的写法均为贪婪的</li>
+<li><p>加?之后修改为最短匹配</p>
+<pre><code>Pattern pattern = Pattern.compile(&quot;\\d{1,3}&quot;);
+String s = &quot;123-456-789&quot;;
+Matcher matcher = pattern.matcher(s);
+</code></pre>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/10/16/Java正则表达式/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/10/android动画简介/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1531,219 +1661,11 @@ LocalBroadcastManager.getInstance(this).registerReceiver(responseReceive, intent
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/09/26/broadcast/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wilbert">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一亩三分地">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/09/26/broadcast/" itemprop="url">广播接收器</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-26T00:00:00+08:00">
-                2016-09-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><font style="font-family:微软雅黑"></font></p>
-<h2 id="广播机制"><a href="#广播机制" class="headerlink" title="广播机制"></a>广播机制</h2><ul>
-<li>标准广播<blockquote>
-<ul>
-<li>完全异步执行</li>
-<li>所有广播接收器几乎同时收到</li>
-</ul>
-</blockquote>
-</li>
-<li>有序广播<blockquote>
-<ul>
-<li>同步执行</li>
-<li>优先级高的先收到，可以截断。</li>
-</ul>
-</blockquote>
-<h2 id="系统广播"><a href="#系统广播" class="headerlink" title="系统广播"></a>系统广播</h2></li>
-</ul>
-<h2 id="broadcast-receiver"><a href="#broadcast-receiver" class="headerlink" title="broadcast receiver"></a>broadcast receiver</h2><ul>
-<li>不允许开启线程</li>
-<li><p>onReceive 中的context的来源，是谁在调用这个函数 // todo</p>
-<h3 id="静态注册"><a href="#静态注册" class="headerlink" title="静态注册"></a>静态注册</h3><blockquote>
-<p> manifest中注册</p>
-</blockquote>
-<p>  <receiver android:name="util.NetworkChangedReceiver"></receiver></p>
-<pre><code>    &lt;intent-filter&gt;
-        &lt;action android:name=&quot;android.net.conn.CONNECTIVITY_CHANGE&quot;&gt;&lt;/action&gt;
-    &lt;/intent-filter&gt;
-&lt;/receiver&gt;
-</code></pre><h3 id="动态注册"><a href="#动态注册" class="headerlink" title="动态注册"></a>动态注册</h3><blockquote>
-<p>代码中注册</p>
-</blockquote>
-</li>
-</ul>
-<ol>
-<li><p>继承类</p>
-<pre><code>    class NetworkChangeReceiver extends BroadcastReceiver{
-
-    @Override
-    public void onReceive(Context context, Intent intent) {
-        ConnectivityManager manager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
-        NetworkInfo info = manager.getActiveNetworkInfo();
-/*
-        Intent intent1 = new Intent(context, SettingActivity.class);
-        startActivity(intent1);
-*/
-        if (info != null &amp;&amp; info.isAvailable()) {
-            Toast.makeText(context, &quot;network is available&quot;, Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(context, &quot;network is unavailable&quot;, Toast.LENGTH_SHORT).show();
-        }
-    }
-}
-</code></pre></li>
-<li><p>注册广播，在onCreate中添加</p>
-<pre><code>IntentFilter intentFilter = new IntentFilter(&quot;android.net.conn.CONNECTIVITY_CHANGE&quot;);
-registerReceiver(receiver, intentFilter);
-</code></pre></li>
-<li><p>注意要在onDestroy函数中取消注册。</p>
-</li>
-</ol>
-<h2 id="自定义广播接收器"><a href="#自定义广播接收器" class="headerlink" title="自定义广播接收器"></a>自定义广播接收器</h2><ul>
-<li>与隐式intent类似，可以在intent-filter中添加自定义的action，发送广播时调用sendBroadCast(Intent intent)。此时发送的是标准广播，同时也可以发送一些数据，在intent当中。</li>
-<li><p>sendOrderedBroadCast() 发送有序广播</p>
-<h3 id="本地广播功能"><a href="#本地广播功能" class="headerlink" title="本地广播功能"></a>本地广播功能</h3><p>LocalBroadCastManager getInstance()方法</p>
-</li>
-<li><p>初始化localBroadCastManager</p>
-<blockquote>
-<p>localBroadCastManager = LocalBroadCastManager.getInstance(this);</p>
-</blockquote>
-</li>
-<li><p>注册</p>
-<blockquote>
-<p>localBroadCastManager.register…..</p>
-</blockquote>
-</li>
-<li><p>发送</p>
-<blockquote>
-<p>localBroadCastManager.send……</p>
-</blockquote>
-</li>
-<li><p>销毁</p>
-<blockquote>
-<p>localBroadCastManager .unregister…..</p>
-</blockquote>
-</li>
-<li><p>本地广播无法使用静态注册。 </p>
-<h2 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h2></li>
-<li>在广播接收器里启动activity时，需要给Intent加入FLAG_ACTIVITY_NEW_TASK标志。</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1789,7 +1711,7 @@ registerReceiver(receiver, intentFilter);
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">60</span>
+                  <span class="site-state-item-count">61</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

@@ -273,313 +273,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/09/26/View/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wilbert">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一亩三分地">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/09/26/View/" itemprop="url">View</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-26T00:00:00+08:00">
-                2016-09-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="追踪手指在滑动过程中的速度"><a href="#追踪手指在滑动过程中的速度" class="headerlink" title="追踪手指在滑动过程中的速度"></a>追踪手指在滑动过程中的速度</h2><pre><code>@Override
-    public boolean onTouchEvent(MotionEvent event) {
-        VelocityTracker velocityTracker = VelocityTracker.obtain();
-        velocityTracker.addMovement(event);
-        velocityTracker.computeCurrentVelocity(1000);
-        int x = (int)velocityTracker.getXVelocity();
-        int y = (int)velocityTracker.getYVelocity();
-
-        Log.d(W, &quot;x:&quot; + x + &quot;,y:&quot; + y);
-        return super.onTouchEvent(event);
-    }
-</code></pre><h2 id="检测手势行为"><a href="#检测手势行为" class="headerlink" title="检测手势行为"></a>检测手势行为</h2><pre><code>implements GestureDetector.OnGestureListener
-
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {    
-        boolean consume = gestureDetector.onTouchEvent(event);
-        return consume;
-    }
-</code></pre><h2 id="滑动"><a href="#滑动" class="headerlink" title="滑动"></a>滑动</h2><h3 id="scrollTo-amp-amp-scrollerBy"><a href="#scrollTo-amp-amp-scrollerBy" class="headerlink" title="scrollTo&amp;&amp;scrollerBy"></a>scrollTo&amp;&amp;scrollerBy</h3><h3 id="使用动画"><a href="#使用动画" class="headerlink" title="使用动画"></a>使用动画</h3><h3 id="改变布局参数"><a href="#改变布局参数" class="headerlink" title="改变布局参数"></a>改变布局参数</h3><pre><code>public void onClick(View v) {
-    ViewGroup.MarginLayoutParams marginLayoutParams =
-            (ViewGroup.MarginLayoutParams)button.getLayoutParams();
-    Log.d(W, &quot;layout&quot;);
-    marginLayoutParams.width += 100;
-    marginLayoutParams.leftMargin += 100;
-    button.requestLayout();
-}
-</code></pre>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/09/26/UI/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wilbert">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一亩三分地">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/09/26/UI/" itemprop="url">UI</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-26T00:00:00+08:00">
-                2016-09-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><font style="font-family:微软雅黑"></font></p>
-<h2 id="TextView"><a href="#TextView" class="headerlink" title="TextView"></a>TextView</h2><ul>
-<li><p>android:gravity</p>
-<blockquote>
-<p>top bottom left right等等，指定对齐方向</p>
-</blockquote>
-</li>
-<li><p>match_parent</p>
-</li>
-<li>fill_parent </li>
-<li>wrap_content</li>
-</ul>
-<h2 id="EditText"><a href="#EditText" class="headerlink" title="EditText"></a>EditText</h2><p>maxLine</p>
-<h2 id="ImageView"><a href="#ImageView" class="headerlink" title="ImageView"></a>ImageView</h2><pre><code>imageView.setImageResource(R.mipmap.abc);
-</code></pre><h2 id="visible-invisible-gone属性"><a href="#visible-invisible-gone属性" class="headerlink" title="visible invisible gone属性"></a>visible invisible gone属性</h2><ul>
-<li>visible 可见</li>
-<li>invisible 不可见但是还存在</li>
-<li>gone 不可见不存在</li>
-<li><p>View setVisibilty() View.gone …</p>
-<h2 id="AlertDialog"><a href="#AlertDialog" class="headerlink" title="AlertDialog"></a>AlertDialog</h2><p>  AlertDialog.Builder builder = new AlertDialog.Builder(UIActivity.this);</p>
-<pre><code>builder.setTitle(&quot;AlertDialogTitle&quot;);
-builder.setCancelable(false);
-builder.setMessage(&quot;some message&quot;);
-builder.setPositiveButton(&quot;Yes&quot;, new DialogInterface.OnClickListener() {
-    @Override
-    public void onClick(DialogInterface dialog, int which) {
-
-    }
-});
-builder.setNegativeButton(&quot;No&quot;, new DialogInterface.OnClickListener() {
-    @Override
-    public void onClick(DialogInterface dialog, int which) {
-
-    }
-});
-builder.show();
-</code></pre><h2 id="LinearLayout"><a href="#LinearLayout" class="headerlink" title="LinearLayout"></a>LinearLayout</h2></li>
-<li>指定方向，要注意如果是水平方向的话，则内部控件的宽度不能够是match_parent的不然会充满整个布局，同理竖直方向也是类似的。</li>
-<li>android:layout_gravity属性：正如TextView中gravity表示文本内容占据整个宽度的位置，这个属性指的是控件在LinearLayout中的相对位置，而且，当外层layout是竖直布局时在其上的关于竖直的设置是不会生效的。注意，这个属性亦是属于子布局里面的而不是属于LinearLayout（要指定的是每一个不同的子布局）。</li>
-<li>android:layout_weight属性：系统会先把 LinearLayout 下所有控件指定的 layout_weight 值相加， 得到一个总值，然后每个控件所占大小的比例就是用该控件的 layout_weight 值除以刚才算出的总值。</li>
-<li>布局中的如果只有部分控件有weight属性，则有weight属性的控件共享剩下的宽度或者高度（按照比例分配）。</li>
-</ul>
-<h2 id="RelativeLayout-相对布局"><a href="#RelativeLayout-相对布局" class="headerlink" title="RelativeLayout 相对布局"></a>RelativeLayout 相对布局</h2><h2 id="dp和sp"><a href="#dp和sp" class="headerlink" title="dp和sp"></a>dp和sp</h2><p>在编写 Android 程序的时候，尽量将控件或布局的大小指定成 match_parent<br>或 wrap_content，如果必须要指定一个固定值，则使用 dp 来作为单位，指定文字大小的时候<br>使用 sp 作为单位。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/09/26/Handler_async_task/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -733,135 +426,6 @@ protected void onPostExecute(Boolean aBoolean) {
 </code></pre><p> }</p>
 </li>
 </ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/09/26/AIDL/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wilbert">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一亩三分地">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/09/26/AIDL/" itemprop="url">AIDL</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-26T00:00:00+08:00">
-                2016-09-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><font style="font-family:微软雅黑"></font></p>
-<h2 id="Aidl-android-interface-definition-language"><a href="#Aidl-android-interface-definition-language" class="headerlink" title="Aidl:android interface definition language"></a>Aidl:android interface definition language</h2><p>aidl是安卓中一种跨进程通信的方式。</p>
-<h4 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h4><ul>
-<li>创建一个service来监听客户端的连接请求</li>
-<li>创建aidl文件，声明将要供客户端使用的接口以及方法</li>
-<li>在service中实现接口方法。<h4 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h4></li>
-<li>绑定服务端的service</li>
-<li>将服务端返回的Binder对象转化成AIDL接口的类型</li>
-<li>那么我们就能够在客户端中实现调用AIDL的方法了。（跨进程方法调用）</li>
-</ul>
 
           
         
@@ -1497,6 +1061,521 @@ bindService(intent, connection, BIND_AUTO_CREATE);
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/09/26/broadcast/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wilbert">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一亩三分地">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/09/26/broadcast/" itemprop="url">广播接收器</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-26T00:00:00+08:00">
+                2016-09-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><font style="font-family:微软雅黑"></font></p>
+<h2 id="广播机制"><a href="#广播机制" class="headerlink" title="广播机制"></a>广播机制</h2><ul>
+<li>标准广播<blockquote>
+<ul>
+<li>完全异步执行</li>
+<li>所有广播接收器几乎同时收到</li>
+</ul>
+</blockquote>
+</li>
+<li>有序广播<blockquote>
+<ul>
+<li>同步执行</li>
+<li>优先级高的先收到，可以截断。</li>
+</ul>
+</blockquote>
+<h2 id="系统广播"><a href="#系统广播" class="headerlink" title="系统广播"></a>系统广播</h2></li>
+</ul>
+<h2 id="broadcast-receiver"><a href="#broadcast-receiver" class="headerlink" title="broadcast receiver"></a>broadcast receiver</h2><ul>
+<li>不允许开启线程</li>
+<li><p>onReceive 中的context的来源，是谁在调用这个函数 // todo</p>
+<h3 id="静态注册"><a href="#静态注册" class="headerlink" title="静态注册"></a>静态注册</h3><blockquote>
+<p> manifest中注册</p>
+</blockquote>
+<p>  <receiver android:name="util.NetworkChangedReceiver"></receiver></p>
+<pre><code>    &lt;intent-filter&gt;
+        &lt;action android:name=&quot;android.net.conn.CONNECTIVITY_CHANGE&quot;&gt;&lt;/action&gt;
+    &lt;/intent-filter&gt;
+&lt;/receiver&gt;
+</code></pre><h3 id="动态注册"><a href="#动态注册" class="headerlink" title="动态注册"></a>动态注册</h3><blockquote>
+<p>代码中注册</p>
+</blockquote>
+</li>
+</ul>
+<ol>
+<li><p>继承类</p>
+<pre><code>    class NetworkChangeReceiver extends BroadcastReceiver{
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        ConnectivityManager manager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+        NetworkInfo info = manager.getActiveNetworkInfo();
+/*
+        Intent intent1 = new Intent(context, SettingActivity.class);
+        startActivity(intent1);
+*/
+        if (info != null &amp;&amp; info.isAvailable()) {
+            Toast.makeText(context, &quot;network is available&quot;, Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, &quot;network is unavailable&quot;, Toast.LENGTH_SHORT).show();
+        }
+    }
+}
+</code></pre></li>
+<li><p>注册广播，在onCreate中添加</p>
+<pre><code>IntentFilter intentFilter = new IntentFilter(&quot;android.net.conn.CONNECTIVITY_CHANGE&quot;);
+registerReceiver(receiver, intentFilter);
+</code></pre></li>
+<li><p>注意要在onDestroy函数中取消注册。</p>
+</li>
+</ol>
+<h2 id="自定义广播接收器"><a href="#自定义广播接收器" class="headerlink" title="自定义广播接收器"></a>自定义广播接收器</h2><ul>
+<li>与隐式intent类似，可以在intent-filter中添加自定义的action，发送广播时调用sendBroadCast(Intent intent)。此时发送的是标准广播，同时也可以发送一些数据，在intent当中。</li>
+<li><p>sendOrderedBroadCast() 发送有序广播</p>
+<h3 id="本地广播功能"><a href="#本地广播功能" class="headerlink" title="本地广播功能"></a>本地广播功能</h3><p>LocalBroadCastManager getInstance()方法</p>
+</li>
+<li><p>初始化localBroadCastManager</p>
+<blockquote>
+<p>localBroadCastManager = LocalBroadCastManager.getInstance(this);</p>
+</blockquote>
+</li>
+<li><p>注册</p>
+<blockquote>
+<p>localBroadCastManager.register…..</p>
+</blockquote>
+</li>
+<li><p>发送</p>
+<blockquote>
+<p>localBroadCastManager.send……</p>
+</blockquote>
+</li>
+<li><p>销毁</p>
+<blockquote>
+<p>localBroadCastManager .unregister…..</p>
+</blockquote>
+</li>
+<li><p>本地广播无法使用静态注册。 </p>
+<h2 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h2></li>
+<li>在广播接收器里启动activity时，需要给Intent加入FLAG_ACTIVITY_NEW_TASK标志。</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/09/26/UI/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wilbert">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一亩三分地">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/09/26/UI/" itemprop="url">UI</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-26T00:00:00+08:00">
+                2016-09-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><font style="font-family:微软雅黑"></font></p>
+<h2 id="TextView"><a href="#TextView" class="headerlink" title="TextView"></a>TextView</h2><ul>
+<li><p>android:gravity</p>
+<blockquote>
+<p>top bottom left right等等，指定对齐方向</p>
+</blockquote>
+</li>
+<li><p>match_parent</p>
+</li>
+<li>fill_parent </li>
+<li>wrap_content</li>
+</ul>
+<h2 id="EditText"><a href="#EditText" class="headerlink" title="EditText"></a>EditText</h2><p>maxLine</p>
+<h2 id="ImageView"><a href="#ImageView" class="headerlink" title="ImageView"></a>ImageView</h2><pre><code>imageView.setImageResource(R.mipmap.abc);
+</code></pre><h2 id="visible-invisible-gone属性"><a href="#visible-invisible-gone属性" class="headerlink" title="visible invisible gone属性"></a>visible invisible gone属性</h2><ul>
+<li>visible 可见</li>
+<li>invisible 不可见但是还存在</li>
+<li>gone 不可见不存在</li>
+<li><p>View setVisibilty() View.gone …</p>
+<h2 id="AlertDialog"><a href="#AlertDialog" class="headerlink" title="AlertDialog"></a>AlertDialog</h2><p>  AlertDialog.Builder builder = new AlertDialog.Builder(UIActivity.this);</p>
+<pre><code>builder.setTitle(&quot;AlertDialogTitle&quot;);
+builder.setCancelable(false);
+builder.setMessage(&quot;some message&quot;);
+builder.setPositiveButton(&quot;Yes&quot;, new DialogInterface.OnClickListener() {
+    @Override
+    public void onClick(DialogInterface dialog, int which) {
+
+    }
+});
+builder.setNegativeButton(&quot;No&quot;, new DialogInterface.OnClickListener() {
+    @Override
+    public void onClick(DialogInterface dialog, int which) {
+
+    }
+});
+builder.show();
+</code></pre><h2 id="LinearLayout"><a href="#LinearLayout" class="headerlink" title="LinearLayout"></a>LinearLayout</h2></li>
+<li>指定方向，要注意如果是水平方向的话，则内部控件的宽度不能够是match_parent的不然会充满整个布局，同理竖直方向也是类似的。</li>
+<li>android:layout_gravity属性：正如TextView中gravity表示文本内容占据整个宽度的位置，这个属性指的是控件在LinearLayout中的相对位置，而且，当外层layout是竖直布局时在其上的关于竖直的设置是不会生效的。注意，这个属性亦是属于子布局里面的而不是属于LinearLayout（要指定的是每一个不同的子布局）。</li>
+<li>android:layout_weight属性：系统会先把 LinearLayout 下所有控件指定的 layout_weight 值相加， 得到一个总值，然后每个控件所占大小的比例就是用该控件的 layout_weight 值除以刚才算出的总值。</li>
+<li>布局中的如果只有部分控件有weight属性，则有weight属性的控件共享剩下的宽度或者高度（按照比例分配）。</li>
+</ul>
+<h2 id="RelativeLayout-相对布局"><a href="#RelativeLayout-相对布局" class="headerlink" title="RelativeLayout 相对布局"></a>RelativeLayout 相对布局</h2><h2 id="dp和sp"><a href="#dp和sp" class="headerlink" title="dp和sp"></a>dp和sp</h2><p>在编写 Android 程序的时候，尽量将控件或布局的大小指定成 match_parent<br>或 wrap_content，如果必须要指定一个固定值，则使用 dp 来作为单位，指定文字大小的时候<br>使用 sp 作为单位。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/09/26/View/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wilbert">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一亩三分地">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/09/26/View/" itemprop="url">View</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-26T00:00:00+08:00">
+                2016-09-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="追踪手指在滑动过程中的速度"><a href="#追踪手指在滑动过程中的速度" class="headerlink" title="追踪手指在滑动过程中的速度"></a>追踪手指在滑动过程中的速度</h2><pre><code>@Override
+    public boolean onTouchEvent(MotionEvent event) {
+        VelocityTracker velocityTracker = VelocityTracker.obtain();
+        velocityTracker.addMovement(event);
+        velocityTracker.computeCurrentVelocity(1000);
+        int x = (int)velocityTracker.getXVelocity();
+        int y = (int)velocityTracker.getYVelocity();
+
+        Log.d(W, &quot;x:&quot; + x + &quot;,y:&quot; + y);
+        return super.onTouchEvent(event);
+    }
+</code></pre><h2 id="检测手势行为"><a href="#检测手势行为" class="headerlink" title="检测手势行为"></a>检测手势行为</h2><pre><code>implements GestureDetector.OnGestureListener
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {    
+        boolean consume = gestureDetector.onTouchEvent(event);
+        return consume;
+    }
+</code></pre><h2 id="滑动"><a href="#滑动" class="headerlink" title="滑动"></a>滑动</h2><h3 id="scrollTo-amp-amp-scrollerBy"><a href="#scrollTo-amp-amp-scrollerBy" class="headerlink" title="scrollTo&amp;&amp;scrollerBy"></a>scrollTo&amp;&amp;scrollerBy</h3><h3 id="使用动画"><a href="#使用动画" class="headerlink" title="使用动画"></a>使用动画</h3><h3 id="改变布局参数"><a href="#改变布局参数" class="headerlink" title="改变布局参数"></a>改变布局参数</h3><pre><code>public void onClick(View v) {
+    ViewGroup.MarginLayoutParams marginLayoutParams =
+            (ViewGroup.MarginLayoutParams)button.getLayoutParams();
+    Log.d(W, &quot;layout&quot;);
+    marginLayoutParams.width += 100;
+    marginLayoutParams.leftMargin += 100;
+    button.requestLayout();
+}
+</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/09/26/Android笔试题目/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1597,6 +1676,135 @@ bindService(intent, connection, BIND_AUTO_CREATE);
 <li>SQLite数据库：轻量级的数据库，使用openHelper，cursor，SQLiteDataBase。</li>
 <li>ContentProvider。cursor，provider。</li>
 <li>网络。httpURLconnection。</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/09/26/AIDL/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wilbert">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一亩三分地">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/09/26/AIDL/" itemprop="url">AIDL</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-26T00:00:00+08:00">
+                2016-09-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><font style="font-family:微软雅黑"></font></p>
+<h2 id="Aidl-android-interface-definition-language"><a href="#Aidl-android-interface-definition-language" class="headerlink" title="Aidl:android interface definition language"></a>Aidl:android interface definition language</h2><p>aidl是安卓中一种跨进程通信的方式。</p>
+<h4 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h4><ul>
+<li>创建一个service来监听客户端的连接请求</li>
+<li>创建aidl文件，声明将要供客户端使用的接口以及方法</li>
+<li>在service中实现接口方法。<h4 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h4></li>
+<li>绑定服务端的service</li>
+<li>将服务端返回的Binder对象转化成AIDL接口的类型</li>
+<li>那么我们就能够在客户端中实现调用AIDL的方法了。（跨进程方法调用）</li>
 </ul>
 
           
@@ -1789,509 +1997,11 @@ Handler：成员变量有Looper，亦即也拥有MessageQueue，发送消息时�
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/06/23/面试/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wilbert">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一亩三分地">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/06/23/面试/" itemprop="url">helloworld</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-06-23T18:30:21+08:00">
-                2016-06-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><font style="font-family:微软雅黑"></font></p>
-<h2 id="android面试题目"><a href="#android面试题目" class="headerlink" title="android面试题目"></a>android面试题目</h2><h3 id="Service"><a href="#Service" class="headerlink" title="Service"></a>Service</h3><ul>
-<li>Activity中</li>
-</ul>
-<pre><code>void initData() {
-        mConnection = new ServiceConnection() {
-            @Override
-            public void onServiceConnected(ComponentName name, IBinder service) {
-                myBinder = (MyBinder)service;
-                myBinder.showMessage();
-            }
-
-            @Override
-            public void onServiceDisconnected(ComponentName name) {
-                SomeMethod.makeToast(ServiceActivity.this, &quot;service disconnected&quot;);
-            }
-        };
-    }
-
-public void onClick(View v) {
-    Intent intent = null;
-    switch (v.getId()) {
-        case R.id.startSerBtn:
-            intent = new Intent(this, MyService.class);
-            startService(intent);
-            break;
-        case R.id.endSerBtn:
-            intent = new Intent(this, MyService.class);
-            stopService(intent);
-            break;
-        case R.id.bindBtn:
-            intent = new Intent(this, MyService.class);
-            bindService(intent, mConnection, BIND_AUTO_CREATE);
-            isBind = true;
-            break;
-        case R.id.unBinBtn:
-            if (isBind) {
-                unbindService(mConnection);
-                isBind = false;
-            }
-            break;
-    }
-}
-}
-</code></pre><ul>
-<li><p>MyBinder类</p>
-<pre><code>public class MyBinder extends Binder {
-    Context mContext;
-    public MyBinder(Context context) {
-        mContext = context;
-    }
-
-    public void showMessage() {
-        SomeMethod.makeToast(mContext, &quot;in myBinder&quot;);
-    }
-}
-</code></pre></li>
-<li><p>MyService类</p>
-<pre><code>public class MyService extends Service {
-    public static final String w = &quot;wilbert&quot;;
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        SomeMethod.makeToast(this, &quot;onCreate&quot;);
-        Log.d(w, &quot;onCreate&quot;);
-        myBinder = new MyBinder(this);
-    }
-
-    @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.d(w, &quot;onStartCommand&quot;);
-        SomeMethod.makeToast(this, &quot;onStartCommand&quot;);
-        return super.onStartCommand(intent, flags, startId);
-    }
-
-    @Override
-    public void onDestroy() {
-        SomeMethod.makeToast(this, &quot;onDestroy&quot;);
-        Log.d(w, &quot;onDestroy&quot;);
-        super.onDestroy();
-    }
-
-    MyBinder myBinder;
-    @Nullable
-    @Override
-    public IBinder onBind(Intent intent) {
-        Log.d(w, &quot;onBind&quot;);
-        return myBinder;
-    }
-}
-</code></pre></li>
-</ul>
-<h3 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h3><ul>
-<li><p>OpenHelper</p>
-<pre><code>package com.wilbert.firstlinecode.DB;
-
-import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-import android.widget.Toast;
-
-/**
- * Created by wilbert on 2016/4/15.
- */
-public class DbOpenHelper extends SQLiteOpenHelper {
-    public static final String CREATE_BOOK = &quot;create table book (&quot;
-            + &quot;id integer primary key autoincrement, &quot;
-            + &quot;author text, &quot;
-            + &quot;price real, &quot;
-            + &quot;pages integer, &quot;
-            + &quot;name text)&quot;;
-    public static final String CREATE_CATEGORY = &quot;create table Category (&quot;
-            + &quot;id integer primary key autoincrement, &quot;
-            + &quot;category_name text, &quot;
-            + &quot;category_code integer)&quot;;
-    private Context mContext;
-    public DbOpenHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, name, factory, version);
-        mContext = context;
-    }
-
-    @Override
-    public void onCreate(SQLiteDatabase db) {
-        db.execSQL(CREATE_BOOK);
-        db.execSQL(CREATE_CATEGORY);
-        Toast.makeText(mContext, &quot;create db successfully&quot;, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
-    }
-}
-</code></pre></li>
-<li><p>SqlActivity</p>
-<pre><code>public class SqlActivity extends BaseActivity {
-    Button createDbBtn;
-    Button insertBtn;
-    Button updateBtn;
-    Button deleteBtn;
-    ListView sqlListview;
-
-    DbOpenHelper dbOpenHelper;
-    SQLiteDatabase sqLiteDatabase;
-    List&lt;String&gt; stringList = new ArrayList&lt;String&gt;();
-    ArrayAdapter&lt;String&gt; arrayAdapter;
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sql);
-        initView();
-        initData();
-        Log.v(&quot;w&quot;, &quot;onCreate&quot;);
-    }
-
-    @Override
-    void initView() {
-        createDbBtn = (Button)findViewById(R.id.createDbBtn);
-        createDbBtn.setOnClickListener(this);
-
-        insertBtn = (Button)findViewById(R.id.insertBtn);
-        insertBtn.setOnClickListener(this);
-
-        updateBtn = (Button)findViewById(R.id.updateBtn);
-        updateBtn.setOnClickListener(this);
-
-        deleteBtn = (Button)findViewById(R.id.deleteBtn);
-        deleteBtn.setOnClickListener(this);
-
-        sqlListview = (ListView)findViewById(R.id.dbListview);
-    }
-
-    @Override
-    void initData() {
-        dbOpenHelper = new DbOpenHelper(this, &quot;BookStore&quot;, null, 1);
-        sqLiteDatabase = dbOpenHelper.getWritableDatabase();
-        readDataFromSql();
-        arrayAdapter = new ArrayAdapter&lt;String&gt;(this, android.R.layout.simple_list_item_1
-                                        , stringList);
-        sqlListview.setAdapter(arrayAdapter);
-    }
-
-    private void readDataFromSql() {
-        stringList.clear();
-        Cursor cursor = sqLiteDatabase.query(Book.TABLE_NAME, null, null, null, null, null, null);
-        if (cursor.moveToFirst()) {
-            do {
-                stringList.add(Book.getBookFromCursor(cursor).toString());
-            } while (cursor.moveToNext());
-        }
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.createDbBtn:
-                dbOpenHelper.getWritableDatabase();
-                break;
-            case R.id.insertBtn:
-                Book book = new Book(&quot;wilbert&quot;, &quot;mybook&quot;, 99, 100);
-                long id = sqLiteDatabase.insert(Book.TABLE_NAME, null, book.makeContenValues());
-                if (id != -1) {
-                    Toast.makeText(this, &quot;insert successfully&quot;, Toast.LENGTH_SHORT).show();
-                }
-                break;
-            case R.id.updateBtn:
-                Book book2 = new Book(&quot;wilbert&quot;, &quot;mybook&quot;, 50, 100);
-                int effects = sqLiteDatabase.update(Book.TABLE_NAME, book2.makeContenValues(), &quot;name = ?&quot;,
-                        new String[]{&quot;mybook&quot;});
-                if (effects != 0) {
-                    Toast.makeText(this, &quot;update successfully&quot;, Toast.LENGTH_SHORT).show();
-                }
-                break;
-            case R.id.deleteBtn:
-//                sqLiteDatabase.beginTransaction();
-                int i = sqLiteDatabase.delete(Book.TABLE_NAME, &quot;pages &gt; ? OR name = ?&quot;,
-                        new String[]{&quot;10&quot;, &quot;wilbert&quot;});
-                if (i != 0) {
-                    showToasts(i + &quot; delete successfully&quot;);
-                }
-//                sqLiteDatabase.endTransaction();
-                break;
-        }
-        readDataFromSql();
-        arrayAdapter.notifyDataSetChanged();
-    }
-
-    private void showToasts(String s) {
-        Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
-    }
-}
-</code></pre></li>
-</ul>
-<h3 id="ContentProvider"><a href="#ContentProvider" class="headerlink" title="ContentProvider"></a>ContentProvider</h3><ul>
-<li><p>contentProvider类</p>
-<pre><code>package com.wilbert.firstlinecode.model;
-
-import android.content.ContentProvider;
-import android.content.ContentValues;
-import android.content.UriMatcher;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.net.Uri;
-import android.support.annotation.Nullable;
-
-import com.wilbert.firstlinecode.DB.DbOpenHelper;
-
-import java.net.Inet4Address;
-
-/**
- * Created by wilbert on 2016/4/15.
- */
-public class BookProvider extends ContentProvider {
-
-    public static final int BOOK_DIR = 0;
-    public static final int BOOK_ITEM = 1;
-    public static final String AUTHORITY = &quot;com.example.databasetest.provider&quot;;
-    private static UriMatcher uriMatcher;
-    private DbOpenHelper dbOpenHelper;
-    private SQLiteDatabase sqLiteDatabase;
-
-    static {
-        uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
-        uriMatcher.addURI(AUTHORITY, &quot;book&quot;, BOOK_DIR);
-        uriMatcher.addURI(AUTHORITY, &quot;book/# &quot;, BOOK_ITEM);
-    }
-
-    @Override
-    public boolean onCreate() {
-        dbOpenHelper = new DbOpenHelper(getContext(), &quot;BookStore&quot;, null, 1);
-        sqLiteDatabase = dbOpenHelper.getWritableDatabase();
-        return true;
-    }
-
-    @Nullable
-    @Override
-    public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
-        Cursor cursor = null;
-        switch (uriMatcher.match(uri)) {
-            case BOOK_DIR:
-                cursor = sqLiteDatabase.query(&quot;Book&quot;, projection, selection, selectionArgs,
-                        null, null, sortOrder);
-                break;
-            case BOOK_ITEM:
-                String bookId = uri.getPathSegments().get(1);
-                cursor = sqLiteDatabase.query(&quot;Book&quot;, projection, &quot;id = ?&quot;, new String[]
-                        {bookId}, null, null, sortOrder);
-                break;
-        }
-        return cursor;
-    }
-
-    @Nullable
-    @Override
-    public String getType(Uri uri) {
-            switch (uriMatcher.match(uri)) {
-                case BOOK_DIR:
-                    return &quot;vnd.android.cursor.dir/vnd.com.example.databasetest.provider.book&quot;;
-                case BOOK_ITEM:
-                    return &quot;vnd.android.cursor.item/vnd.com.example.databasetest.provider.book&quot;;
-            }
-        return null;
-    }
-
-    @Nullable
-    @Override
-    public Uri insert(Uri uri, ContentValues values) {
-        Uri returnUri = null;
-        switch (uriMatcher.match(uri)) {
-            case BOOK_DIR:
-            case BOOK_ITEM:
-                long newBookId = sqLiteDatabase.insert(&quot;Book&quot;, null, values);
-                returnUri = Uri.parse(&quot;content://&quot; + AUTHORITY + &quot;/book/&quot; +
-                        newBookId);
-                break;
-        }
-        return returnUri;
-    }
-
-    @Override
-    public int delete(Uri uri, String selection, String[] selectionArgs) {
-        int deletedRows = 0;
-        switch (uriMatcher.match(uri)) {
-            case BOOK_DIR:
-                deletedRows = sqLiteDatabase.delete(&quot;Book&quot;, selection, selectionArgs);
-                break;
-            case BOOK_ITEM:
-                String bookId = uri.getPathSegments().get(1);
-                deletedRows = sqLiteDatabase.delete(&quot;Book&quot;, &quot;id = ?&quot;, new String[] { bookId });
-                break;
-        }
-        return deletedRows;
-    }
-
-    @Override
-    public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
-        int updatedRows = 0;
-        switch (uriMatcher.match(uri)) {
-            case BOOK_DIR:
-                updatedRows = sqLiteDatabase.update(&quot;Book&quot;, values, selection, selectionArgs);
-                break;
-            case BOOK_ITEM:
-                String bookId = uri.getPathSegments().get(1);
-                updatedRows = sqLiteDatabase.update(&quot;Book&quot;, values, &quot;id = ?&quot;, new String[]
-                        {bookId});
-                break;
-        }
-        return updatedRows;
-    }
-}
-</code></pre></li>
-<li><p>provider activity </p>
-</li>
-</ul>
-<pre><code>public void onClick(View v) {
-    // TODO: 2016/4/15 query operation cursor
-    String newId;
-    switch (v.getId()) {
-        case R.id.queryBtn:
-            Uri uri2 = Uri.parse(&quot;content://com.example.databasetest.provider/book/1&quot;);
-            Cursor cursor = getContentResolver().query(uri2, null, null, null, null);
-            if (cursor != null) {
-                Book book = Book.getBookFromCursor(cursor);
-                stringList.add(book.toString());
-                arrayAdapter.notifyDataSetChanged();
-            }
-
-            break;
-        case R.id.insertBtn:
-            Uri uri = Uri.parse(&quot;content://com.example.databasetest.provider/book&quot;);
-            Book book = new Book(&quot;wilbdd&quot;, &quot;nae&quot;, 100, 100);
-            Uri newUri = getContentResolver().insert(uri, book.makeContenValues());
-
-            //newId = newUri.getPathSegments().get(1);
-            makeToast(&quot;  &quot; + &quot;insert&quot;);
-            makeToast(newUri.toString());
-            break;
-    }
-}
-</code></pre>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span>
+    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2337,7 +2047,7 @@ public class BookProvider extends ContentProvider {
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">60</span>
+                  <span class="site-state-item-count">61</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
