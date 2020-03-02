@@ -273,6 +273,291 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/09/26/AIDL/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wilbert">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一亩三分地">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/09/26/AIDL/" itemprop="url">AIDL</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-26T00:00:00+08:00">
+                2016-09-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><font style="font-family:微软雅黑"></font></p>
+<h2 id="Aidl-android-interface-definition-language"><a href="#Aidl-android-interface-definition-language" class="headerlink" title="Aidl:android interface definition language"></a>Aidl:android interface definition language</h2><p>aidl是安卓中一种跨进程通信的方式。</p>
+<h4 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h4><ul>
+<li>创建一个service来监听客户端的连接请求</li>
+<li>创建aidl文件，声明将要供客户端使用的接口以及方法</li>
+<li>在service中实现接口方法。<h4 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h4></li>
+<li>绑定服务端的service</li>
+<li>将服务端返回的Binder对象转化成AIDL接口的类型</li>
+<li>那么我们就能够在客户端中实现调用AIDL的方法了。（跨进程方法调用）</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/06/23/关于handler以及一些回调的思考/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wilbert">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一亩三分地">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/06/23/关于handler以及一些回调的思考/" itemprop="url">关于handler以及一些回调的思考</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-06-23T18:30:21+08:00">
+                2016-06-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <hr>
+<p><font style="font-family:微软雅黑"><br>有线程如下：</font></p>
+<pre><code>public class SetTextThread extends Thread {
+    private IIsetText iIsetText;
+    private  Handler handler;
+    private  MyNum myNum;
+    public SetTextThread(IIsetText iIsetText) {
+        this.iIsetText = iIsetText;
+    }
+    public SetTextThread(Handler handler) {
+        this.handler = handler;
+    }
+    public SetTextThread(MyNum myNum) {
+        print(&quot;constructor:&quot; + Thread.currentThread());
+        this.myNum = myNum;
+    }
+    @Override
+    public void run() {
+        print(&quot;run:&quot; + Thread.currentThread());
+//        iIsetText.setText();
+//        handler.sendMessage(new Message());
+        myNum.i = 9999;
+    }
+
+    public void print(String s) {
+        System.out.println(s);
+    }
+}
+</code></pre><ul>
+<li>多线程中，变量虽然相同，但是其实他们指向的是不同的内存区域，所以修改是不会影响到互相的值的。//此处有待确认正确与否，待查看thinking in java后再行确定。</li>
+<li><p>handler中，首先要先了解handler的消息机制</p>
+<pre><code>MessageQueue：消息队列
+Looper：循环，一直从消息队列中获得消息，如果没有消息则一直循环。成员变量有MessageQueue。ThreadLocal变量，每个线程唯一且相同。
+Handler：成员变量有Looper，亦即也拥有MessageQueue，发送消息时向消息队列插入消息，有Looper负责发现消息并且根据Message的target（亦即handler）来负责处理消息。
+</code></pre><p>所以，当我们在子线程中用handler发送消息时，虽然说此时的handler是另外线程中主线程handler的复制品，但是内容是完全一样的，亦即其Looper与消息队列依然是主线程的，所以，当发送消息时，插入的MessageQueue依旧是主线程，此时由handler的操作便变成了主线程的操作而非在子线程中操作界面。</p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/06/23/面试/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -758,162 +1043,6 @@ public class BookProvider extends ContentProvider {
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/06/23/关于handler以及一些回调的思考/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wilbert">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一亩三分地">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/06/23/关于handler以及一些回调的思考/" itemprop="url">关于handler以及一些回调的思考</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-06-23T18:30:21+08:00">
-                2016-06-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <hr>
-<p><font style="font-family:微软雅黑"><br>有线程如下：</font></p>
-<pre><code>public class SetTextThread extends Thread {
-    private IIsetText iIsetText;
-    private  Handler handler;
-    private  MyNum myNum;
-    public SetTextThread(IIsetText iIsetText) {
-        this.iIsetText = iIsetText;
-    }
-    public SetTextThread(Handler handler) {
-        this.handler = handler;
-    }
-    public SetTextThread(MyNum myNum) {
-        print(&quot;constructor:&quot; + Thread.currentThread());
-        this.myNum = myNum;
-    }
-    @Override
-    public void run() {
-        print(&quot;run:&quot; + Thread.currentThread());
-//        iIsetText.setText();
-//        handler.sendMessage(new Message());
-        myNum.i = 9999;
-    }
-
-    public void print(String s) {
-        System.out.println(s);
-    }
-}
-</code></pre><ul>
-<li>多线程中，变量虽然相同，但是其实他们指向的是不同的内存区域，所以修改是不会影响到互相的值的。//此处有待确认正确与否，待查看thinking in java后再行确定。</li>
-<li><p>handler中，首先要先了解handler的消息机制</p>
-<pre><code>MessageQueue：消息队列
-Looper：循环，一直从消息队列中获得消息，如果没有消息则一直循环。成员变量有MessageQueue。ThreadLocal变量，每个线程唯一且相同。
-Handler：成员变量有Looper，亦即也拥有MessageQueue，发送消息时向消息队列插入消息，有Looper负责发现消息并且根据Message的target（亦即handler）来负责处理消息。
-</code></pre><p>所以，当我们在子线程中用handler发送消息时，虽然说此时的handler是另外线程中主线程handler的复制品，但是内容是完全一样的，亦即其Looper与消息队列依然是主线程的，所以，当发送消息时，插入的MessageQueue依旧是主线程，此时由handler的操作便变成了主线程的操作而非在子线程中操作界面。</p>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -964,7 +1093,7 @@ Handler：成员变量有Looper，亦即也拥有MessageQueue，发送消息时�
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">62</span>
+                  <span class="site-state-item-count">63</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
