@@ -273,7 +273,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/09/26/AIDL/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/09/26/Handler_async_task/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wilbert">
@@ -292,7 +292,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2016/09/26/AIDL/" itemprop="url">AIDL</a></h1>
+                <a class="post-title-link" href="/2016/09/26/Handler_async_task/" itemprop="url">异步消息处理</a></h1>
         
 
         <div class="post-meta">
@@ -345,14 +345,330 @@
         
           
             <p><font style="font-family:微软雅黑"></font></p>
-<h2 id="Aidl-android-interface-definition-language"><a href="#Aidl-android-interface-definition-language" class="headerlink" title="Aidl:android interface definition language"></a>Aidl:android interface definition language</h2><p>aidl是安卓中一种跨进程通信的方式。</p>
-<h4 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h4><ul>
-<li>创建一个service来监听客户端的连接请求</li>
-<li>创建aidl文件，声明将要供客户端使用的接口以及方法</li>
-<li>在service中实现接口方法。<h4 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h4></li>
-<li>绑定服务端的service</li>
-<li>将服务端返回的Binder对象转化成AIDL接口的类型</li>
-<li>那么我们就能够在客户端中实现调用AIDL的方法了。（跨进程方法调用）</li>
+<h2 id="Handler"><a href="#Handler" class="headerlink" title="Handler"></a>Handler</h2><h3 id="Handler的使用"><a href="#Handler的使用" class="headerlink" title="Handler的使用"></a>Handler的使用</h3><ol>
+<li><p>继承Handler类，Override它的handleMessage方法（处理消息）</p>
+<pre><code>Handler handler = new Handler() {
+    @Override
+    public void handleMessage(Message msg) {
+        super.handleMessage(msg);
+        textView.setText(&quot;after handling&quot; + msg.getData().getString(&quot;key&quot;));
+    }
+};
+</code></pre><ul>
+<li>tips:Message可能需要用到的两个成员分别是<ul>
+<li>msg.what</li>
+<li>msg.setData(),msg.getData()</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>在新开的线程中使用handler的sendMessage方法发送消息，以达到修改UI元素的效果。</p>
+<pre><code>new Thread(new Runnable() {
+    @Override
+    public void run() {
+        Message msg = new Message();
+        Bundle bundle = new Bundle();
+        bundle.putString(&quot;key&quot;, textView.getText().toString());
+        msg.setData(bundle);
+        handler.sendMessage(msg);
+    }
+}).start();
+</code></pre></li>
+<li>一些思考</li>
+</ol>
+<pre><code>    MessageQueue：消息队列
+    Looper：循环，一直从消息队列中获得消息，如果没有消息则一直循环。成员变量有MessageQueue。ThreadLocal变量，每个线程唯一且相同。
+    Handler：成员变量有Looper，亦即也拥有MessageQueue，发送消息时向消息队列插入消息，有Looper负责发现消息并且根据Message的target（亦即handler）来负责处理消息。
+* 所以，当我们在子线程中用handler发送消息时，插入的MessageQueue是主线程的MessageQueue，此时由handler的操作便变成了主线程的操作而非在子线程中操作界面。
+</code></pre><h2 id="AsyncTask"><a href="#AsyncTask" class="headerlink" title="AsyncTask"></a>AsyncTask</h2><ol>
+<li><p>继承AsyncTask类</p>
+<pre><code>//参数，运行时返回值类型，结果类型
+class DownloadTask extends AsyncTask&lt;String, Integer, Boolean&gt; {
+int count = 0;
+//任务启动前执行的函数
+@Override
+protected void onPreExecute() {
+    progressDialog.show();
+}
+//后台执行的函数，可以进行耗时操作
+@Override
+protected Boolean doInBackground(String... params) {
+    while (true) {
+        try {
+            TimeUnit.SECONDS.sleep(1);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        count++;
+        if (count &gt;= 10) {
+            break;
+        }
+        //这个方法会调用更新进度显示的函数。
+        publishProgress(count);
+    }
+    return true;
+}
+//更新进度显示
+@Override
+protected void onProgressUpdate(Integer... values) {
+    progressDialog.setMessage(&quot;downloaded &quot; + values[0]*10 + &quot;%&quot;);
+}
+//后台执行完成之后调用。
+@Override
+protected void onPostExecute(Boolean aBoolean) {
+    progressDialog.dismiss();
+    if(aBoolean) {
+        Toast.makeText(MessageHandleActivity.this, &quot;succeed&quot;, Toast.LENGTH_SHORT).show();
+    } else {
+        Toast.makeText(MessageHandleActivity.this, &quot;failed&quot;, Toast.LENGTH_SHORT).show();
+    }
+}
+</code></pre><p> }</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/09/26/Activity/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wilbert">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一亩三分地">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/09/26/Activity/" itemprop="url">Activity</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-26T00:00:00+08:00">
+                2016-09-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><font style="font-family:微软雅黑"></font></p>
+<h2 id="Activity"><a href="#Activity" class="headerlink" title="Activity"></a>Activity</h2><h3 id="res目录"><a href="#res目录" class="headerlink" title="res目录"></a>res目录</h3><ul>
+<li><p>drawable 存放图片</p>
+<blockquote>
+<ul>
+<li>R.drawable.XXX</li>
+<li>@drawable/XXX</li>
+</ul>
+</blockquote>
+</li>
+<li><p>values 存放字符串</p>
+<blockquote>
+<ul>
+<li>代码中：R.string.XXX    </li>
+<li>xml中：@string/XXX</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<ul>
+<li>layout 存放布局文件</li>
+<li><p>menu 存放菜单文件</p>
+</li>
+<li><p>项目中任何添加的资源都会在R文件中生成一个相应的资源id。</p>
+</li>
+</ul>
+<h3 id="添加菜单"><a href="#添加菜单" class="headerlink" title="添加菜单"></a>添加菜单</h3><ol>
+<li>res下新建menu文件夹，添加菜单文件（res的menu文件夹中）</li>
+<li><p>重写onCreateOptionsMenu方法</p>
+<pre><code>@Override
+public boolean onCreateOptionsMenu(Menu menu) {
+    this.getMenuInflater().inflate(R.menu.main, menu);
+    return true;
+}
+</code></pre></li>
+<li><p>响应点击按钮事件</p>
+<pre><code>@Override
+public boolean onOptionsItemSelected(MenuItem item) {
+    switch (item.getItemId()) {
+        case R.id.set_item:
+            Toast.makeText(this, &quot;设置&quot;, Toast.LENGTH_SHORT).show();
+    }
+    return true;
+}
+</code></pre></li>
+</ol>
+<h3 id="Intent"><a href="#Intent" class="headerlink" title="Intent"></a>Intent</h3><h4 id="隐式intent"><a href="#隐式intent" class="headerlink" title="隐式intent"></a>隐式intent</h4><h5 id="待启动的activity"><a href="#待启动的activity" class="headerlink" title="待启动的activity"></a>待启动的activity</h5><ul>
+<li>在需要响应内容的Activity中添加action以及category字段，只有当这两个字段完全匹配上intent的相应的值时，才可以启动activity。</li>
+<li><p>intent构造函数：action字符串传入，默认情况下会插入</p>
+<blockquote>
+<p>“android.intent.category.DEFAULT”</p>
+</blockquote>
+</li>
+<li><p>intent-filter可以指定data标签，更精确的指定当前activity能够响应的数据</p>
+<pre><code>&lt;data android:scheme=&quot;http&quot;
+    android:mimeType=&quot;XXX&quot;&gt;&lt;/data&gt;
+</code></pre><p>除此之外，还能够匹配host，port，path等，只有当这些值完全匹配，才会被启动。</p>
+<h5 id="隐式启动activity时"><a href="#隐式启动activity时" class="headerlink" title="隐式启动activity时"></a>隐式启动activity时</h5></li>
+<li>intent 可以指定多个category</li>
+<li></li>
+</ul>
+<pre><code>Intent intent  = new Intent(Intent.ACTION_VIEW);
+intent.setData(Uri.parse(&quot;http://www.baidu.com&quot;));
+
+
+Intent intent = new Intent(Intent.ACTION_DIAL);
+intent.setData(Uri.parse(&quot;tel:10086&quot;));
+</code></pre><ul>
+<li>intent setDateAndType（，）两个参数分别是uri以及文件类型.<br><a href="http://blog.csdn.net/chaoyu168/article/details/50778016" target="_blank" rel="noopener">http://blog.csdn.net/chaoyu168/article/details/50778016</a><h5 id="activity之间传递数据"><a href="#activity之间传递数据" class="headerlink" title="activity之间传递数据"></a>activity之间传递数据</h5></li>
+<li><p>传递给下一个界面</p>
+<blockquote>
+<ul>
+<li>在intent当中putExtra就可以了,在下一个界面当中getIntent获得intent就可以读取里面的内容了。</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>可以直接使用key-value的方式插入intent中，也可以通过bundle类来进行插入，bundle类类似一个map，能够简化操作。</li>
+<li>实现了序列化接口的类对象也可以通过intent传递。</li>
+</ul>
+</blockquote>
+</li>
+<li><p>对接时怎么样传递数据比较好呢？</p>
+<blockquote>
+<p>在被启动的页面中新增一个静态方法actionStart(),参数需要有context，然后参数列表是需要传递的数据，这样在前一个页面中直接调用这个方法就可以启动新的页面了。</p>
+</blockquote>
+</li>
+<li><p>startActivityForResult</p>
+<blockquote>
+<ul>
+<li>启动时传入requestCode</li>
+<li>重写onActivityResult方法，根据参数中的requestCode判断是哪个的回调。</li>
+<li>必要时还需要重写被启动页面的返回键回调函数onBackPress()</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h5 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h5><p><img src="http://7xkzud.com1.z0.glb.clouddn.com/16-9-23/53552719.jpg" alt=""></p>
+<h5 id="Activity被回收了"><a href="#Activity被回收了" class="headerlink" title="Activity被回收了"></a>Activity被回收了</h5><ul>
+<li>onSaveInstanceState(Bundle)</li>
+<li>onCreate(Bundle)</li>
+</ul>
+<h5 id="启动模式"><a href="#启动模式" class="headerlink" title="启动模式"></a>启动模式</h5><ul>
+<li>standard模式</li>
+<li><p>singleTop模式</p>
+<blockquote>
+<ul>
+<li>栈顶如果是要启动的activity，则不新建，仅此而已。</li>
+</ul>
+</blockquote>
+</li>
+<li><p>singleTask模式</p>
+<blockquote>
+<ul>
+<li>检查返回栈中是否存在类的实例，如果存在将其上的所有activity出栈。</li>
+</ul>
+</blockquote>
+</li>
+<li>singleInstance模式<blockquote>
+<ul>
+<li>存放在一个新的返回栈里面。</li>
+</ul>
+</blockquote>
+</li>
 </ul>
 
           
@@ -1093,7 +1409,7 @@ public class BookProvider extends ContentProvider {
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">63</span>
+                  <span class="site-state-item-count">64</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

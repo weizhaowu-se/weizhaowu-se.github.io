@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[springboot集成mybatis及pageHelper的使用]]></title>
+    <url>%2F2020%2F03%2F02%2Fspringboot%E9%9B%86%E6%88%90mybatis%E5%8F%8ApageHelper%E7%9A%84%E4%BD%BF%E7%94%A8%2F</url>
+    <content type="text"><![CDATA[springboot集成mybatis及pageHelper的使用简单集成新增maven依赖12345678910&lt;dependency&gt; &lt;groupId&gt;mysql&lt;/groupId&gt; &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt; &lt;/dependency&gt; &lt;dependency&gt; &lt;groupId&gt;org.mybatis.spring.boot&lt;/groupId&gt; &lt;artifactId&gt;mybatis-spring-boot-starter&lt;/artifactId&gt; &lt;version&gt;1.1.1&lt;/version&gt; &lt;/dependency&gt; application.properties配置前置条件：本地安装数据库 1234spring.datasource.driverClassName = com.mysql.jdbc.Driverspring.datasource.url = jdbc:mysql://localhost:3306/test?useUnicode=true&amp;characterEncoding=utf-8spring.datasource.username = rootspring.datasource.password = password mapper代码12345@Mapperpublic interface TestMapper &#123; @Select(&quot;select * from user&quot;) List&lt;Map&gt; testSelect();&#125; controller代码注：此处为了简单，直接在controller注入mapper进行方法调用，实际项目中不推荐这样做 1234567891011@Controllerpublic class HelloController &#123; @Autowired TestMapper testMapper; @RequestMapping(value=&quot;/testMybatisSelect&quot;,method = RequestMethod.GET) @ResponseBody public String testMybatisSelect(HttpServletRequest request, HttpServletResponse response) throws IOException &#123; return JSON.toJSONString(testMapper.testSelect()); &#125;&#125; 访问接口url: http://localhost:5050/test/testMybatisSelect 查看结果 访问成功 PageHelper的使用简单的说，就是实现分页的功能 Mybatis-PageHelper 新增maven依赖123456789101112&lt;dependency&gt; &lt;groupId&gt;org.mybatis.spring.boot&lt;/groupId&gt; &lt;artifactId&gt;mybatis-spring-boot-starter&lt;/artifactId&gt; &lt;version&gt;1.2.1&lt;/version&gt; &lt;/dependency&gt; &lt;!-- 分页 --&gt; &lt;dependency&gt; &lt;groupId&gt;com.github.pagehelper&lt;/groupId&gt; &lt;artifactId&gt;pagehelper-spring-boot-starter&lt;/artifactId&gt; &lt;version&gt;1.2.5&lt;/version&gt; &lt;/dependency&gt; 新增PageResult类1234567891011121314151617181920212223242526272829public class PageResult&lt;T&gt; &#123; private Long totalCount; private List&lt;T&gt; content; public PageResult() &#123; &#125; public PageResult(Long totalCount, List&lt;T&gt; datas) &#123; this.totalCount = totalCount; this.content = datas; &#125; public Long getTotalCount() &#123; return totalCount; &#125; public void setTotalCount(Long totalCount) &#123; this.totalCount = totalCount; &#125; public List&lt;T&gt; getContent() &#123; return content; &#125; public void setContent(List&lt;T&gt; content) &#123; this.content = content; &#125;&#125; 修改查询方法12345678@RequestMapping(value=&quot;/testMybatisSelect&quot;,method = RequestMethod.GET) @ResponseBody public String testMybatisSelect(@Param(&quot;pageNum&quot;)Integer pageNum, @Param(&quot;pageSize&quot;)Integer pageSize) throws IOException &#123; PageHelper.startPage(pageNum, pageSize); Page&lt;Map&gt; page = testMapper.testSelect(); PageResult pageResult = new PageResult(page.getTotal(), new ArrayList(page)); return JSON.toJSONString(pageResult); &#125; 访问url http://localhost:5050/test/testMybatisSelect?pageNum=1&amp;pageSize=2 注意 pageNum是从1开始，当然你从0开始也是可以的，只是0和1是查询到的结果是一样的，个人理解可能只是做了一个容错？ 关于pageHelper的实现也是一个蛮有趣的话题，后面可以翻下源码看下具体实现]]></content>
+      <tags>
+        <tag>springboot</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[springboot集成quartz]]></title>
     <url>%2F2020%2F03%2F01%2Fspringboot%E9%9B%86%E6%88%90quartz%2F</url>
     <content type="text"><![CDATA[springboot集成quartz]]></content>
@@ -397,37 +405,12 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[UI]]></title>
-    <url>%2F2016%2F09%2F26%2FUI%2F</url>
-    <content type="text"><![CDATA[TextView android:gravity top bottom left right等等，指定对齐方向 match_parent fill_parent wrap_content EditTextmaxLine ImageViewimageView.setImageResource(R.mipmap.abc); visible invisible gone属性 visible 可见 invisible 不可见但是还存在 gone 不可见不存在 View setVisibilty() View.gone … AlertDialog AlertDialog.Builder builder = new AlertDialog.Builder(UIActivity.this); builder.setTitle(&quot;AlertDialogTitle&quot;); builder.setCancelable(false); builder.setMessage(&quot;some message&quot;); builder.setPositiveButton(&quot;Yes&quot;, new DialogInterface.OnClickListener() { @Override public void onClick(DialogInterface dialog, int which) { } }); builder.setNegativeButton(&quot;No&quot;, new DialogInterface.OnClickListener() { @Override public void onClick(DialogInterface dialog, int which) { } }); builder.show(); LinearLayout 指定方向，要注意如果是水平方向的话，则内部控件的宽度不能够是match_parent的不然会充满整个布局，同理竖直方向也是类似的。 android:layout_gravity属性：正如TextView中gravity表示文本内容占据整个宽度的位置，这个属性指的是控件在LinearLayout中的相对位置，而且，当外层layout是竖直布局时在其上的关于竖直的设置是不会生效的。注意，这个属性亦是属于子布局里面的而不是属于LinearLayout（要指定的是每一个不同的子布局）。 android:layout_weight属性：系统会先把 LinearLayout 下所有控件指定的 layout_weight 值相加， 得到一个总值，然后每个控件所占大小的比例就是用该控件的 layout_weight 值除以刚才算出的总值。 布局中的如果只有部分控件有weight属性，则有weight属性的控件共享剩下的宽度或者高度（按照比例分配）。 RelativeLayout 相对布局dp和sp在编写 Android 程序的时候，尽量将控件或布局的大小指定成 match_parent或 wrap_content，如果必须要指定一个固定值，则使用 dp 来作为单位，指定文字大小的时候使用 sp 作为单位。]]></content>
-      <tags>
-        <tag>android</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Activity]]></title>
-    <url>%2F2016%2F09%2F26%2FActivity%2F</url>
-    <content type="text"><![CDATA[Activityres目录 drawable 存放图片 R.drawable.XXX @drawable/XXX values 存放字符串 代码中：R.string.XXX xml中：@string/XXX layout 存放布局文件 menu 存放菜单文件 项目中任何添加的资源都会在R文件中生成一个相应的资源id。 添加菜单 res下新建menu文件夹，添加菜单文件（res的menu文件夹中） 重写onCreateOptionsMenu方法 @Override public boolean onCreateOptionsMenu(Menu menu) { this.getMenuInflater().inflate(R.menu.main, menu); return true; } 响应点击按钮事件 @Override public boolean onOptionsItemSelected(MenuItem item) { switch (item.getItemId()) { case R.id.set_item: Toast.makeText(this, &quot;设置&quot;, Toast.LENGTH_SHORT).show(); } return true; } Intent隐式intent待启动的activity 在需要响应内容的Activity中添加action以及category字段，只有当这两个字段完全匹配上intent的相应的值时，才可以启动activity。 intent构造函数：action字符串传入，默认情况下会插入 “android.intent.category.DEFAULT” intent-filter可以指定data标签，更精确的指定当前activity能够响应的数据 &lt;data android:scheme=&quot;http&quot; android:mimeType=&quot;XXX&quot;&gt;&lt;/data&gt; 除此之外，还能够匹配host，port，path等，只有当这些值完全匹配，才会被启动。 隐式启动activity时 intent 可以指定多个category Intent intent = new Intent(Intent.ACTION_VIEW); intent.setData(Uri.parse(&quot;http://www.baidu.com&quot;)); Intent intent = new Intent(Intent.ACTION_DIAL); intent.setData(Uri.parse(&quot;tel:10086&quot;)); intent setDateAndType（，）两个参数分别是uri以及文件类型.http://blog.csdn.net/chaoyu168/article/details/50778016activity之间传递数据 传递给下一个界面 在intent当中putExtra就可以了,在下一个界面当中getIntent获得intent就可以读取里面的内容了。 可以直接使用key-value的方式插入intent中，也可以通过bundle类来进行插入，bundle类类似一个map，能够简化操作。 实现了序列化接口的类对象也可以通过intent传递。 对接时怎么样传递数据比较好呢？ 在被启动的页面中新增一个静态方法actionStart(),参数需要有context，然后参数列表是需要传递的数据，这样在前一个页面中直接调用这个方法就可以启动新的页面了。 startActivityForResult 启动时传入requestCode 重写onActivityResult方法，根据参数中的requestCode判断是哪个的回调。 必要时还需要重写被启动页面的返回键回调函数onBackPress() 生命周期 Activity被回收了 onSaveInstanceState(Bundle) onCreate(Bundle) 启动模式 standard模式 singleTop模式 栈顶如果是要启动的activity，则不新建，仅此而已。 singleTask模式 检查返回栈中是否存在类的实例，如果存在将其上的所有activity出栈。 singleInstance模式 存放在一个新的返回栈里面。]]></content>
+    <title><![CDATA[广播接收器]]></title>
+    <url>%2F2016%2F09%2F26%2Fbroadcast%2F</url>
+    <content type="text"><![CDATA[广播机制 标准广播 完全异步执行 所有广播接收器几乎同时收到 有序广播 同步执行 优先级高的先收到，可以截断。 系统广播 broadcast receiver 不允许开启线程 onReceive 中的context的来源，是谁在调用这个函数 // todo 静态注册 manifest中注册 &lt;intent-filter&gt; &lt;action android:name=&quot;android.net.conn.CONNECTIVITY_CHANGE&quot;&gt;&lt;/action&gt; &lt;/intent-filter&gt; &lt;/receiver&gt; 动态注册 代码中注册 继承类 class NetworkChangeReceiver extends BroadcastReceiver{ @Override public void onReceive(Context context, Intent intent) { ConnectivityManager manager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE); NetworkInfo info = manager.getActiveNetworkInfo(); /* Intent intent1 = new Intent(context, SettingActivity.class); startActivity(intent1); */ if (info != null &amp;&amp; info.isAvailable()) { Toast.makeText(context, &quot;network is available&quot;, Toast.LENGTH_SHORT).show(); } else { Toast.makeText(context, &quot;network is unavailable&quot;, Toast.LENGTH_SHORT).show(); } } } 注册广播，在onCreate中添加 IntentFilter intentFilter = new IntentFilter(&quot;android.net.conn.CONNECTIVITY_CHANGE&quot;); registerReceiver(receiver, intentFilter); 注意要在onDestroy函数中取消注册。 自定义广播接收器 与隐式intent类似，可以在intent-filter中添加自定义的action，发送广播时调用sendBroadCast(Intent intent)。此时发送的是标准广播，同时也可以发送一些数据，在intent当中。 sendOrderedBroadCast() 发送有序广播 本地广播功能LocalBroadCastManager getInstance()方法 初始化localBroadCastManager localBroadCastManager = LocalBroadCastManager.getInstance(this); 注册 localBroadCastManager.register….. 发送 localBroadCastManager.send…… 销毁 localBroadCastManager .unregister….. 本地广播无法使用静态注册。 tips 在广播接收器里启动activity时，需要给Intent加入FLAG_ACTIVITY_NEW_TASK标志。]]></content>
       <tags>
         <tag>android</tag>
         <tag>第一行代码</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[异步消息处理]]></title>
-    <url>%2F2016%2F09%2F26%2FHandler_async_task%2F</url>
-    <content type="text"><![CDATA[HandlerHandler的使用 继承Handler类，Override它的handleMessage方法（处理消息） Handler handler = new Handler() { @Override public void handleMessage(Message msg) { super.handleMessage(msg); textView.setText(&quot;after handling&quot; + msg.getData().getString(&quot;key&quot;)); } }; tips:Message可能需要用到的两个成员分别是 msg.what msg.setData(),msg.getData() 在新开的线程中使用handler的sendMessage方法发送消息，以达到修改UI元素的效果。 new Thread(new Runnable() { @Override public void run() { Message msg = new Message(); Bundle bundle = new Bundle(); bundle.putString(&quot;key&quot;, textView.getText().toString()); msg.setData(bundle); handler.sendMessage(msg); } }).start(); 一些思考 MessageQueue：消息队列 Looper：循环，一直从消息队列中获得消息，如果没有消息则一直循环。成员变量有MessageQueue。ThreadLocal变量，每个线程唯一且相同。 Handler：成员变量有Looper，亦即也拥有MessageQueue，发送消息时向消息队列插入消息，有Looper负责发现消息并且根据Message的target（亦即handler）来负责处理消息。 * 所以，当我们在子线程中用handler发送消息时，插入的MessageQueue是主线程的MessageQueue，此时由handler的操作便变成了主线程的操作而非在子线程中操作界面。 AsyncTask 继承AsyncTask类 //参数，运行时返回值类型，结果类型 class DownloadTask extends AsyncTask&lt;String, Integer, Boolean&gt; { int count = 0; //任务启动前执行的函数 @Override protected void onPreExecute() { progressDialog.show(); } //后台执行的函数，可以进行耗时操作 @Override protected Boolean doInBackground(String... params) { while (true) { try { TimeUnit.SECONDS.sleep(1); } catch (InterruptedException e) { e.printStackTrace(); } count++; if (count &gt;= 10) { break; } //这个方法会调用更新进度显示的函数。 publishProgress(count); } return true; } //更新进度显示 @Override protected void onProgressUpdate(Integer... values) { progressDialog.setMessage(&quot;downloaded &quot; + values[0]*10 + &quot;%&quot;); } //后台执行完成之后调用。 @Override protected void onPostExecute(Boolean aBoolean) { progressDialog.dismiss(); if(aBoolean) { Toast.makeText(MessageHandleActivity.this, &quot;succeed&quot;, Toast.LENGTH_SHORT).show(); } else { Toast.makeText(MessageHandleActivity.this, &quot;failed&quot;, Toast.LENGTH_SHORT).show(); } } }]]></content>
-      <tags>
-        <tag>android</tag>
-        <tag>第一行代码</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[View]]></title>
-    <url>%2F2016%2F09%2F26%2FView%2F</url>
-    <content type="text"><![CDATA[追踪手指在滑动过程中的速度@Override public boolean onTouchEvent(MotionEvent event) { VelocityTracker velocityTracker = VelocityTracker.obtain(); velocityTracker.addMovement(event); velocityTracker.computeCurrentVelocity(1000); int x = (int)velocityTracker.getXVelocity(); int y = (int)velocityTracker.getYVelocity(); Log.d(W, &quot;x:&quot; + x + &quot;,y:&quot; + y); return super.onTouchEvent(event); } 检测手势行为implements GestureDetector.OnGestureListener @Override public boolean onTouchEvent(MotionEvent event) { boolean consume = gestureDetector.onTouchEvent(event); return consume; } 滑动scrollTo&amp;&amp;scrollerBy使用动画改变布局参数public void onClick(View v) { ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams)button.getLayoutParams(); Log.d(W, &quot;layout&quot;); marginLayoutParams.width += 100; marginLayoutParams.leftMargin += 100; button.requestLayout(); }]]></content>
-      <tags>
-        <tag>android</tag>
       </tags>
   </entry>
   <entry>
@@ -440,18 +423,33 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[广播接收器]]></title>
-    <url>%2F2016%2F09%2F26%2Fbroadcast%2F</url>
-    <content type="text"><![CDATA[广播机制 标准广播 完全异步执行 所有广播接收器几乎同时收到 有序广播 同步执行 优先级高的先收到，可以截断。 系统广播 broadcast receiver 不允许开启线程 onReceive 中的context的来源，是谁在调用这个函数 // todo 静态注册 manifest中注册 &lt;intent-filter&gt; &lt;action android:name=&quot;android.net.conn.CONNECTIVITY_CHANGE&quot;&gt;&lt;/action&gt; &lt;/intent-filter&gt; &lt;/receiver&gt; 动态注册 代码中注册 继承类 class NetworkChangeReceiver extends BroadcastReceiver{ @Override public void onReceive(Context context, Intent intent) { ConnectivityManager manager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE); NetworkInfo info = manager.getActiveNetworkInfo(); /* Intent intent1 = new Intent(context, SettingActivity.class); startActivity(intent1); */ if (info != null &amp;&amp; info.isAvailable()) { Toast.makeText(context, &quot;network is available&quot;, Toast.LENGTH_SHORT).show(); } else { Toast.makeText(context, &quot;network is unavailable&quot;, Toast.LENGTH_SHORT).show(); } } } 注册广播，在onCreate中添加 IntentFilter intentFilter = new IntentFilter(&quot;android.net.conn.CONNECTIVITY_CHANGE&quot;); registerReceiver(receiver, intentFilter); 注意要在onDestroy函数中取消注册。 自定义广播接收器 与隐式intent类似，可以在intent-filter中添加自定义的action，发送广播时调用sendBroadCast(Intent intent)。此时发送的是标准广播，同时也可以发送一些数据，在intent当中。 sendOrderedBroadCast() 发送有序广播 本地广播功能LocalBroadCastManager getInstance()方法 初始化localBroadCastManager localBroadCastManager = LocalBroadCastManager.getInstance(this); 注册 localBroadCastManager.register….. 发送 localBroadCastManager.send…… 销毁 localBroadCastManager .unregister….. 本地广播无法使用静态注册。 tips 在广播接收器里启动activity时，需要给Intent加入FLAG_ACTIVITY_NEW_TASK标志。]]></content>
+    <title><![CDATA[UI]]></title>
+    <url>%2F2016%2F09%2F26%2FUI%2F</url>
+    <content type="text"><![CDATA[TextView android:gravity top bottom left right等等，指定对齐方向 match_parent fill_parent wrap_content EditTextmaxLine ImageViewimageView.setImageResource(R.mipmap.abc); visible invisible gone属性 visible 可见 invisible 不可见但是还存在 gone 不可见不存在 View setVisibilty() View.gone … AlertDialog AlertDialog.Builder builder = new AlertDialog.Builder(UIActivity.this); builder.setTitle(&quot;AlertDialogTitle&quot;); builder.setCancelable(false); builder.setMessage(&quot;some message&quot;); builder.setPositiveButton(&quot;Yes&quot;, new DialogInterface.OnClickListener() { @Override public void onClick(DialogInterface dialog, int which) { } }); builder.setNegativeButton(&quot;No&quot;, new DialogInterface.OnClickListener() { @Override public void onClick(DialogInterface dialog, int which) { } }); builder.show(); LinearLayout 指定方向，要注意如果是水平方向的话，则内部控件的宽度不能够是match_parent的不然会充满整个布局，同理竖直方向也是类似的。 android:layout_gravity属性：正如TextView中gravity表示文本内容占据整个宽度的位置，这个属性指的是控件在LinearLayout中的相对位置，而且，当外层layout是竖直布局时在其上的关于竖直的设置是不会生效的。注意，这个属性亦是属于子布局里面的而不是属于LinearLayout（要指定的是每一个不同的子布局）。 android:layout_weight属性：系统会先把 LinearLayout 下所有控件指定的 layout_weight 值相加， 得到一个总值，然后每个控件所占大小的比例就是用该控件的 layout_weight 值除以刚才算出的总值。 布局中的如果只有部分控件有weight属性，则有weight属性的控件共享剩下的宽度或者高度（按照比例分配）。 RelativeLayout 相对布局dp和sp在编写 Android 程序的时候，尽量将控件或布局的大小指定成 match_parent或 wrap_content，如果必须要指定一个固定值，则使用 dp 来作为单位，指定文字大小的时候使用 sp 作为单位。]]></content>
       <tags>
         <tag>android</tag>
-        <tag>第一行代码</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[View]]></title>
+    <url>%2F2016%2F09%2F26%2FView%2F</url>
+    <content type="text"><![CDATA[追踪手指在滑动过程中的速度@Override public boolean onTouchEvent(MotionEvent event) { VelocityTracker velocityTracker = VelocityTracker.obtain(); velocityTracker.addMovement(event); velocityTracker.computeCurrentVelocity(1000); int x = (int)velocityTracker.getXVelocity(); int y = (int)velocityTracker.getYVelocity(); Log.d(W, &quot;x:&quot; + x + &quot;,y:&quot; + y); return super.onTouchEvent(event); } 检测手势行为implements GestureDetector.OnGestureListener @Override public boolean onTouchEvent(MotionEvent event) { boolean consume = gestureDetector.onTouchEvent(event); return consume; } 滑动scrollTo&amp;&amp;scrollerBy使用动画改变布局参数public void onClick(View v) { ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams)button.getLayoutParams(); Log.d(W, &quot;layout&quot;); marginLayoutParams.width += 100; marginLayoutParams.leftMargin += 100; button.requestLayout(); }]]></content>
+      <tags>
+        <tag>android</tag>
       </tags>
   </entry>
   <entry>
     <title><![CDATA[RecycleView]]></title>
     <url>%2F2016%2F09%2F26%2FRecycleView%2F</url>
     <content type="text"><![CDATA[创建RecycleView.Adapter的继承类 其中存在内部静态类：继承 RecyclerView.ViewHolder. 内部静态类： public static class ViewHolder extends RecyclerView.ViewHolder{ public Button button; public ViewHolder(View t) { super(t); button = (Button) t.findViewById(R.id.item_text_view); }} 重载函数 onCreateViewHolder @Override public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) { final View view = LayoutInflater.from(parent.getContext()) .inflate(R.layout.my_text_view, parent, false); ViewHolder viewHolder = new ViewHolder(view); return viewHolder; } 重载onBindViewHolder，设置每一个item的内容 @Override public void onBindViewHolder(ViewHolder holder, int position) { //每个item的具体设置 holder.button.setText(dataSet.get(position)); } 实现按钮监听的方法 声明接口 public interface IOnItemClick { void onItemClick(View view); } 在Activity中实现接口 MenuAdapter.IOnItemClick iOnItemClick = new MenuAdapter.IOnItemClick() { @Override public void onItemClick(View view) { //此处的view为每个item的View而非里面的按钮之类的 int itemPosition = recyclerView.getChildLayoutPosition(view); } } 在初始化Adapter中，将接口的实现类传进去。 在Adapter中。 @Override public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) { final View view = LayoutInflater.from(parent.getContext()) .inflate(R.layout.my_text_view, parent, false); ViewHolder viewHolder = new ViewHolder(view); if(iOnItemClick != null) { viewHolder.button.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View v) { iOnItemClick.onItemClick(view); //此处调用的view为上面所述的view而非按钮v } }); } return viewHolder; }]]></content>
+      <tags>
+        <tag>android</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[AIDL]]></title>
+    <url>%2F2016%2F09%2F26%2FAIDL%2F</url>
+    <content type="text"><![CDATA[Aidl:android interface definition languageaidl是安卓中一种跨进程通信的方式。 服务端 创建一个service来监听客户端的连接请求 创建aidl文件，声明将要供客户端使用的接口以及方法 在service中实现接口方法。客户端 绑定服务端的service 将服务端返回的Binder对象转化成AIDL接口的类型 那么我们就能够在客户端中实现调用AIDL的方法了。（跨进程方法调用）]]></content>
       <tags>
         <tag>android</tag>
       </tags>
@@ -465,11 +463,21 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[AIDL]]></title>
-    <url>%2F2016%2F09%2F26%2FAIDL%2F</url>
-    <content type="text"><![CDATA[Aidl:android interface definition languageaidl是安卓中一种跨进程通信的方式。 服务端 创建一个service来监听客户端的连接请求 创建aidl文件，声明将要供客户端使用的接口以及方法 在service中实现接口方法。客户端 绑定服务端的service 将服务端返回的Binder对象转化成AIDL接口的类型 那么我们就能够在客户端中实现调用AIDL的方法了。（跨进程方法调用）]]></content>
+    <title><![CDATA[异步消息处理]]></title>
+    <url>%2F2016%2F09%2F26%2FHandler_async_task%2F</url>
+    <content type="text"><![CDATA[HandlerHandler的使用 继承Handler类，Override它的handleMessage方法（处理消息） Handler handler = new Handler() { @Override public void handleMessage(Message msg) { super.handleMessage(msg); textView.setText(&quot;after handling&quot; + msg.getData().getString(&quot;key&quot;)); } }; tips:Message可能需要用到的两个成员分别是 msg.what msg.setData(),msg.getData() 在新开的线程中使用handler的sendMessage方法发送消息，以达到修改UI元素的效果。 new Thread(new Runnable() { @Override public void run() { Message msg = new Message(); Bundle bundle = new Bundle(); bundle.putString(&quot;key&quot;, textView.getText().toString()); msg.setData(bundle); handler.sendMessage(msg); } }).start(); 一些思考 MessageQueue：消息队列 Looper：循环，一直从消息队列中获得消息，如果没有消息则一直循环。成员变量有MessageQueue。ThreadLocal变量，每个线程唯一且相同。 Handler：成员变量有Looper，亦即也拥有MessageQueue，发送消息时向消息队列插入消息，有Looper负责发现消息并且根据Message的target（亦即handler）来负责处理消息。 * 所以，当我们在子线程中用handler发送消息时，插入的MessageQueue是主线程的MessageQueue，此时由handler的操作便变成了主线程的操作而非在子线程中操作界面。 AsyncTask 继承AsyncTask类 //参数，运行时返回值类型，结果类型 class DownloadTask extends AsyncTask&lt;String, Integer, Boolean&gt; { int count = 0; //任务启动前执行的函数 @Override protected void onPreExecute() { progressDialog.show(); } //后台执行的函数，可以进行耗时操作 @Override protected Boolean doInBackground(String... params) { while (true) { try { TimeUnit.SECONDS.sleep(1); } catch (InterruptedException e) { e.printStackTrace(); } count++; if (count &gt;= 10) { break; } //这个方法会调用更新进度显示的函数。 publishProgress(count); } return true; } //更新进度显示 @Override protected void onProgressUpdate(Integer... values) { progressDialog.setMessage(&quot;downloaded &quot; + values[0]*10 + &quot;%&quot;); } //后台执行完成之后调用。 @Override protected void onPostExecute(Boolean aBoolean) { progressDialog.dismiss(); if(aBoolean) { Toast.makeText(MessageHandleActivity.this, &quot;succeed&quot;, Toast.LENGTH_SHORT).show(); } else { Toast.makeText(MessageHandleActivity.this, &quot;failed&quot;, Toast.LENGTH_SHORT).show(); } } }]]></content>
       <tags>
         <tag>android</tag>
+        <tag>第一行代码</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Activity]]></title>
+    <url>%2F2016%2F09%2F26%2FActivity%2F</url>
+    <content type="text"><![CDATA[Activityres目录 drawable 存放图片 R.drawable.XXX @drawable/XXX values 存放字符串 代码中：R.string.XXX xml中：@string/XXX layout 存放布局文件 menu 存放菜单文件 项目中任何添加的资源都会在R文件中生成一个相应的资源id。 添加菜单 res下新建menu文件夹，添加菜单文件（res的menu文件夹中） 重写onCreateOptionsMenu方法 @Override public boolean onCreateOptionsMenu(Menu menu) { this.getMenuInflater().inflate(R.menu.main, menu); return true; } 响应点击按钮事件 @Override public boolean onOptionsItemSelected(MenuItem item) { switch (item.getItemId()) { case R.id.set_item: Toast.makeText(this, &quot;设置&quot;, Toast.LENGTH_SHORT).show(); } return true; } Intent隐式intent待启动的activity 在需要响应内容的Activity中添加action以及category字段，只有当这两个字段完全匹配上intent的相应的值时，才可以启动activity。 intent构造函数：action字符串传入，默认情况下会插入 “android.intent.category.DEFAULT” intent-filter可以指定data标签，更精确的指定当前activity能够响应的数据 &lt;data android:scheme=&quot;http&quot; android:mimeType=&quot;XXX&quot;&gt;&lt;/data&gt; 除此之外，还能够匹配host，port，path等，只有当这些值完全匹配，才会被启动。 隐式启动activity时 intent 可以指定多个category Intent intent = new Intent(Intent.ACTION_VIEW); intent.setData(Uri.parse(&quot;http://www.baidu.com&quot;)); Intent intent = new Intent(Intent.ACTION_DIAL); intent.setData(Uri.parse(&quot;tel:10086&quot;)); intent setDateAndType（，）两个参数分别是uri以及文件类型.http://blog.csdn.net/chaoyu168/article/details/50778016activity之间传递数据 传递给下一个界面 在intent当中putExtra就可以了,在下一个界面当中getIntent获得intent就可以读取里面的内容了。 可以直接使用key-value的方式插入intent中，也可以通过bundle类来进行插入，bundle类类似一个map，能够简化操作。 实现了序列化接口的类对象也可以通过intent传递。 对接时怎么样传递数据比较好呢？ 在被启动的页面中新增一个静态方法actionStart(),参数需要有context，然后参数列表是需要传递的数据，这样在前一个页面中直接调用这个方法就可以启动新的页面了。 startActivityForResult 启动时传入requestCode 重写onActivityResult方法，根据参数中的requestCode判断是哪个的回调。 必要时还需要重写被启动页面的返回键回调函数onBackPress() 生命周期 Activity被回收了 onSaveInstanceState(Bundle) onCreate(Bundle) 启动模式 standard模式 singleTop模式 栈顶如果是要启动的activity，则不新建，仅此而已。 singleTask模式 检查返回栈中是否存在类的实例，如果存在将其上的所有activity出栈。 singleInstance模式 存放在一个新的返回栈里面。]]></content>
+      <tags>
+        <tag>android</tag>
+        <tag>第一行代码</tag>
       </tags>
   </entry>
   <entry>
