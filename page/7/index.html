@@ -273,7 +273,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/09/26/Handler_async_task/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/09/26/RecycleView/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wilbert">
@@ -292,7 +292,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2016/09/26/Handler_async_task/" itemprop="url">异步消息处理</a></h1>
+                <a class="post-title-link" href="/2016/09/26/RecycleView/" itemprop="url">RecycleView</a></h1>
         
 
         <div class="post-meta">
@@ -322,7 +322,7 @@
 
           
           
-             <span id="/2016/09/26/Handler_async_task/" class="leancloud_visitors" data-flag-title="异步消息处理">
+             <span id="/2016/09/26/RecycleView/" class="leancloud_visitors" data-flag-title="RecycleView">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -356,86 +356,61 @@
         
           
             <p><font style="font-family:微软雅黑"></font></p>
-<h2 id="Handler"><a href="#Handler" class="headerlink" title="Handler"></a>Handler</h2><h3 id="Handler的使用"><a href="#Handler的使用" class="headerlink" title="Handler的使用"></a>Handler的使用</h3><ol>
-<li><p>继承Handler类，Override它的handleMessage方法（处理消息）</p>
-<pre><code>Handler handler = new Handler() {
-    @Override
-    public void handleMessage(Message msg) {
-        super.handleMessage(msg);
-        textView.setText(&quot;after handling&quot; + msg.getData().getString(&quot;key&quot;));
-    }
-};
-</code></pre><ul>
-<li>tips:Message可能需要用到的两个成员分别是<ul>
-<li>msg.what</li>
-<li>msg.setData(),msg.getData()</li>
-</ul>
+<h3 id="创建RecycleView-Adapter的继承类"><a href="#创建RecycleView-Adapter的继承类" class="headerlink" title="创建RecycleView.Adapter的继承类"></a>创建RecycleView.Adapter的继承类</h3><ul>
+<li>其中存在内部静态类：继承 RecyclerView.ViewHolder.</li>
+<li><p>内部静态类：</p>
+<pre><code>public static class ViewHolder extends RecyclerView.ViewHolder{
+    public Button button;
+    public ViewHolder(View t) {
+        super(t);
+        button = (Button) t.findViewById(R.id.item_text_view);
+    }}
+</code></pre><h4 id="重载函数-onCreateViewHolder"><a href="#重载函数-onCreateViewHolder" class="headerlink" title="重载函数 onCreateViewHolder"></a>重载函数 onCreateViewHolder</h4><p>  @Override<br>  public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {</p>
+<pre><code>final View view = LayoutInflater.from(parent.getContext())
+        .inflate(R.layout.my_text_view, parent, false);
+ViewHolder viewHolder = new ViewHolder(view);
+return viewHolder;
+</code></pre><p>  }</p>
+<h4 id="重载onBindViewHolder，设置每一个item的内容"><a href="#重载onBindViewHolder，设置每一个item的内容" class="headerlink" title="重载onBindViewHolder，设置每一个item的内容"></a>重载onBindViewHolder，设置每一个item的内容</h4><p>  @Override<br>  public void onBindViewHolder(ViewHolder holder, int position) {</p>
+<pre><code>//每个item的具体设置
+holder.button.setText(dataSet.get(position));
+</code></pre><p>  }</p>
 </li>
 </ul>
-</li>
-<li><p>在新开的线程中使用handler的sendMessage方法发送消息，以达到修改UI元素的效果。</p>
-<pre><code>new Thread(new Runnable() {
-    @Override
-    public void run() {
-        Message msg = new Message();
-        Bundle bundle = new Bundle();
-        bundle.putString(&quot;key&quot;, textView.getText().toString());
-        msg.setData(bundle);
-        handler.sendMessage(msg);
-    }
-}).start();
+<h3 id="实现按钮监听的方法"><a href="#实现按钮监听的方法" class="headerlink" title="实现按钮监听的方法"></a>实现按钮监听的方法</h3><ol>
+<li><p>声明接口</p>
+<pre><code>public interface IOnItemClick {
+    void onItemClick(View view);
+}
 </code></pre></li>
-<li>一些思考</li>
-</ol>
-<pre><code>    MessageQueue：消息队列
-    Looper：循环，一直从消息队列中获得消息，如果没有消息则一直循环。成员变量有MessageQueue。ThreadLocal变量，每个线程唯一且相同。
-    Handler：成员变量有Looper，亦即也拥有MessageQueue，发送消息时向消息队列插入消息，有Looper负责发现消息并且根据Message的target（亦即handler）来负责处理消息。
-* 所以，当我们在子线程中用handler发送消息时，插入的MessageQueue是主线程的MessageQueue，此时由handler的操作便变成了主线程的操作而非在子线程中操作界面。
-</code></pre><h2 id="AsyncTask"><a href="#AsyncTask" class="headerlink" title="AsyncTask"></a>AsyncTask</h2><ol>
-<li><p>继承AsyncTask类</p>
-<pre><code>//参数，运行时返回值类型，结果类型
-class DownloadTask extends AsyncTask&lt;String, Integer, Boolean&gt; {
-int count = 0;
-//任务启动前执行的函数
-@Override
-protected void onPreExecute() {
-    progressDialog.show();
-}
-//后台执行的函数，可以进行耗时操作
-@Override
-protected Boolean doInBackground(String... params) {
-    while (true) {
-        try {
-            TimeUnit.SECONDS.sleep(1);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        count++;
-        if (count &gt;= 10) {
-            break;
-        }
-        //这个方法会调用更新进度显示的函数。
-        publishProgress(count);
-    }
-    return true;
-}
-//更新进度显示
-@Override
-protected void onProgressUpdate(Integer... values) {
-    progressDialog.setMessage(&quot;downloaded &quot; + values[0]*10 + &quot;%&quot;);
-}
-//后台执行完成之后调用。
-@Override
-protected void onPostExecute(Boolean aBoolean) {
-    progressDialog.dismiss();
-    if(aBoolean) {
-        Toast.makeText(MessageHandleActivity.this, &quot;succeed&quot;, Toast.LENGTH_SHORT).show();
-    } else {
-        Toast.makeText(MessageHandleActivity.this, &quot;failed&quot;, Toast.LENGTH_SHORT).show();
+<li><p>在Activity中实现接口</p>
+<pre><code>MenuAdapter.IOnItemClick iOnItemClick = new MenuAdapter.IOnItemClick() {
+    @Override
+    public void onItemClick(View view) {
+        //此处的view为每个item的View而非里面的按钮之类的
+        int itemPosition = recyclerView.getChildLayoutPosition(view);
     }
 }
-</code></pre><p> }</p>
-</li>
+</code></pre></li>
+<li>在初始化Adapter中，将接口的实现类传进去。</li>
+<li><p>在Adapter中。</p>
+<pre><code>@Override
+public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    final View view = LayoutInflater.from(parent.getContext())
+            .inflate(R.layout.my_text_view, parent, false);
+    ViewHolder viewHolder = new ViewHolder(view);
+    if(iOnItemClick != null) {
+        viewHolder.button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iOnItemClick.onItemClick(view);
+                //此处调用的view为上面所述的view而非按钮v
+            }
+        });
+    }
+    return viewHolder;
+}
+</code></pre></li>
 </ol>
 
           
@@ -690,173 +665,6 @@ intent.setData(Uri.parse(&quot;tel:10086&quot;));
 <li>存放在一个新的返回栈里面。</li>
 </ul>
 </blockquote>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/06/23/关于handler以及一些回调的思考/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wilbert">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一亩三分地">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/06/23/关于handler以及一些回调的思考/" itemprop="url">关于handler以及一些回调的思考</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-06-23T18:30:21+08:00">
-                2016-06-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2016/06/23/关于handler以及一些回调的思考/" class="leancloud_visitors" data-flag-title="关于handler以及一些回调的思考">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <hr>
-<p><font style="font-family:微软雅黑"><br>有线程如下：</font></p>
-<pre><code>public class SetTextThread extends Thread {
-    private IIsetText iIsetText;
-    private  Handler handler;
-    private  MyNum myNum;
-    public SetTextThread(IIsetText iIsetText) {
-        this.iIsetText = iIsetText;
-    }
-    public SetTextThread(Handler handler) {
-        this.handler = handler;
-    }
-    public SetTextThread(MyNum myNum) {
-        print(&quot;constructor:&quot; + Thread.currentThread());
-        this.myNum = myNum;
-    }
-    @Override
-    public void run() {
-        print(&quot;run:&quot; + Thread.currentThread());
-//        iIsetText.setText();
-//        handler.sendMessage(new Message());
-        myNum.i = 9999;
-    }
-
-    public void print(String s) {
-        System.out.println(s);
-    }
-}
-</code></pre><ul>
-<li>多线程中，变量虽然相同，但是其实他们指向的是不同的内存区域，所以修改是不会影响到互相的值的。//此处有待确认正确与否，待查看thinking in java后再行确定。</li>
-<li><p>handler中，首先要先了解handler的消息机制</p>
-<pre><code>MessageQueue：消息队列
-Looper：循环，一直从消息队列中获得消息，如果没有消息则一直循环。成员变量有MessageQueue。ThreadLocal变量，每个线程唯一且相同。
-Handler：成员变量有Looper，亦即也拥有MessageQueue，发送消息时向消息队列插入消息，有Looper负责发现消息并且根据Message的target（亦即handler）来负责处理消息。
-</code></pre><p>所以，当我们在子线程中用handler发送消息时，虽然说此时的handler是另外线程中主线程handler的复制品，但是内容是完全一样的，亦即其Looper与消息队列依然是主线程的，所以，当发送消息时，插入的MessageQueue依旧是主线程，此时由handler的操作便变成了主线程的操作而非在子线程中操作界面。</p>
 </li>
 </ul>
 
@@ -1369,6 +1177,173 @@ public class BookProvider extends ContentProvider {
     }
 }
 </code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/06/23/关于handler以及一些回调的思考/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wilbert">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一亩三分地">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/06/23/关于handler以及一些回调的思考/" itemprop="url">关于handler以及一些回调的思考</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-06-23T18:30:21+08:00">
+                2016-06-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2016/06/23/关于handler以及一些回调的思考/" class="leancloud_visitors" data-flag-title="关于handler以及一些回调的思考">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <hr>
+<p><font style="font-family:微软雅黑"><br>有线程如下：</font></p>
+<pre><code>public class SetTextThread extends Thread {
+    private IIsetText iIsetText;
+    private  Handler handler;
+    private  MyNum myNum;
+    public SetTextThread(IIsetText iIsetText) {
+        this.iIsetText = iIsetText;
+    }
+    public SetTextThread(Handler handler) {
+        this.handler = handler;
+    }
+    public SetTextThread(MyNum myNum) {
+        print(&quot;constructor:&quot; + Thread.currentThread());
+        this.myNum = myNum;
+    }
+    @Override
+    public void run() {
+        print(&quot;run:&quot; + Thread.currentThread());
+//        iIsetText.setText();
+//        handler.sendMessage(new Message());
+        myNum.i = 9999;
+    }
+
+    public void print(String s) {
+        System.out.println(s);
+    }
+}
+</code></pre><ul>
+<li>多线程中，变量虽然相同，但是其实他们指向的是不同的内存区域，所以修改是不会影响到互相的值的。//此处有待确认正确与否，待查看thinking in java后再行确定。</li>
+<li><p>handler中，首先要先了解handler的消息机制</p>
+<pre><code>MessageQueue：消息队列
+Looper：循环，一直从消息队列中获得消息，如果没有消息则一直循环。成员变量有MessageQueue。ThreadLocal变量，每个线程唯一且相同。
+Handler：成员变量有Looper，亦即也拥有MessageQueue，发送消息时向消息队列插入消息，有Looper负责发现消息并且根据Message的target（亦即handler）来负责处理消息。
+</code></pre><p>所以，当我们在子线程中用handler发送消息时，虽然说此时的handler是另外线程中主线程handler的复制品，但是内容是完全一样的，亦即其Looper与消息队列依然是主线程的，所以，当发送消息时，插入的MessageQueue依旧是主线程，此时由handler的操作便变成了主线程的操作而非在子线程中操作界面。</p>
+</li>
+</ul>
+
           
         
       
