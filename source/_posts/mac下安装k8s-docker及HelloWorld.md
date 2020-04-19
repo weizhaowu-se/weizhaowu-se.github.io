@@ -21,6 +21,8 @@ tags:
 
 打开docker---preference---kurbernets，勾上Enable Kurbernets，注意，勾选上之后需要下载文件，这个过程比较耗时，需要耐心等待
 
+<!--more-->
+
 ## 安装k8s Dashboard及生成token登录
 
 1. 执行如下命令安装Dashboard
