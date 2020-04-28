@@ -44,8 +44,13 @@ spec:
     image: localhost:5000/springio/docker-domer
 ```
 
-启动完成后进入容器查看
+4. 启动完成后进入容器查看
 
 ![](https://tva1.sinaimg.cn/large/007S8ZIlgy1gdz5xuhs83j30k605kjrs.jpg)
 
 证明已经启动成功
+
+### 参考
+
+* [[docker创建私有仓库](https://www.cnblogs.com/fengzheng/p/5168951.html)](https://www.cnblogs.com/fengzheng/p/5168951.html)
+
