@@ -273,7 +273,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/02/springboot集成mybatis及pageHelper的使用/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/13/mysql之索引/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wilbert">
@@ -292,7 +292,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/03/02/springboot集成mybatis及pageHelper的使用/" itemprop="url">springboot集成mybatis及pageHelper的使用</a></h1>
+                <a class="post-title-link" href="/2020/05/13/mysql之索引/" itemprop="url">mysql之索引</a></h1>
         
 
         <div class="post-meta">
@@ -304,8 +304,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-02T22:23:02+08:00">
-                2020-03-02
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-13T23:05:32+08:00">
+                2020-05-13
               </time>
             
 
@@ -323,8 +323,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/03/02/springboot集成mybatis及pageHelper的使用/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/02/springboot集成mybatis及pageHelper的使用/" itemprop="commentCount"></span>
+                <a href="/2020/05/13/mysql之索引/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/05/13/mysql之索引/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -332,7 +332,7 @@
 
           
           
-             <span id="/2020/03/02/springboot集成mybatis及pageHelper的使用/" class="leancloud_visitors" data-flag-title="springboot集成mybatis及pageHelper的使用">
+             <span id="/2020/05/13/mysql之索引/" class="leancloud_visitors" data-flag-title="mysql之索引">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -364,10 +364,16 @@
 
       
         
-          <h1 id="springboot集成mybatis及pageHelper的使用"><a href="#springboot集成mybatis及pageHelper的使用" class="headerlink" title="springboot集成mybatis及pageHelper的使用"></a>springboot集成mybatis及pageHelper的使用</h1><h2 id="简单集成"><a href="#简单集成" class="headerlink" title="简单集成"></a>简单集成</h2><h3 id="新增maven依赖"><a href="#新增maven依赖" class="headerlink" title="新增maven依赖"></a>新增maven依赖</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">			&lt;groupId&gt;mysql&lt;/groupId&gt;</span><br><span class="line">			&lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;</span><br><span class="line">		&lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">		&lt;dependency&gt;</span><br><span class="line">			&lt;groupId&gt;org.mybatis.spring.boot&lt;/groupId&gt;</span><br><span class="line">			&lt;artifactId&gt;mybatis-spring-boot-starter&lt;/artifactId&gt;</span><br><span class="line">			&lt;version&gt;1.1.1&lt;/version&gt;</span><br><span class="line">		&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+          <h2 id="mysql之索引"><a href="#mysql之索引" class="headerlink" title="mysql之索引"></a>mysql之索引</h2><p>全文keyword：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">索引 </span><br><span class="line">聚簇索引 非聚簇索引 覆盖索引 回表</span><br><span class="line">B+树  哈希索引 最左匹配 联合索引 innodb myisam</span><br></pre></td></tr></table></figure>
+<h3 id="什么是索引"><a href="#什么是索引" class="headerlink" title="什么是索引"></a>什么是索引</h3><blockquote>
+<p><strong>数据库索引</strong>，是<a href="https://zh.wikipedia.org/wiki/数据库管理系统" target="_blank" rel="noopener">数据库管理系统</a>中一个排序的<a href="https://zh.wikipedia.org/wiki/数据结构" target="_blank" rel="noopener">数据结构</a>，以协助快速查询、更新<a href="https://zh.wikipedia.org/wiki/数据库表" target="_blank" rel="noopener">数据库表</a>中数据。  —from维基百科</p>
+<p>索引用来快速定位数据，避免每次访问时对数据库的每一行进行检索操作</p>
+</blockquote>
+<p>提炼一下，索引就是一种数据结构，通过这种数据结构来实现对数据库表中数据的高效操作，其实也是一种典型的空间换时间的思想的提现。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/03/02/springboot集成mybatis及pageHelper的使用/#more" rel="contents">
+            <a class="btn" href="/2020/05/13/mysql之索引/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -418,7 +424,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/01/springboot集成quartz/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/13/hexo-blog配置cdn/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wilbert">
@@ -437,7 +443,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/03/01/springboot集成quartz/" itemprop="url">springboot集成quartz</a></h1>
+                <a class="post-title-link" href="/2020/05/13/hexo-blog配置cdn/" itemprop="url">hexo-blog配置cdn</a></h1>
         
 
         <div class="post-meta">
@@ -449,8 +455,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-01T20:24:47+08:00">
-                2020-03-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-13T00:00:49+08:00">
+                2020-05-13
               </time>
             
 
@@ -468,8 +474,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/03/01/springboot集成quartz/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/01/springboot集成quartz/" itemprop="commentCount"></span>
+                <a href="/2020/05/13/hexo-blog配置cdn/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/05/13/hexo-blog配置cdn/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -477,7 +483,7 @@
 
           
           
-             <span id="/2020/03/01/springboot集成quartz/" class="leancloud_visitors" data-flag-title="springboot集成quartz">
+             <span id="/2020/05/13/hexo-blog配置cdn/" class="leancloud_visitors" data-flag-title="hexo-blog配置cdn">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -509,9 +515,20 @@
 
       
         
-          
-            <h1 id="springboot集成quartz"><a href="#springboot集成quartz" class="headerlink" title="springboot集成quartz"></a>springboot集成quartz</h1>
-          
+          <h1 id="hexo-blog配置cdn"><a href="#hexo-blog配置cdn" class="headerlink" title="hexo-blog配置cdn"></a>hexo-blog配置cdn</h1><h3 id="前置条件"><a href="#前置条件" class="headerlink" title="前置条件"></a>前置条件</h3><ul>
+<li>hexo，next主题</li>
+<li>通过GitHub page进行部署</li>
+</ul>
+<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><ul>
+<li>访问速度慢</li>
+</ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/05/13/hexo-blog配置cdn/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -558,7 +575,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/01/jwt基本概念及其在springboot的使用/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/12/免费ngrok使用/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wilbert">
@@ -577,7 +594,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/03/01/jwt基本概念及其在springboot的使用/" itemprop="url">jwt基本概念及其在springboot的使用</a></h1>
+                <a class="post-title-link" href="/2020/05/12/免费ngrok使用/" itemprop="url">免费ngrok使用</a></h1>
         
 
         <div class="post-meta">
@@ -589,8 +606,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-01T10:45:45+08:00">
-                2020-03-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-12T21:54:02+08:00">
+                2020-05-12
               </time>
             
 
@@ -608,8 +625,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/03/01/jwt基本概念及其在springboot的使用/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/01/jwt基本概念及其在springboot的使用/" itemprop="commentCount"></span>
+                <a href="/2020/05/12/免费ngrok使用/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/05/12/免费ngrok使用/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -617,7 +634,7 @@
 
           
           
-             <span id="/2020/03/01/jwt基本概念及其在springboot的使用/" class="leancloud_visitors" data-flag-title="jwt基本概念及其在springboot的使用">
+             <span id="/2020/05/12/免费ngrok使用/" class="leancloud_visitors" data-flag-title="免费ngrok使用">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -649,23 +666,171 @@
 
       
         
-          <h1 id="jwt基本概念及其在springboot的使用"><a href="#jwt基本概念及其在springboot的使用" class="headerlink" title="jwt基本概念及其在springboot的使用"></a>jwt基本概念及其在springboot的使用</h1><h2 id="jwt概念"><a href="#jwt概念" class="headerlink" title="jwt概念"></a>jwt概念</h2><p>全称：json web token</p>
-<ul>
-<li><a href="http://www.ruanyifeng.com/blog/2018/07/json_web_token-tutorial.html" target="_blank" rel="noopener">JSON Web Token 入门教程</a></li>
+          <h1 id="免费ngrok使用"><a href="#免费ngrok使用" class="headerlink" title="免费ngrok使用"></a>免费ngrok使用</h1><ul>
+<li>云服务器这种东西，总是拥有的时候总感觉没有什么用，等到到期了之后想着跑点什么，才追悔莫及。四月份的时候阿里云到期了，想说再续费，但是转念又想又好像没有那么大的需求，刚好目光看到了陈旧的笔记本，这不就能够利用起来了吗。</li>
+<li>于是安装了centos，一顿操作，终于又有了一台7*24的服务器了</li>
+<li>只是，没有公网ip要怎么办呢，一般了解之下，发现了ngrok这么个东西，其实就是一个内网穿透的工具而已</li>
 </ul>
-<p>我的理解</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/05/12/免费ngrok使用/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/11/黑苹果及mbp外接显示器开启HiDPi/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wilbert">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一亩三分地">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/05/11/黑苹果及mbp外接显示器开启HiDPi/" itemprop="url">黑苹果及mbp外接显示器开启HiDPi</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-11T22:59:50+08:00">
+                2020-05-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/05/11/黑苹果及mbp外接显示器开启HiDPi/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/05/11/黑苹果及mbp外接显示器开启HiDPi/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/05/11/黑苹果及mbp外接显示器开启HiDPi/" class="leancloud_visitors" data-flag-title="黑苹果及mbp外接显示器开启HiDPi">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="黑苹果及mbp外接显示器开启HiDPi"><a href="#黑苹果及mbp外接显示器开启HiDPi" class="headerlink" title="黑苹果及mbp外接显示器开启HiDPi"></a>黑苹果及mbp外接显示器开启HiDPi</h1><ul>
+<li>设备</li>
+</ul>
 <ol>
-<li>与传统的session认证方式最显著的区别在于，jwt将用户信息存放在客户端，每次请求服务时再将此部分信息传给服务器（一般是通过header参数传递的方式）</li>
-<li>jwt主要分为三个部分：<ul>
-<li>header：标识签名的算法等属性</li>
-<li>payload：标识该jwt token的有效时间，签发人等信息，辨识调用方</li>
-<li>signature：对前两者的签名，避免被篡改</li>
-</ul>
-</li>
+<li>黑苹果，系统版本 10.15</li>
+<li>MacBook Pro， 系统版本 10.15</li>
+<li>外接显示器，AOC 24寸 1920*1080</li>
+</ol>
+<h2 id="疑问"><a href="#疑问" class="headerlink" title="疑问"></a>疑问</h2><p>在这几个月的使用下来，有几个疑问</p>
+<ol>
+<li>比起win10，在黑苹果下/mbp外接显示器下字体发虚，模糊</li>
+<li>mbp外接显示器时感觉性能更好</li>
 </ol>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/03/01/jwt基本概念及其在springboot的使用/#more" rel="contents">
+            <a class="btn" href="/2020/05/11/黑苹果及mbp外接显示器开启HiDPi/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -716,7 +881,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/13/mybatis-threshold参数问题/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/29/使用nacos配置中心/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wilbert">
@@ -735,7 +900,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/02/13/mybatis-threshold参数问题/" itemprop="url">mybatis-threshold参数问题</a></h1>
+                <a class="post-title-link" href="/2020/04/29/使用nacos配置中心/" itemprop="url">使用nacos配置中心</a></h1>
         
 
         <div class="post-meta">
@@ -747,8 +912,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-13T15:09:00+08:00">
-                2020-02-13
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-29T21:50:16+08:00">
+                2020-04-29
               </time>
             
 
@@ -766,8 +931,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/02/13/mybatis-threshold参数问题/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/02/13/mybatis-threshold参数问题/" itemprop="commentCount"></span>
+                <a href="/2020/04/29/使用nacos配置中心/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/29/使用nacos配置中心/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -775,7 +940,7 @@
 
           
           
-             <span id="/2020/02/13/mybatis-threshold参数问题/" class="leancloud_visitors" data-flag-title="mybatis-threshold参数问题">
+             <span id="/2020/04/29/使用nacos配置中心/" class="leancloud_visitors" data-flag-title="使用nacos配置中心">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -807,17 +972,14 @@
 
       
         
-          
-            <h1 id="mybatis-threshold参数问题"><a href="#mybatis-threshold参数问题" class="headerlink" title="mybatis-threshold参数问题"></a>mybatis-threshold参数问题</h1><h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>在mapper里面使用的函数方式使用如下参数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@Param(&quot;threshold&quot;) String threshold</span><br></pre></td></tr></table></figure>
-<p>mapper.xml里面如下(threshold为该表的一个字段)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;select id=&quot;queryCountByImageMd5&quot; resultType=&quot;java.lang.Integer&quot;&gt;</span><br><span class="line">   SELECT</span><br><span class="line">      *</span><br><span class="line">   FROM</span><br><span class="line">      xxxx</span><br><span class="line">   WHERR</span><br><span class="line">       and threshold = #&#123;threshold&#125;</span><br><span class="line">&lt;/select&gt;</span><br></pre></td></tr></table></figure>
-<p>结果报错，提示类型转换失败</p>
-<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>修改参数名称   threshold  —&gt; testthreshold</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@Param(&quot;testthreshold&quot;) String threshold</span><br></pre></td></tr></table></figure>
-<p>相应修改xml相关参数</p>
-
-          
+          <h1 id="使用nacos配置中心"><a href="#使用nacos配置中心" class="headerlink" title="使用nacos配置中心"></a>使用nacos配置中心</h1><p>前言：此部分的内容基于   <a href="https://wuweizhao.com/2020/04/28/feiginClient%E4%BD%BF%E7%94%A8%E5%8F%8A%E5%88%87%E6%8D%A2eureka%E4%B8%BAnacos%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83/" target="_blank" rel="noopener">feignClient使用及切换eureka为nacos注册中心</a>，代码地址见  <a href="https://github.com/weizhaowu-se/spring-eureka" target="_blank" rel="noopener">https://github.com/weizhaowu-se/spring-eureka</a> 分支： master-nacos</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/04/29/使用nacos配置中心/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -864,7 +1026,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/06/elasticsearch集群部署/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/29/elk部署-helloWorld/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wilbert">
@@ -883,7 +1045,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/02/06/elasticsearch集群部署/" itemprop="url">elasticsearch集群部署</a></h1>
+                <a class="post-title-link" href="/2020/04/29/elk部署-helloWorld/" itemprop="url">elk部署-helloWorld</a></h1>
         
 
         <div class="post-meta">
@@ -895,8 +1057,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-06T10:12:29+08:00">
-                2020-02-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-29T21:13:04+08:00">
+                2020-04-29
               </time>
             
 
@@ -914,8 +1076,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/02/06/elasticsearch集群部署/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/02/06/elasticsearch集群部署/" itemprop="commentCount"></span>
+                <a href="/2020/04/29/elk部署-helloWorld/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/29/elk部署-helloWorld/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -923,7 +1085,7 @@
 
           
           
-             <span id="/2020/02/06/elasticsearch集群部署/" class="leancloud_visitors" data-flag-title="elasticsearch集群部署">
+             <span id="/2020/04/29/elk部署-helloWorld/" class="leancloud_visitors" data-flag-title="elk部署-helloWorld">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -955,9 +1117,19 @@
 
       
         
-          
-            
-          
+          <h1 id="elk部署-helloWorld"><a href="#elk部署-helloWorld" class="headerlink" title="elk部署-helloWorld"></a>elk部署-helloWorld</h1><h2 id="elasticsearch"><a href="#elasticsearch" class="headerlink" title="elasticsearch"></a>elasticsearch</h2><ol>
+<li>下载地址 <a href="https://www.elastic.co/cn/start" target="_blank" rel="noopener">https://www.elastic.co/cn/start</a></li>
+<li>解压文件 elasticsearch-6.2.2</li>
+<li>启动，进入bin文件夹，执行</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./elasticsearch</span><br><span class="line">./elasticsearch -d   #后台模式运行</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/04/29/elk部署-helloWorld/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1004,7 +1176,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/06/MQ消息最终一致性解决方案/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/28/feiginClient使用及切换eureka为nacos注册中心/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wilbert">
@@ -1023,7 +1195,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/02/06/MQ消息最终一致性解决方案/" itemprop="url">MQ消息最终一致性解决方案</a></h1>
+                <a class="post-title-link" href="/2020/04/28/feiginClient使用及切换eureka为nacos注册中心/" itemprop="url">feignClient使用及切换eureka为nacos注册中心</a></h1>
         
 
         <div class="post-meta">
@@ -1035,8 +1207,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-06T10:12:01+08:00">
-                2020-02-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-28T22:42:37+08:00">
+                2020-04-28
               </time>
             
 
@@ -1054,8 +1226,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/02/06/MQ消息最终一致性解决方案/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/02/06/MQ消息最终一致性解决方案/" itemprop="commentCount"></span>
+                <a href="/2020/04/28/feiginClient使用及切换eureka为nacos注册中心/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/28/feiginClient使用及切换eureka为nacos注册中心/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1063,7 +1235,7 @@
 
           
           
-             <span id="/2020/02/06/MQ消息最终一致性解决方案/" class="leancloud_visitors" data-flag-title="MQ消息最终一致性解决方案">
+             <span id="/2020/04/28/feiginClient使用及切换eureka为nacos注册中心/" class="leancloud_visitors" data-flag-title="feignClient使用及切换eureka为nacos注册中心">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1095,9 +1267,14 @@
 
       
         
-          
-            
-          
+          <p>此文接着上篇内容 <a href="https://wuweizhao.com/2020/04/09/spring-eureka-hello-world/" target="_blank" rel="noopener">spring-eureka-hello-world</a>，代码仓库地址： <a href="https://github.com/weizhaowu-se/spring-eureka" target="_blank" rel="noopener">https://github.com/weizhaowu-se/spring-eureka</a> 分支： master-nacos</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/04/28/feiginClient使用及切换eureka为nacos注册中心/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1144,7 +1321,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/06/mysql之groupby获得分组指定记录/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/19/docker私有仓库及k8s部署本地镜像/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wilbert">
@@ -1163,7 +1340,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/02/06/mysql之groupby获得分组指定记录/" itemprop="url">mysql之groupby获得分组指定记录</a></h1>
+                <a class="post-title-link" href="/2020/04/19/docker私有仓库及k8s部署本地镜像/" itemprop="url">docker私有仓库及k8s部署本地镜像</a></h1>
         
 
         <div class="post-meta">
@@ -1175,8 +1352,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-06T10:09:11+08:00">
-                2020-02-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-19T16:26:10+08:00">
+                2020-04-19
               </time>
             
 
@@ -1194,8 +1371,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/02/06/mysql之groupby获得分组指定记录/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/02/06/mysql之groupby获得分组指定记录/" itemprop="commentCount"></span>
+                <a href="/2020/04/19/docker私有仓库及k8s部署本地镜像/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/19/docker私有仓库及k8s部署本地镜像/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1203,7 +1380,7 @@
 
           
           
-             <span id="/2020/02/06/mysql之groupby获得分组指定记录/" class="leancloud_visitors" data-flag-title="mysql之groupby获得分组指定记录">
+             <span id="/2020/04/19/docker私有仓库及k8s部署本地镜像/" class="leancloud_visitors" data-flag-title="docker私有仓库及k8s部署本地镜像">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1235,50 +1412,18 @@
 
       
         
-          
-            <h1 id="mysql之groupby获得分组指定记录"><a href="#mysql之groupby获得分组指定记录" class="headerlink" title="mysql之groupby获得分组指定记录"></a>mysql之groupby获得分组指定记录</h1><h2 id="场景及需求"><a href="#场景及需求" class="headerlink" title="场景及需求"></a>场景及需求</h2><p>有如下示例表(表名test)：</p>
-<table>
-<thead>
-<tr>
-<th>字段编码</th>
-<th>字段名</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>id</td>
-<td>id</td>
-</tr>
-<tr>
-<td>学科</td>
-<td>subject</td>
-</tr>
-<tr>
-<td>成绩</td>
-<td>score</td>
-</tr>
-</tbody>
-</table>
-<p>如果只是想要获得每个学科的最高分的话，那么</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select subject, score from test group by subject</span><br></pre></td></tr></table></figure>
-<p>上述sql能够获得需要的结果</p>
-<p>但是更多时候我们想要的不仅仅是这样，我们还想要同时取得学科最高分对应的id，那么我们可以这样写</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select id, subject, score from (select * from test order by score) group by subject</span><br></pre></td></tr></table></figure>
-<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>group by后获取的第一条记录是默认第一条，那么我们先将其排序之后再去获取的，那么就能够获得到我们想要的那一条记录了</p>
-<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><p>如果mysql版本为5.7及以上，那么需要在排序时增加一个limit</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select id, subject, score from (select * from test order by score limit 10000) group by subject</span><br></pre></td></tr></table></figure>
-<p>但是如果记录大于指定的limit的话，那么就会出现问题，所以这种情况只适用于数据量能够掌控的表。</p>
-<p>查了一下之后发现另外一种方法</p>
-<h3 id="另一种方法"><a href="#另一种方法" class="headerlink" title="另一种方法"></a>另一种方法</h3><ul>
-<li><a href="https://blog.csdn.net/HXNLYW/article/details/102681680?depth_1-utm_source=distribute.pc_relevant.none-task&amp;utm_source=distribute.pc_relevant.none-task" target="_blank" rel="noopener">mysql实现group by后取各分组的最新一条</a></li>
-</ul>
-<p>看了之后发现，这种仅限于你想要取得的字段的限定条件是唯一的情况，并不能够满足我们此种场景下的需求（此场景下的限定条件是最大成绩的那一条，而非最大id的记录）</p>
-<h3 id="所以"><a href="#所以" class="headerlink" title="所以"></a>所以</h3><p>如果想规避limit的问题，那么就</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select subject, score from test group by subject</span><br></pre></td></tr></table></figure>
-<p>后再用指定的subject和score去查询出对应的记录吧</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from test  where subject = #&#123;subject&#125; and score = #&#123;score&#125;</span><br></pre></td></tr></table></figure>
-
-          
+          <h1 id="docker私有仓库及k8s部署本地镜像"><a href="#docker私有仓库及k8s部署本地镜像" class="headerlink" title="docker私有仓库及k8s部署本地镜像"></a>docker私有仓库及k8s部署本地镜像</h1><ol>
+<li>执行命令启动私有仓库</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -p 5000:5000 registry:2.0</span><br></pre></td></tr></table></figure>
+<p>执行命令后，会从DockerHub上拉取registry镜像并在本地启动Registry服务，并监听5000端口。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/04/19/docker私有仓库及k8s部署本地镜像/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1325,7 +1470,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/13/使用github-page以及hexo搭建博客（自定义域名）/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/19/sprintboot-docker-HelloWorld/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wilbert">
@@ -1344,7 +1489,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/10/13/使用github-page以及hexo搭建博客（自定义域名）/" itemprop="url">使用github page以及hexo搭建博客（自定义域名）</a></h1>
+                <a class="post-title-link" href="/2020/04/19/sprintboot-docker-HelloWorld/" itemprop="url">sprintboot&docker&HelloWorld</a></h1>
         
 
         <div class="post-meta">
@@ -1356,8 +1501,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-13T16:15:20+08:00">
-                2019-10-13
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-19T16:05:14+08:00">
+                2020-04-19
               </time>
             
 
@@ -1375,8 +1520,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/10/13/使用github-page以及hexo搭建博客（自定义域名）/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/10/13/使用github-page以及hexo搭建博客（自定义域名）/" itemprop="commentCount"></span>
+                <a href="/2020/04/19/sprintboot-docker-HelloWorld/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/19/sprintboot-docker-HelloWorld/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1384,7 +1529,7 @@
 
           
           
-             <span id="/2019/10/13/使用github-page以及hexo搭建博客（自定义域名）/" class="leancloud_visitors" data-flag-title="使用github page以及hexo搭建博客（自定义域名）">
+             <span id="/2020/04/19/sprintboot-docker-HelloWorld/" class="leancloud_visitors" data-flag-title="sprintboot&docker&HelloWorld">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1416,38 +1561,18 @@
 
       
         
-          
-            <h2 id="本地安装hexo"><a href="#本地安装hexo" class="headerlink" title="本地安装hexo"></a>本地安装hexo</h2><h3 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h3><ul>
-<li>查看文档 <a href="https://hexo.io/zh-cn/docs/index.html#安装" target="_blank" rel="noopener">hexo安装</a></li>
-</ul>
-<h3 id="初始化项目"><a href="#初始化项目" class="headerlink" title="初始化项目"></a>初始化项目</h3><p>常用命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">hexo init &lt;folder&gt;</span><br><span class="line">cd &lt;folder&gt;</span><br><span class="line">npm install</span><br><span class="line">hexo new post &apos;博客标题&apos;   ---新建博文</span><br><span class="line">hexo generate  -d</span><br><span class="line">hexo server   ---本地启动服务器,启动后访问http://localhost:4000/</span><br></pre></td></tr></table></figure>
-<p>常用文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">_config.yml    ---配置文件</span><br><span class="line">source/_posts    ---博客源文件(md文件)</span><br></pre></td></tr></table></figure>
-<h2 id="github新建仓库-github-page"><a href="#github新建仓库-github-page" class="headerlink" title="github新建仓库-github page"></a>github新建仓库-github page</h2><ul>
-<li>新建仓库,仓库名称为  <code>{yourusername}.github.io</code></li>
-</ul>
-<h2 id="hexo与github-page配置关联"><a href="#hexo与github-page配置关联" class="headerlink" title="hexo与github page配置关联"></a>hexo与github page配置关联</h2><ul>
-<li>配置hexo配置文件 <code>_config.yml</code></li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy: </span><br><span class="line">  type: git</span><br><span class="line">  repo: https://github.com/&#123;username&#125;/&#123;username&#125;.github.io.git  ##填写仓库地址</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
-<ul>
-<li>执行命令</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g -d</span><br></pre></td></tr></table></figure>
-<ul>
-<li>访问网址</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://&#123;yourusername&#125;.github.io</span><br></pre></td></tr></table></figure>
-<h2 id="配置自定义域名"><a href="#配置自定义域名" class="headerlink" title="配置自定义域名"></a>配置自定义域名</h2><ul>
-<li>source目录下新增文件,文件名为  <code>CNAME</code> (无后缀),文本内容为自定义域名(无http和www等前缀)</li>
-<li>配置dns中的c类解析,将自定义域名映射为  <code>{yourusername}.github.io</code></li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1. 先添加一个CNAME，主机记录写@，后面记录值写上你的http://xxxx.github.io</span><br><span class="line">2. 再添加一个CNAME，主机记录写www，后面记录值也是http://xxxx.github.io</span><br></pre></td></tr></table></figure>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://hexo.io/zh-cn/docs/index.html#安装" target="_blank" rel="noopener">hexo安装</a></p>
-<p><a href="https://zhuanlan.zhihu.com/p/25680246" target="_blank" rel="noopener">GitHub Pages 使用入门</a></p>
-
-          
+          <h1 id="sprintboot-amp-docker-amp-HelloWorld"><a href="#sprintboot-amp-docker-amp-HelloWorld" class="headerlink" title="sprintboot&amp;docker&amp;HelloWorld"></a>sprintboot&amp;docker&amp;HelloWorld</h1><h2 id="初始化springboot项目"><a href="#初始化springboot项目" class="headerlink" title="初始化springboot项目"></a>初始化springboot项目</h2><ol>
+<li>初始化springboot项目</li>
+<li>新建HelloController</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@RestController</span><br><span class="line">public class HelloController &#123;</span><br><span class="line">	@RequestMapping(value = &quot;/&quot;, method = RequestMethod.GET)</span><br><span class="line">	public String hello() &#123;</span><br><span class="line">		return &quot;hello docker demo&quot;;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/04/19/sprintboot-docker-HelloWorld/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1494,7 +1619,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/13/测试-1013/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/18/mac下安装k8s-docker及HelloWorld/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wilbert">
@@ -1513,7 +1638,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/10/13/测试-1013/" itemprop="url">测试-1013</a></h1>
+                <a class="post-title-link" href="/2020/04/18/mac下安装k8s-docker及HelloWorld/" itemprop="url">mac下安装k8s&docker及HelloWorld</a></h1>
         
 
         <div class="post-meta">
@@ -1525,8 +1650,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-13T16:02:06+08:00">
-                2019-10-13
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-18T17:05:04+08:00">
+                2020-04-18
               </time>
             
 
@@ -1544,8 +1669,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/10/13/测试-1013/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/10/13/测试-1013/" itemprop="commentCount"></span>
+                <a href="/2020/04/18/mac下安装k8s-docker及HelloWorld/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/18/mac下安装k8s-docker及HelloWorld/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1553,7 +1678,7 @@
 
           
           
-             <span id="/2019/10/13/测试-1013/" class="leancloud_visitors" data-flag-title="测试-1013">
+             <span id="/2020/04/18/mac下安装k8s-docker及HelloWorld/" class="leancloud_visitors" data-flag-title="mac下安装k8s&docker及HelloWorld">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1585,180 +1710,17 @@
 
       
         
-          
-            <h1 id="test"><a href="#test" class="headerlink" title="test"></a>test</h1>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/16/centos系统下wordpress的安装/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wilbert">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一亩三分地">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/06/16/centos系统下wordpress的安装/" itemprop="url">centos系统下wordpress的安装</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-16T22:45:52+08:00">
-                2019-06-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/06/16/centos系统下wordpress的安装/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/06/16/centos系统下wordpress的安装/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2019/06/16/centos系统下wordpress的安装/" class="leancloud_visitors" data-flag-title="centos系统下wordpress的安装">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="安装apache-php"><a href="#安装apache-php" class="headerlink" title="安装apache,php"></a>安装apache,php</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y httpd  php php-mysql php-gd php-xml</span><br></pre></td></tr></table></figure>
-<h3 id="启动-amp-重启apache服务"><a href="#启动-amp-重启apache服务" class="headerlink" title="启动&amp;重启apache服务"></a>启动&amp;重启apache服务</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">service httpd start  //启动</span><br><span class="line">systemctl restart httpd.service  //此命令亦可重启服务</span><br><span class="line">service httpd restart  重启</span><br></pre></td></tr></table></figure>
-<h3 id="相关目录"><a href="#相关目录" class="headerlink" title="相关目录"></a>相关目录</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/etc/httpd/conf/httpd.conf   配置文件位置</span><br><span class="line">/var/www/html  前端文件默认根目录</span><br></pre></td></tr></table></figure>
-<h2 id="升级php"><a href="#升级php" class="headerlink" title="升级php"></a>升级php</h2><h3 id="配置yum源"><a href="#配置yum源" class="headerlink" title="配置yum源:"></a>配置yum源:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm</span><br><span class="line">rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm</span><br></pre></td></tr></table></figure>
-<h3 id="卸载旧版本的php"><a href="#卸载旧版本的php" class="headerlink" title="卸载旧版本的php"></a>卸载旧版本的php</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -e `rpm -qa|grep php`</span><br></pre></td></tr></table></figure>
-<h3 id="安装新版本php"><a href="#安装新版本php" class="headerlink" title="安装新版本php:"></a>安装新版本php:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y php72w php72w-mysql php72w-gd php72w-ldap php72w-odbc php72w-pear php72w-xml php72w-xmlrpc php72w-mbstring php72w-snmp</span><br></pre></td></tr></table></figure>
-<h3 id="查看httpd是否加载了PHP7模块"><a href="#查看httpd是否加载了PHP7模块" class="headerlink" title="查看httpd是否加载了PHP7模块"></a>查看httpd是否加载了PHP7模块</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ll /etc/httpd/modules/|grep php</span><br></pre></td></tr></table></figure>
-<h3 id="查看php版本"><a href="#查看php版本" class="headerlink" title="查看php版本"></a>查看php版本</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php -v</span><br></pre></td></tr></table></figure>
-<h2 id="安装mysql"><a href="#安装mysql" class="headerlink" title="安装mysql"></a>安装mysql</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">yum localinstall http://dev.mysql.com/get/mysql57-community-release-el7-7.noarch.rpm</span><br><span class="line">yum install mysql-community-server</span><br><span class="line">service mysqld start</span><br><span class="line"></span><br><span class="line">//查看mysql的root账号的密码</span><br><span class="line">grep &apos;temporary password&apos; /var/log/mysqld.log</span><br><span class="line"></span><br><span class="line">//登录mysql</span><br><span class="line">mysql -uroot -p</span><br><span class="line"></span><br><span class="line">//修改密码</span><br><span class="line">ALTER USER &apos;root&apos;@&apos;localhost&apos; IDENTIFIED BY &apos;password&apos;;</span><br></pre></td></tr></table></figure>
-<h3 id="启动-amp-重启命令"><a href="#启动-amp-重启命令" class="headerlink" title="启动&amp;重启命令"></a>启动&amp;重启命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service mysqld start</span><br></pre></td></tr></table></figure>
-<h3 id="创建wordpress数据库"><a href="#创建wordpress数据库" class="headerlink" title="创建wordpress数据库"></a>创建wordpress数据库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//登陆数据库</span><br><span class="line">mysql –uroot –p</span><br><span class="line">//创建数据库</span><br><span class="line">create database wordpress;</span><br></pre></td></tr></table></figure>
-<h2 id="配置wordpress"><a href="#配置wordpress" class="headerlink" title="配置wordpress"></a>配置wordpress</h2><h3 id="下载文件"><a href="#下载文件" class="headerlink" title="下载文件"></a>下载文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">访问网址 https://rup.wordpress.org/download/</span><br><span class="line">进入目录 /var/www/html</span><br><span class="line">下载文件 wget </span><br><span class="line">unzip  解压下载的文件</span><br></pre></td></tr></table></figure>
-<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp wp-config-sample.php  wp-config.php</span><br></pre></td></tr></table></figure>
-<p>修改文件相关配置</p>
-<ul>
-<li>数据库相关配置(库名,用户名,密码,连接地址)</li>
-<li>设置语言包  <code>define(&#39;WPLANG&#39;, &#39;zh_CN&#39;);</code></li>
-<li>设置ftp连接解决方式  <code>define(&#39;FS_METHOD&#39;,&#39;direct&#39;);</code></li>
-</ul>
-<p>修改文件夹权限</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod -R  777 ./wordpress</span><br></pre></td></tr></table></figure>
-<h3 id="访问网址"><a href="#访问网址" class="headerlink" title="访问网址"></a>访问网址</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://ip/wordpress</span><br></pre></td></tr></table></figure>
-<h2 id="站点配置调整"><a href="#站点配置调整" class="headerlink" title="站点配置调整"></a>站点配置调整</h2><p>修改apache配置使得访问网站时输入ip地址会自动跳转到  <a href="http://ip/wordpress" target="_blank" rel="noopener">http://ip/wordpress</a> (补充后面的子目录,不需要手动输入)</p>
-<h3 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/httpd/conf/httpd.conf</span><br><span class="line">添加如下</span><br><span class="line">RewriteEngine on</span><br><span class="line">RewriteCond  %&#123;REQUEST_URI&#125; ^/$</span><br><span class="line">RewriteRule  (.*) http://%&#123;SERVER_NAME&#125;/wordpress/ [L,R=301]</span><br></pre></td></tr></table></figure>
-<p>重启apache</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service httpd restart  重启</span><br></pre></td></tr></table></figure>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://juejin.im/entry/5ab34eb76fb9a028cc61202e" target="_blank" rel="noopener">Centos 7 搭建 WordPress</a></p>
-<p><a href="https://www.tracymc.cn/archives/499" target="_blank" rel="noopener">WordPress yum升级PHP版本到PHP7.2</a></p>
-<p><a href="https://cn.wordpress.org/switching/" target="_blank" rel="noopener">wordpress切换语言/语言包</a></p>
-<p><a href="https://www.wpcom.cn/tutorial/101.html" target="_blank" rel="noopener">WordPress 安装主题、插件、更新时需要FTP的解决办法</a></p>
-<p><a href="https://www.jianshu.com/p/57e868e4a1fa" target="_blank" rel="noopener">apache2重定向至子目录</a></p>
-
-          
+          <h1 id="mac下安装k8s-amp-docker及HelloWorld"><a href="#mac下安装k8s-amp-docker及HelloWorld" class="headerlink" title="mac下安装k8s&amp;docker及HelloWorld"></a>mac下安装k8s&amp;docker及HelloWorld</h1><p>安装环境：macOS</p>
+<h2 id="安装docker"><a href="#安装docker" class="headerlink" title="安装docker"></a>安装docker</h2><p>下载地址：<a href="https://hub.docker.com/editions/community/docker-ce-desktop-mac" target="_blank" rel="noopener">https://hub.docker.com/editions/community/docker-ce-desktop-mac</a></p>
+<p>无脑点击下一步即可</p>
+<h2 id="启用k8s"><a href="#启用k8s" class="headerlink" title="启用k8s"></a>启用k8s</h2><p>打开docker—preference—kurbernets，勾上Enable Kurbernets，注意，勾选上之后需要下载文件，这个过程比较耗时，需要耐心等待</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/04/18/mac下安装k8s-docker及HelloWorld/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1796,7 +1758,7 @@
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1842,7 +1804,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">64</span>
+                  <span class="site-state-item-count">77</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1855,7 +1817,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">47</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

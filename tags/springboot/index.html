@@ -81,7 +81,7 @@
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="一亩三分地">
-<meta property="og:url" content="http://yoursite.com/tags/springboot/index.html">
+<meta property="og:url" content="http://yoursite.com/tags/SpringBoot/index.html">
 <meta property="og:site_name" content="一亩三分地">
 <meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
@@ -115,13 +115,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/springboot/"/>
+  <link rel="canonical" href="http://yoursite.com/tags/SpringBoot/"/>
 
 
 
 
 
-  <title>标签: springboot | 一亩三分地</title>
+  <title>标签: SpringBoot | 一亩三分地</title>
   
 
 
@@ -265,7 +265,7 @@
 
     <div id="posts" class="posts-collapse">
       <div class="collection-title">
-        <h1>springboot<small>标签</small>
+        <h1>SpringBoot<small>标签</small>
         </h1>
       </div>
 
@@ -277,37 +277,9 @@
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2020/03/02/springboot集成mybatis及pageHelper的使用/" itemprop="url">
+            <a class="post-title-link" href="/2020/04/09/spring-eureka-hello-world/" itemprop="url">
               
-                <span itemprop="name">springboot集成mybatis及pageHelper的使用</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-03-02T22:23:02+08:00"
-              content="2020-03-02" >
-          03-02
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/03/18/springboot数据库与mybatis/" itemprop="url">
-              
-                <span itemprop="name">springboot数据库与mybatis</span>
+                <span itemprop="name">spring-eureka-hello-world</span>
               
             </a>
         
@@ -315,9 +287,9 @@
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated"
-              datetime="2019-03-18T21:01:35+08:00"
-              content="2019-03-18" >
-          03-18
+              datetime="2020-04-09T22:22:16+08:00"
+              content="2020-04-09" >
+          04-09
         </time>
       </div>
 
@@ -377,7 +349,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">64</span>
+                  <span class="site-state-item-count">77</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -390,7 +362,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">47</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -981,6 +953,82 @@
 
     function addCount(Counter) {
       var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+tors = $(".leancloud_visitors");
       var url = $visitors.attr('id').trim();
       var title = $visitors.attr('data-flag-title').trim();
       var query = new AV.Query(Counter);
