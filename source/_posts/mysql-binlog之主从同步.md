@@ -103,3 +103,11 @@ show slave status;   ---显示slave状态
 ```
 
 6. 可以尝试建一个表/数据库来验证主从复制的过程。
+
+### 参考
+
+* [MySQL主从复制搭建，基于日志（binlog）](https://www.jianshu.com/p/4876a0aab3e8)
+* [解决：Mac下mysql配置文件没有my-default.cnf，无法配置my.cnf](https://www.jianshu.com/p/628bcf8bb557)
+
+* [Docker容器访问宿主机网络](https://jingsam.github.io/2018/10/16/host-in-docker.html)
+
