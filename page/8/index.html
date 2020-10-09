@@ -273,6 +273,506 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/08/travelMap/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wilbert">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一亩三分地">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/10/08/travelMap/" itemprop="url">TravelMap</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-08T21:15:00+08:00">
+                2016-10-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/10/08/travelMap/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2016/10/08/travelMap/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2016/10/08/travelMap/" class="leancloud_visitors" data-flag-title="TravelMap">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><font style="font-family:微软雅黑"></font></p>
+<h2 id="Activity通知更新Fragment："><a href="#Activity通知更新Fragment：" class="headerlink" title="Activity通知更新Fragment："></a>Activity通知更新Fragment：</h2><p>通过Fragment的onAttach()函数以及使用handler：<br>在Fragment类中定义handler成员并且重载handleMessage()函数，在handlerMessage函数中进行根据Message的信息来进行相应的操作来更新Fragment，那么怎么将Activity怎么使用这个handler呢？因为他们并不是在同一个类中，所以我在Activity中也有一个handler，在OnAttach的时候将其赋值为handler，一开始有考虑将这个handler设置为fragment类的静态成员变量，但是考虑到这样会带来其他的问题（静态成员变量就与具体的对象无关而与类相关了）。</p>
+<h2 id="Fragment通知更新Activity数据"><a href="#Fragment通知更新Activity数据" class="headerlink" title="Fragment通知更新Activity数据"></a>Fragment通知更新Activity数据</h2><p>由Activity来实现一个接口，在Fragment的onAttach函数中可以将这个接口传递给Fragment，再通过这个接口来调用我们想要更新的Activity的数据。</p>
+<h2 id="Bitmap-oom"><a href="#Bitmap-oom" class="headerlink" title="Bitmap oom"></a>Bitmap oom</h2><p>其实这个问题我们一开始也没有想到。因为我负责的那一块在显示一些图片的时候一直会有问题，经常是整个黑色的什么都没有，但是队友做的那部分却一切正常。所以也是被这个问题坑了很久。<br>知道问题后解决其实就不麻烦了，通过使用BitmapFactory的一些选项设置可以达到获得缩略图片的效果，自然问题也就迎刃而解了。</p>
+<h2 id="同一个界面，判断是否是不同的使用类型"><a href="#同一个界面，判断是否是不同的使用类型" class="headerlink" title="同一个界面，判断是否是不同的使用类型"></a>同一个界面，判断是否是不同的使用类型</h2><p>因为在同一个界面上，我们可能是想要新建一个项，也可能是想要编辑一个项，那怎么判断比较好呢？最后我们的解决方法是使用一个布尔值得成员变量来帮助判断，而在其他界面跳转过来时根据携带的信息来确定这个成员变量的布尔值。</p>
+<h2 id="拍照很坑的地方"><a href="#拍照很坑的地方" class="headerlink" title="拍照很坑的地方"></a>拍照很坑的地方</h2><p>当时是使用一个startActivityForResult的方法来启动相机并且传入了相应的Uri，因为需要保存文件，同时也需要将拍到的照片在界面上面显示出来，所以，坑的地方就出现了，在返回的data里面获得的图片是空的，本来还想着说能够很方便地把结果给显示出来，没想到还是得根据uri自己去把图片加载出来。</p>
+<h2 id="ListView的优化"><a href="#ListView的优化" class="headerlink" title="ListView的优化"></a>ListView的优化</h2><h2 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h2><p>每个Activity均实现同一个接口，实现接口函数。新建一个继承自Handler的类，重载handlerMessage函数，在函数中调用上述提到的接口函数，。然后我们再在Thread中调用使用handler就可以了。</p>
+<h2 id="使用ViewPager时滑动冲突"><a href="#使用ViewPager时滑动冲突" class="headerlink" title="使用ViewPager时滑动冲突"></a>使用ViewPager时滑动冲突</h2><p>新建一个类继承自ViewPager，直接将其滑动事件禁用掉。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/08/android序列化/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wilbert">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一亩三分地">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/10/08/android序列化/" itemprop="url">android序列化</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-08T15:30:31+08:00">
+                2016-10-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/10/08/android序列化/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2016/10/08/android序列化/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2016/10/08/android序列化/" class="leancloud_visitors" data-flag-title="android序列化">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><font style="font-family:微软雅黑"></font></p>
+<h2 id="实现Serializable接口"><a href="#实现Serializable接口" class="headerlink" title="实现Serializable接口"></a>实现Serializable接口</h2><p><em>Serializable接口是来自Java的序列化接口</em></p>
+<h3 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h3><pre><code>class BagOfPrimitives implements Serializable{
+    public int value1 = 1;
+    public String value2 = &quot;abc&quot;;
+    public transient int value3 = 3;
+}
+</code></pre><ul>
+<li>在Intent中传递对象时<br><img src="http://7xkzud.com1.z0.glb.clouddn.com/16-10-8/9889133.jpg" alt=""></li>
+<li>取出对象<br><img src="http://7xkzud.com1.z0.glb.clouddn.com/16-10-8/4751825.jpg" alt=""><h2 id="实现Parcelable接口"><a href="#实现Parcelable接口" class="headerlink" title="实现Parcelable接口"></a>实现Parcelable接口</h2><em>Android自带的接口，性能更高，但通用性不强</em><h3 id="使用方法如下"><a href="#使用方法如下" class="headerlink" title="使用方法如下"></a>使用方法如下</h3></li>
+<li>Parcel为参数的构造函数中，给变量赋值</li>
+<li><p>writeToParcel(Parcel dest, int flags)将变量的值写入dest</p>
+<pre><code>public class Person  implements Parcelable {
+    private int data;
+    private Book book;
+    protected Person(Parcel in) {
+        data = in.readInt();
+        book = in.readParcelable(Book.class.getClassLoader());
+    }
+
+    public static final Creator&lt;Person&gt; CREATOR = new Creator&lt;Person&gt;() {
+        @Override
+        public Person createFromParcel(Parcel in) {
+            return new Person(in);
+        }
+
+        @Override
+        public Person[] newArray(int size) {
+            return new Person[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(data);
+        dest.writeParcelable(book, flags);
+    }
+}
+</code></pre></li>
+<li>重点<ul>
+<li>序列化的成员变量也需要实现Parcel接口，同时读取以及写入方式如下</li>
+<li>读取<blockquote>
+<p>book = in.readParcelable(Book.class.getClassLoader());</p>
+</blockquote>
+</li>
+<li>写入<blockquote>
+<p>dest.writeParcelable(book, flags);</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>传递对象时<br><img src="http://7xkzud.com1.z0.glb.clouddn.com/16-10-8/68062237.jpg" alt=""></li>
+<li>接收对象时<br><img src="http://7xkzud.com1.z0.glb.clouddn.com/16-10-8/50517350.jpg" alt=""></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/07/JAVA中的引用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wilbert">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一亩三分地">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/10/07/JAVA中的引用/" itemprop="url">JAVA中的引用</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-07T20:09:10+08:00">
+                2016-10-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/10/07/JAVA中的引用/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2016/10/07/JAVA中的引用/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2016/10/07/JAVA中的引用/" class="leancloud_visitors" data-flag-title="JAVA中的引用">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><font style="font-family:微软雅黑"></font></p>
+<h3 id="强引用"><a href="#强引用" class="headerlink" title="强引用"></a>强引用</h3><ul>
+<li>最普遍的情况</li>
+<li>宁愿抛出OOM也不会将其回收</li>
+<li>可以通过将引用设置为null来弱化引用，便于gc回收对象<h3 id="软引用-SoftReference"><a href="#软引用-SoftReference" class="headerlink" title="软引用 SoftReference"></a>软引用 SoftReference</h3></li>
+<li><p>内存空间足够时不会回收，如果内存空间不足了，就会将其回收。</p>
+<pre><code>String str=new String(&quot;abc&quot;);                                     // 强引用  
+SoftReference&lt;String&gt; softRef=new SoftReference&lt;String&gt;(str);  
+</code></pre></li>
+</ul>
+<h3 id="弱引用WeakReference"><a href="#弱引用WeakReference" class="headerlink" title="弱引用WeakReference"></a>弱引用WeakReference</h3><ul>
+<li>比软引用更加弱，当垃圾收集器回收时就会被回收。<h3 id="虚引用"><a href="#虚引用" class="headerlink" title="虚引用"></a>虚引用</h3></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/07/关于RecyclerView以及ListView中的图像加载问题/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -928,7 +1428,7 @@ LocalBroadcastManager.getInstance(this).registerReceiver(responseReceive, intent
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/09/26/Android笔试题目/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/09/26/RecycleView/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wilbert">
@@ -947,7 +1447,7 @@ LocalBroadcastManager.getInstance(this).registerReceiver(responseReceive, intent
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2016/09/26/Android笔试题目/" itemprop="url">Android笔试题目</a></h1>
+                <a class="post-title-link" href="/2016/09/26/RecycleView/" itemprop="url">RecycleView</a></h1>
         
 
         <div class="post-meta">
@@ -978,8 +1478,8 @@ LocalBroadcastManager.getInstance(this).registerReceiver(responseReceive, intent
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2016/09/26/Android笔试题目/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2016/09/26/Android笔试题目/" itemprop="commentCount"></span>
+                <a href="/2016/09/26/RecycleView/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2016/09/26/RecycleView/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -987,7 +1487,7 @@ LocalBroadcastManager.getInstance(this).registerReceiver(responseReceive, intent
 
           
           
-             <span id="/2016/09/26/Android笔试题目/" class="leancloud_visitors" data-flag-title="Android笔试题目">
+             <span id="/2016/09/26/RecycleView/" class="leancloud_visitors" data-flag-title="RecycleView">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1020,36 +1520,246 @@ LocalBroadcastManager.getInstance(this).registerReceiver(responseReceive, intent
       
         
           
-            <p><font style="font-family: 微软雅黑;"><br>title: Android基础笔试题<br>tags:</font></p>
-<ul>
-<li>android</li>
-<li>笔试<h1 id="activity的启动过程"><a href="#activity的启动过程" class="headerlink" title="activity的启动过程"></a>activity的启动过程</h1><blockquote>
-<p>onCreate()-&gt;onStart()-&gt;onResume()-&gt;运行-&gt;onPause()-&gt;onStop()-&gt;onDestroy.</p>
-</blockquote>
+            <p><font style="font-family:微软雅黑"></font></p>
+<h3 id="创建RecycleView-Adapter的继承类"><a href="#创建RecycleView-Adapter的继承类" class="headerlink" title="创建RecycleView.Adapter的继承类"></a>创建RecycleView.Adapter的继承类</h3><ul>
+<li>其中存在内部静态类：继承 RecyclerView.ViewHolder.</li>
+<li><p>内部静态类：</p>
+<pre><code>public static class ViewHolder extends RecyclerView.ViewHolder{
+    public Button button;
+    public ViewHolder(View t) {
+        super(t);
+        button = (Button) t.findViewById(R.id.item_text_view);
+    }}
+</code></pre><h4 id="重载函数-onCreateViewHolder"><a href="#重载函数-onCreateViewHolder" class="headerlink" title="重载函数 onCreateViewHolder"></a>重载函数 onCreateViewHolder</h4><p>  @Override<br>  public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {</p>
+<pre><code>final View view = LayoutInflater.from(parent.getContext())
+        .inflate(R.layout.my_text_view, parent, false);
+ViewHolder viewHolder = new ViewHolder(view);
+return viewHolder;
+</code></pre><p>  }</p>
+<h4 id="重载onBindViewHolder，设置每一个item的内容"><a href="#重载onBindViewHolder，设置每一个item的内容" class="headerlink" title="重载onBindViewHolder，设置每一个item的内容"></a>重载onBindViewHolder，设置每一个item的内容</h4><p>  @Override<br>  public void onBindViewHolder(ViewHolder holder, int position) {</p>
+<pre><code>//每个item的具体设置
+holder.button.setText(dataSet.get(position));
+</code></pre><p>  }</p>
 </li>
 </ul>
-<ul>
-<li>注意，当启动新的activity或切换到桌面时，回调onPause和onStop，切换回来的时候，回调onRestart-&gt;onStart-&gt;onResume。</li>
-<li>back回退时，回调onPause，onStop，onDestroy。</li>
-<li>如果被系统回收的话，则与初次启动回调函数一样，但是在onCreate中会有个状态保存的变量供恢复数据</li>
-<li>旧Activity的onPause先调用，然后新Activity才启动。</li>
-<li>意外情况activity被销毁的时候，会调用onSaveInstanceState保存状态，再将Bundle对象传递给onRestoreInstanceState和onCreate方法。</li>
-<li>资源内存不足导致activity被杀死</li>
-<li>优先级：前台&gt;可见但非前台（弹出对话框的activity）&gt;后台（已经被暂停的）</li>
+<h3 id="实现按钮监听的方法"><a href="#实现按钮监听的方法" class="headerlink" title="实现按钮监听的方法"></a>实现按钮监听的方法</h3><ol>
+<li><p>声明接口</p>
+<pre><code>public interface IOnItemClick {
+    void onItemClick(View view);
+}
+</code></pre></li>
+<li><p>在Activity中实现接口</p>
+<pre><code>MenuAdapter.IOnItemClick iOnItemClick = new MenuAdapter.IOnItemClick() {
+    @Override
+    public void onItemClick(View view) {
+        //此处的view为每个item的View而非里面的按钮之类的
+        int itemPosition = recyclerView.getChildLayoutPosition(view);
+    }
+}
+</code></pre></li>
+<li>在初始化Adapter中，将接口的实现类传进去。</li>
+<li><p>在Adapter中。</p>
+<pre><code>@Override
+public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    final View view = LayoutInflater.from(parent.getContext())
+            .inflate(R.layout.my_text_view, parent, false);
+    ViewHolder viewHolder = new ViewHolder(view);
+    if(iOnItemClick != null) {
+        viewHolder.button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iOnItemClick.onItemClick(view);
+                //此处调用的view为上面所述的view而非按钮v
+            }
+        });
+    }
+    return viewHolder;
+}
+</code></pre></li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/09/26/UI/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wilbert">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一亩三分地">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/09/26/UI/" itemprop="url">UI</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-26T00:00:00+08:00">
+                2016-09-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/09/26/UI/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2016/09/26/UI/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2016/09/26/UI/" class="leancloud_visitors" data-flag-title="UI">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><font style="font-family:微软雅黑"></font></p>
+<h2 id="TextView"><a href="#TextView" class="headerlink" title="TextView"></a>TextView</h2><ul>
+<li><p>android:gravity</p>
+<blockquote>
+<p>top bottom left right等等，指定对齐方向</p>
+</blockquote>
+</li>
+<li><p>match_parent</p>
+</li>
+<li>fill_parent </li>
+<li>wrap_content</li>
 </ul>
-<h1 id="activity的启动模式有"><a href="#activity的启动模式有" class="headerlink" title="activity的启动模式有"></a>activity的启动模式有</h1><ul>
-<li>标准模式</li>
-<li>singleTop 栈顶复用模式，如果在栈顶，则不重新创建，同时调用onNewIntent方法</li>
-<li>singleTask  栈内复用,在一个新的task中产生这个实例，以后每次调用都会使用这个。</li>
-<li>singleInstance 单实例模式，与singleTask模式基本一样，区别在于在这个模式下的activity实例所处的task中只有这个实例而不会有其他的实例。</li>
+<h2 id="EditText"><a href="#EditText" class="headerlink" title="EditText"></a>EditText</h2><p>maxLine</p>
+<h2 id="ImageView"><a href="#ImageView" class="headerlink" title="ImageView"></a>ImageView</h2><pre><code>imageView.setImageResource(R.mipmap.abc);
+</code></pre><h2 id="visible-invisible-gone属性"><a href="#visible-invisible-gone属性" class="headerlink" title="visible invisible gone属性"></a>visible invisible gone属性</h2><ul>
+<li>visible 可见</li>
+<li>invisible 不可见但是还存在</li>
+<li>gone 不可见不存在</li>
+<li><p>View setVisibilty() View.gone …</p>
+<h2 id="AlertDialog"><a href="#AlertDialog" class="headerlink" title="AlertDialog"></a>AlertDialog</h2><p>  AlertDialog.Builder builder = new AlertDialog.Builder(UIActivity.this);</p>
+<pre><code>builder.setTitle(&quot;AlertDialogTitle&quot;);
+builder.setCancelable(false);
+builder.setMessage(&quot;some message&quot;);
+builder.setPositiveButton(&quot;Yes&quot;, new DialogInterface.OnClickListener() {
+    @Override
+    public void onClick(DialogInterface dialog, int which) {
+
+    }
+});
+builder.setNegativeButton(&quot;No&quot;, new DialogInterface.OnClickListener() {
+    @Override
+    public void onClick(DialogInterface dialog, int which) {
+
+    }
+});
+builder.show();
+</code></pre><h2 id="LinearLayout"><a href="#LinearLayout" class="headerlink" title="LinearLayout"></a>LinearLayout</h2></li>
+<li>指定方向，要注意如果是水平方向的话，则内部控件的宽度不能够是match_parent的不然会充满整个布局，同理竖直方向也是类似的。</li>
+<li>android:layout_gravity属性：正如TextView中gravity表示文本内容占据整个宽度的位置，这个属性指的是控件在LinearLayout中的相对位置，而且，当外层layout是竖直布局时在其上的关于竖直的设置是不会生效的。注意，这个属性亦是属于子布局里面的而不是属于LinearLayout（要指定的是每一个不同的子布局）。</li>
+<li>android:layout_weight属性：系统会先把 LinearLayout 下所有控件指定的 layout_weight 值相加， 得到一个总值，然后每个控件所占大小的比例就是用该控件的 layout_weight 值除以刚才算出的总值。</li>
+<li>布局中的如果只有部分控件有weight属性，则有weight属性的控件共享剩下的宽度或者高度（按照比例分配）。</li>
 </ul>
-<h1 id="数据存储方式"><a href="#数据存储方式" class="headerlink" title="数据存储方式"></a>数据存储方式</h1><ul>
-<li>sharedpreferrence：xml格式，简单的键值对，有缓存，注意多线程访问时候可能出现的问题</li>
-<li>普通文件存储</li>
-<li>SQLite数据库：轻量级的数据库，使用openHelper，cursor，SQLiteDataBase。</li>
-<li>ContentProvider。cursor，provider。</li>
-<li>网络。httpURLconnection。</li>
-</ul>
+<h2 id="RelativeLayout-相对布局"><a href="#RelativeLayout-相对布局" class="headerlink" title="RelativeLayout 相对布局"></a>RelativeLayout 相对布局</h2><h2 id="dp和sp"><a href="#dp和sp" class="headerlink" title="dp和sp"></a>dp和sp</h2><p>在编写 Android 程序的时候，尽量将控件或布局的大小指定成 match_parent<br>或 wrap_content，如果必须要指定一个固定值，则使用 dp 来作为单位，指定文字大小的时候<br>使用 sp 作为单位。</p>
 
           
         
@@ -1235,847 +1945,6 @@ LocalBroadcastManager.getInstance(this).registerReceiver(responseReceive, intent
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/09/26/Handler_async_task/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wilbert">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一亩三分地">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/09/26/Handler_async_task/" itemprop="url">异步消息处理</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-26T00:00:00+08:00">
-                2016-09-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2016/09/26/Handler_async_task/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2016/09/26/Handler_async_task/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2016/09/26/Handler_async_task/" class="leancloud_visitors" data-flag-title="异步消息处理">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><font style="font-family:微软雅黑"></font></p>
-<h2 id="Handler"><a href="#Handler" class="headerlink" title="Handler"></a>Handler</h2><h3 id="Handler的使用"><a href="#Handler的使用" class="headerlink" title="Handler的使用"></a>Handler的使用</h3><ol>
-<li><p>继承Handler类，Override它的handleMessage方法（处理消息）</p>
-<pre><code>Handler handler = new Handler() {
-    @Override
-    public void handleMessage(Message msg) {
-        super.handleMessage(msg);
-        textView.setText(&quot;after handling&quot; + msg.getData().getString(&quot;key&quot;));
-    }
-};
-</code></pre><ul>
-<li>tips:Message可能需要用到的两个成员分别是<ul>
-<li>msg.what</li>
-<li>msg.setData(),msg.getData()</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>在新开的线程中使用handler的sendMessage方法发送消息，以达到修改UI元素的效果。</p>
-<pre><code>new Thread(new Runnable() {
-    @Override
-    public void run() {
-        Message msg = new Message();
-        Bundle bundle = new Bundle();
-        bundle.putString(&quot;key&quot;, textView.getText().toString());
-        msg.setData(bundle);
-        handler.sendMessage(msg);
-    }
-}).start();
-</code></pre></li>
-<li>一些思考</li>
-</ol>
-<pre><code>    MessageQueue：消息队列
-    Looper：循环，一直从消息队列中获得消息，如果没有消息则一直循环。成员变量有MessageQueue。ThreadLocal变量，每个线程唯一且相同。
-    Handler：成员变量有Looper，亦即也拥有MessageQueue，发送消息时向消息队列插入消息，有Looper负责发现消息并且根据Message的target（亦即handler）来负责处理消息。
-* 所以，当我们在子线程中用handler发送消息时，插入的MessageQueue是主线程的MessageQueue，此时由handler的操作便变成了主线程的操作而非在子线程中操作界面。
-</code></pre><h2 id="AsyncTask"><a href="#AsyncTask" class="headerlink" title="AsyncTask"></a>AsyncTask</h2><ol>
-<li><p>继承AsyncTask类</p>
-<pre><code>//参数，运行时返回值类型，结果类型
-class DownloadTask extends AsyncTask&lt;String, Integer, Boolean&gt; {
-int count = 0;
-//任务启动前执行的函数
-@Override
-protected void onPreExecute() {
-    progressDialog.show();
-}
-//后台执行的函数，可以进行耗时操作
-@Override
-protected Boolean doInBackground(String... params) {
-    while (true) {
-        try {
-            TimeUnit.SECONDS.sleep(1);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        count++;
-        if (count &gt;= 10) {
-            break;
-        }
-        //这个方法会调用更新进度显示的函数。
-        publishProgress(count);
-    }
-    return true;
-}
-//更新进度显示
-@Override
-protected void onProgressUpdate(Integer... values) {
-    progressDialog.setMessage(&quot;downloaded &quot; + values[0]*10 + &quot;%&quot;);
-}
-//后台执行完成之后调用。
-@Override
-protected void onPostExecute(Boolean aBoolean) {
-    progressDialog.dismiss();
-    if(aBoolean) {
-        Toast.makeText(MessageHandleActivity.this, &quot;succeed&quot;, Toast.LENGTH_SHORT).show();
-    } else {
-        Toast.makeText(MessageHandleActivity.this, &quot;failed&quot;, Toast.LENGTH_SHORT).show();
-    }
-}
-</code></pre><p> }</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/09/26/Service/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wilbert">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一亩三分地">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/09/26/Service/" itemprop="url">Service</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-26T00:00:00+08:00">
-                2016-09-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2016/09/26/Service/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2016/09/26/Service/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2016/09/26/Service/" class="leancloud_visitors" data-flag-title="Service">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><font style="font-family:微软雅黑"></font></p>
-<h2 id="Service"><a href="#Service" class="headerlink" title="Service"></a>Service</h2><h3 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h3><h4 id="和Activity进行通信"><a href="#和Activity进行通信" class="headerlink" title="和Activity进行通信"></a>和Activity进行通信</h4><ol>
-<li><p>继承Binder对象</p>
-<pre><code>public class DownloadBinder extends Binder{
-int count = 0;
-Handler handler;
-public void setHandler(Handler handler) {
-    this.handler = handler;
-}
-public void startDownload() {
-
-}
-</code></pre><p> }</p>
-</li>
-<li><p>继承Service，Override onBind函数,新增成员：DownloadBinder。</p>
-<pre><code>public class MyService extends Service {
-    DownloadBinder downloadBinder = new DownloadBinder();
-    @Nullable
-    @Override
-    public IBinder onBind(Intent intent) {
-        return downloadBinder;
-    }
-}
-</code></pre></li>
-<li><p>Activity中，连接时获得DownloadBinder实例，这样就可以通过Binder来与Service进行通信。</p>
-<pre><code>ServiceConnection connection = new ServiceConnection() {
-    @Override
-    public void onServiceConnected(ComponentName name, IBinder service) {
-        binder = (MyService.DownloadBinder) service;
-        binder.setHandler(handler);
-        binder.startDownload();
-    }
-
-    @Override
-    public void onServiceDisconnected(ComponentName name) {
-
-    }};
-</code></pre></li>
-<li><p>绑定service</p>
-<pre><code>Intent intent = new Intent(ServiceLearnActivity.this, MyService.class);
-bindService(intent, connection, BIND_AUTO_CREATE);
-</code></pre></li>
-</ol>
-<h4 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h4><ul>
-<li>startService方法调用时，启动相应的服务，如果服务之前没有创建，那么会先回调onCreate方法，接下来回调onStartCommand方法。</li>
-<li>每个服务只会存在一个实例。</li>
-<li>bindService方法：回调onBind方法：如果服务之前还没有创建，那么会先回调onCreate方法。</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/09/26/Activity/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wilbert">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一亩三分地">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/09/26/Activity/" itemprop="url">Activity</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-26T00:00:00+08:00">
-                2016-09-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2016/09/26/Activity/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2016/09/26/Activity/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2016/09/26/Activity/" class="leancloud_visitors" data-flag-title="Activity">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><font style="font-family:微软雅黑"></font></p>
-<h2 id="Activity"><a href="#Activity" class="headerlink" title="Activity"></a>Activity</h2><h3 id="res目录"><a href="#res目录" class="headerlink" title="res目录"></a>res目录</h3><ul>
-<li><p>drawable 存放图片</p>
-<blockquote>
-<ul>
-<li>R.drawable.XXX</li>
-<li>@drawable/XXX</li>
-</ul>
-</blockquote>
-</li>
-<li><p>values 存放字符串</p>
-<blockquote>
-<ul>
-<li>代码中：R.string.XXX    </li>
-<li>xml中：@string/XXX</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-<ul>
-<li>layout 存放布局文件</li>
-<li><p>menu 存放菜单文件</p>
-</li>
-<li><p>项目中任何添加的资源都会在R文件中生成一个相应的资源id。</p>
-</li>
-</ul>
-<h3 id="添加菜单"><a href="#添加菜单" class="headerlink" title="添加菜单"></a>添加菜单</h3><ol>
-<li>res下新建menu文件夹，添加菜单文件（res的menu文件夹中）</li>
-<li><p>重写onCreateOptionsMenu方法</p>
-<pre><code>@Override
-public boolean onCreateOptionsMenu(Menu menu) {
-    this.getMenuInflater().inflate(R.menu.main, menu);
-    return true;
-}
-</code></pre></li>
-<li><p>响应点击按钮事件</p>
-<pre><code>@Override
-public boolean onOptionsItemSelected(MenuItem item) {
-    switch (item.getItemId()) {
-        case R.id.set_item:
-            Toast.makeText(this, &quot;设置&quot;, Toast.LENGTH_SHORT).show();
-    }
-    return true;
-}
-</code></pre></li>
-</ol>
-<h3 id="Intent"><a href="#Intent" class="headerlink" title="Intent"></a>Intent</h3><h4 id="隐式intent"><a href="#隐式intent" class="headerlink" title="隐式intent"></a>隐式intent</h4><h5 id="待启动的activity"><a href="#待启动的activity" class="headerlink" title="待启动的activity"></a>待启动的activity</h5><ul>
-<li>在需要响应内容的Activity中添加action以及category字段，只有当这两个字段完全匹配上intent的相应的值时，才可以启动activity。</li>
-<li><p>intent构造函数：action字符串传入，默认情况下会插入</p>
-<blockquote>
-<p>“android.intent.category.DEFAULT”</p>
-</blockquote>
-</li>
-<li><p>intent-filter可以指定data标签，更精确的指定当前activity能够响应的数据</p>
-<pre><code>&lt;data android:scheme=&quot;http&quot;
-    android:mimeType=&quot;XXX&quot;&gt;&lt;/data&gt;
-</code></pre><p>除此之外，还能够匹配host，port，path等，只有当这些值完全匹配，才会被启动。</p>
-<h5 id="隐式启动activity时"><a href="#隐式启动activity时" class="headerlink" title="隐式启动activity时"></a>隐式启动activity时</h5></li>
-<li>intent 可以指定多个category</li>
-<li></li>
-</ul>
-<pre><code>Intent intent  = new Intent(Intent.ACTION_VIEW);
-intent.setData(Uri.parse(&quot;http://www.baidu.com&quot;));
-
-
-Intent intent = new Intent(Intent.ACTION_DIAL);
-intent.setData(Uri.parse(&quot;tel:10086&quot;));
-</code></pre><ul>
-<li>intent setDateAndType（，）两个参数分别是uri以及文件类型.<br><a href="http://blog.csdn.net/chaoyu168/article/details/50778016" target="_blank" rel="noopener">http://blog.csdn.net/chaoyu168/article/details/50778016</a><h5 id="activity之间传递数据"><a href="#activity之间传递数据" class="headerlink" title="activity之间传递数据"></a>activity之间传递数据</h5></li>
-<li><p>传递给下一个界面</p>
-<blockquote>
-<ul>
-<li>在intent当中putExtra就可以了,在下一个界面当中getIntent获得intent就可以读取里面的内容了。</li>
-</ul>
-</blockquote>
-<blockquote>
-<ul>
-<li>可以直接使用key-value的方式插入intent中，也可以通过bundle类来进行插入，bundle类类似一个map，能够简化操作。</li>
-<li>实现了序列化接口的类对象也可以通过intent传递。</li>
-</ul>
-</blockquote>
-</li>
-<li><p>对接时怎么样传递数据比较好呢？</p>
-<blockquote>
-<p>在被启动的页面中新增一个静态方法actionStart(),参数需要有context，然后参数列表是需要传递的数据，这样在前一个页面中直接调用这个方法就可以启动新的页面了。</p>
-</blockquote>
-</li>
-<li><p>startActivityForResult</p>
-<blockquote>
-<ul>
-<li>启动时传入requestCode</li>
-<li>重写onActivityResult方法，根据参数中的requestCode判断是哪个的回调。</li>
-<li>必要时还需要重写被启动页面的返回键回调函数onBackPress()</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-<h5 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h5><p><img src="http://7xkzud.com1.z0.glb.clouddn.com/16-9-23/53552719.jpg" alt=""></p>
-<h5 id="Activity被回收了"><a href="#Activity被回收了" class="headerlink" title="Activity被回收了"></a>Activity被回收了</h5><ul>
-<li>onSaveInstanceState(Bundle)</li>
-<li>onCreate(Bundle)</li>
-</ul>
-<h5 id="启动模式"><a href="#启动模式" class="headerlink" title="启动模式"></a>启动模式</h5><ul>
-<li>standard模式</li>
-<li><p>singleTop模式</p>
-<blockquote>
-<ul>
-<li>栈顶如果是要启动的activity，则不新建，仅此而已。</li>
-</ul>
-</blockquote>
-</li>
-<li><p>singleTask模式</p>
-<blockquote>
-<ul>
-<li>检查返回栈中是否存在类的实例，如果存在将其上的所有activity出栈。</li>
-</ul>
-</blockquote>
-</li>
-<li>singleInstance模式<blockquote>
-<ul>
-<li>存放在一个新的返回栈里面。</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/09/26/View/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wilbert">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一亩三分地">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/09/26/View/" itemprop="url">View</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-26T00:00:00+08:00">
-                2016-09-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2016/09/26/View/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2016/09/26/View/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2016/09/26/View/" class="leancloud_visitors" data-flag-title="View">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="追踪手指在滑动过程中的速度"><a href="#追踪手指在滑动过程中的速度" class="headerlink" title="追踪手指在滑动过程中的速度"></a>追踪手指在滑动过程中的速度</h2><pre><code>@Override
-    public boolean onTouchEvent(MotionEvent event) {
-        VelocityTracker velocityTracker = VelocityTracker.obtain();
-        velocityTracker.addMovement(event);
-        velocityTracker.computeCurrentVelocity(1000);
-        int x = (int)velocityTracker.getXVelocity();
-        int y = (int)velocityTracker.getYVelocity();
-
-        Log.d(W, &quot;x:&quot; + x + &quot;,y:&quot; + y);
-        return super.onTouchEvent(event);
-    }
-</code></pre><h2 id="检测手势行为"><a href="#检测手势行为" class="headerlink" title="检测手势行为"></a>检测手势行为</h2><pre><code>implements GestureDetector.OnGestureListener
-
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {    
-        boolean consume = gestureDetector.onTouchEvent(event);
-        return consume;
-    }
-</code></pre><h2 id="滑动"><a href="#滑动" class="headerlink" title="滑动"></a>滑动</h2><h3 id="scrollTo-amp-amp-scrollerBy"><a href="#scrollTo-amp-amp-scrollerBy" class="headerlink" title="scrollTo&amp;&amp;scrollerBy"></a>scrollTo&amp;&amp;scrollerBy</h3><h3 id="使用动画"><a href="#使用动画" class="headerlink" title="使用动画"></a>使用动画</h3><h3 id="改变布局参数"><a href="#改变布局参数" class="headerlink" title="改变布局参数"></a>改变布局参数</h3><pre><code>public void onClick(View v) {
-    ViewGroup.MarginLayoutParams marginLayoutParams =
-            (ViewGroup.MarginLayoutParams)button.getLayoutParams();
-    Log.d(W, &quot;layout&quot;);
-    marginLayoutParams.width += 100;
-    marginLayoutParams.leftMargin += 100;
-    button.requestLayout();
-}
-</code></pre>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2126,7 +1995,7 @@ intent.setData(Uri.parse(&quot;tel:10086&quot;));
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">85</span>
+                  <span class="site-state-item-count">88</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
